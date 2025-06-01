@@ -1,0 +1,102 @@
+  .auth-layout {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    font-family: sans-serif;
+  }
+  
+  .auth-image-side {
+    flex: 1;
+    background-image: url('/public/AuthPageBanners.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  
+  .auth-form-side {
+    flex: 1;
+    background-color: #fff9e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .auth-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .logo {
+    width: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    display: block;
+    box-sizing: border-box;
+  }
+  
+  .primary-btn {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 0 auto;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .secondary-btn {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    color: black;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .separator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #999;
+    margin: 20px 0;
+  }
+
+  .separator hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 0;
+  }
+  
+  .terms {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  .terms a {
+    color: black;
+    text-decoration: underline;
+  }
+  
