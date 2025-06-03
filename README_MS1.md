@@ -61,5 +61,5 @@ We aim to create a website with features to easily allow users to discover, find
 
 ## Tech Stack
 
-- **Backend**: MongoDB, Express  
-- **Frontend**: React, Node
+- **Backend**: MongoDB, Express, Node
+- **Frontend**: React
