@@ -2,16 +2,14 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../models/User');
-const email = req.body.email?.trim();
-const password = req.body.password?.trim();
 
-router.post('/signup', async (req, res) => {
+router.post('/register', async (req, res) => {
   const {
     firstName,
     lastName,
     username,
-    email,
     dateOfBirth,
+    email,
     password,
     confirmPassword,
     agreedToTerms,
@@ -37,8 +35,8 @@ router.post('/signup', async (req, res) => {
       firstName,
       lastName,
       username,
-      email,
       dateOfBirth,
+      email,
       password: hashedPassword,
       agreedToTerms,
     });
@@ -72,7 +70,7 @@ router.post('/login', async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({ message: 'Server error', error: err.message });
+    res.status(500).json({ message: 'Login failed', error: err.message });
   }
 });
 

@@ -1,14 +1,25 @@
 import React, {useState} from 'react';
 import './LoginPage.css';
+import axios from 'axios'; //for backend
 
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] =useState('');
 
-    const handleLogin = (e) => {
-        e.preventDefault();
+    const handleLogin = async(e) => {
+        e.preventDefault(); //prevent refresh
         console.log('Logging in with:', {email, password});
+        try {
+            const res = await axios.post('http://localhost:5050/api/login', {
+                email,
+                password
+            });
+            alert('Login Successful');
+        } catch(err) {
+            alert('Login Failed: ' + err.response.data.error);
+        }
     };
+    
 
     return (
         <div className='login-container'>

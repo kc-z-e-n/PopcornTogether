@@ -46,7 +46,15 @@
     box-sizing: border-box;
 }
 
+.form-checkbox {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+  }
+
 .checkbox {
+    display: flex;
+    align-items: flex-start;
     text-align: left;
     margin-bottom: 20px;
     font-size: 0.9rem;
@@ -61,6 +69,65 @@
     text-decoration: underline;
 }
 
+.container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #eee;
+  }
+
+.container .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2.4px 2.4px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
 .register-btn {
     width: 100%;
     padding: 14px;
@@ -73,5 +140,35 @@
 }
 
 .register-btn:hover {
-    background-color: #222;
+    background-color: #a4a4a4;
 }
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #a4a4a4;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #999;
+    margin: 20px 0;
+  }
+
+  .separator hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 0;
+  }

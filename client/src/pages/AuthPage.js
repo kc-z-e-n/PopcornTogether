@@ -8,11 +8,11 @@ function AuthPage() {
 
     const handleRegister = (e) => {
         e.preventDefault(); // prevent page reload
-        navigate('/register', {state: {email}});
+        navigate('/register', {state: {email}}); //pass email to /register
     };
 
     const handleLogin = () => {
-        navigate('login');
+        navigate('/login');
     }
 
     return (
@@ -21,7 +21,7 @@ function AuthPage() {
 
             <div className='auth-form-side'>
                 <div className='auth-form'>
-                    <img src='/PT_logo.jpg' alt="Popocorn Together" className='logo' />
+                    <img src='/PT_logo.jpg' alt="Popocorn Together" className='logo' /> 
                     <h2>Welcome to PopcornTogether!</h2>
                     <p>Create an account</p>
                     <p className='subtext'>Enter your email to sign up for this app</p>

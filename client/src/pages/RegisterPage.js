@@ -1,19 +1,50 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, {useState} from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './RegisterPage.css';
+import axios from 'axios'; // for backend
 
 function RegisterPage() {
-    const location = useLocation();
-    const email = location.state?.email || '';
+    const location = useLocation(); 
+    const navigate = useNavigate();
+    const email = location.state?.email || ''; // retrieve email info, if no info, use ''
+    const [agreed, setAgreed] = useState(false); // checkbox ticked
+
+    const handleRegister = async(e)=> {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        const data = {
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            username: formData.get('username'),
+            dob: formData.get('dob'),
+            email: formData.get('email'),
+            password: formData.get('password'),
+            confirmPassword: formData.get('confirmPassword'),
+            agreedToTerms: agreed,
+        };
+
+        try {
+            const res = await axios.post('http://localhost:5050/api/register', data);
+            alert('Registration successful');
+        } catch(err) {
+            const msg = err.response?.data?.message || err.message || 'Unknown error'
+            alert('Registration failed: ' + msg);
+        }
+    };
+
+    const handleLogin = () => {
+        navigate('/login');
+    }
 
     return (
         <div className='register-container'>
             <div className='register-form'>
-                <img src='/PT_logo.jpg' alt='PopocornTogether' className='logo' />
+                <img src='/PT_logo.jpg' alt='PopocornTogether' className='logo' /> 
                 <h2>Create your account</h2>
                 <p className='subtitle'>You are one step away from popcorning together with your friends!</p>
 
-                <form>
+                <form onSubmit={handleRegister}>
                     <div className='form-grid'>
                         <input type='text' placeholder='First name' name='firstName' required />
                         <input type='text' placeholder='Last name (Optional)' name='lastName' />
@@ -23,17 +54,24 @@ function RegisterPage() {
                         <input type='password' placeholder='Password' name='password' required />
                         <input type='password' placeholder='Confirm password' name='confirmPassword' required />
                     </div>
-                <hr></hr>
+
+                    <label className='container'>
+                        I agree to all the <a href='#'>Terms</a> and <a href='#'>Privacy policy</a>
+                        <input type='checkbox' id='terms' required checked={agreed} 
+                    onChange={(e) => setAgreed(e.target.checked)}/>
+                    <span class="checkmark"></span>
+                    </label>
+                    
+                    <button type='submit' className='register-btn'>Create account</button>
                 </form>
-                    <div className='checkbox'>
-                        <input type='checkbox' id='terms' required />
-                        <label htmlFor='terms'>
-                            I agree to all the <a href='#'>Terms</a> and <a href='#'>Privacy policy</a>
-                        </label>
+
+                <div className='separator'>
+                        <hr />
                     </div>
 
-                    <button type='submit' className='register-btn'>Create account</button>
-                
+                <button className='login-btn' onClick={handleLogin}>
+                        Log in to existing account
+                </button>
             </div>
         </div>
     );
