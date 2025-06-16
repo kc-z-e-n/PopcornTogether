@@ -195,22 +195,22 @@ const languages = [
     {"iso_639_1":"et","english_name":"Estonian","name":"Eesti"},
     {"iso_639_1":"gl","english_name":"Galician","name":"Galego"},
     {"iso_639_1":"ha","english_name":"Hausa","name":"Hausa"},
-    {"iso_639_1":"ig","english_name":"Igbo","name":""},{
-        "iso_639_1":"iu","english_name":"Inuktitut","name":""},
-        {"iso_639_1":"lg","english_name":"Ganda","name":""},
-        {"iso_639_1":"mr","english_name":"Marathi","name":""},
-        {"iso_639_1":"mt","english_name":"Maltese","name":"Malti"},
-        {"iso_639_1":"my","english_name":"Burmese","name":""},
-        {"iso_639_1":"na","english_name":"Nauru","name":""},
-        {"iso_639_1":"sd","english_name":"Sindhi","name":""},
-        {"iso_639_1":"xh","english_name":"Xhosa","name":""},
-        {"iso_639_1":"za","english_name":"Zhuang","name":""},
-        {"iso_639_1":"aa","english_name":"Afar","name":""},
-        {"iso_639_1":"is","english_name":"Icelandic","name":"Íslenska"},
-        {"iso_639_1":"ty","english_name":"Tahitian","name":""},
-        {"iso_639_1":"ti","english_name":"Tigrinya","name":""},
-        {"iso_639_1":"tk","english_name":"Turkmen","name":""},
-        {"iso_639_1":"he","english_name":"Hebrew","name":"עִבְרִית"}
+    {"iso_639_1":"ig","english_name":"Igbo","name":""},
+    {"iso_639_1":"iu","english_name":"Inuktitut","name":""},
+    {"iso_639_1":"lg","english_name":"Ganda","name":""},
+    {"iso_639_1":"mr","english_name":"Marathi","name":""},
+    {"iso_639_1":"mt","english_name":"Maltese","name":"Malti"},
+    {"iso_639_1":"my","english_name":"Burmese","name":""},
+    {"iso_639_1":"na","english_name":"Nauru","name":""},
+    {"iso_639_1":"sd","english_name":"Sindhi","name":""},
+    {"iso_639_1":"xh","english_name":"Xhosa","name":""},
+    {"iso_639_1":"za","english_name":"Zhuang","name":""},
+    {"iso_639_1":"aa","english_name":"Afar","name":""},
+    {"iso_639_1":"is","english_name":"Icelandic","name":"Íslenska"},
+    {"iso_639_1":"ty","english_name":"Tahitian","name":""},
+    {"iso_639_1":"ti","english_name":"Tigrinya","name":""},
+    {"iso_639_1":"tk","english_name":"Turkmen","name":""},
+    {"iso_639_1":"he","english_name":"Hebrew","name":"עִבְרִית"}
     ]//brute force lol
 
 
