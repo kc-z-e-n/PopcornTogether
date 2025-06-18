@@ -8,6 +8,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   agreedToTerms: { type: Boolean, required: true },
+  watchedlistMovies: [{type: Number}],
+  wishlistMovies: [{type: Number}],
 });
 
 module.exports = mongoose.model('User', userSchema);

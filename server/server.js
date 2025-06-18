@@ -29,12 +29,6 @@ app.get('/', (req, res) => {
   res.send('Backend running 🎬');
 });
 
-/*
-app.get('/', (req, res) => {
-  res.send('Test success ✅');
-});
-app.listen(5000, () => console.log('Listening on port 5000'));*/
-
 //connect to mongoDB
 mongoose.connect(process.env.ATLAS_URI, {
   dbName: 'PopcornTogether_users'
