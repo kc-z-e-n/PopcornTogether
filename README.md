@@ -252,8 +252,27 @@ Together, the watchedlists and wishlists address the user concern that we have i
 ## Friends List
 Core feature
 
+Allow users to easily connect with others on the platform by adding them to their Friends List. This feature will allow them to:
+
+1. View their friends' profiles and their favorite movies.
+2. See what their friends have recently watched and are planning to watch in the future.
+3. Discover new titles based on their friends’ interests.
+
+The purpose of the feature is to let friends connect their movie history as a way for each user to find a film from their friend's watched list, or to filter out movies that have already been watched. It also shows the common films that friends have in their wishlists so that they can find a film to watch together.
+
 ## Watch Statistics
 Core feature
+
+Watch statistics track your movie-watching habits with real-time statistics. Get insights on your most-watched genres, and time periods. See total runtime, number of movies watched, and average ratings.
+Filter stats by month or genre to understand your viewing trends better.
+
+The purpose of this feature is to present the user's viewing habits and preferences in a more objective data-oriented manner in the hopes of helping user's filter films based on what they have enjoyed in the past. 
+
+Note : This feature can have more depth, currently we are planning to include the below statistics:
+1. Top genres
+2. Top time period
+3. Average ratings
+4. Average runtime
 
 ## Community Reviews
 Extension
