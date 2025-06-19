@@ -18,7 +18,7 @@ router.get('/search', async (req, res) => {
         },
       });
 
-      const top10 = tmdb.data.results.slice(0, 10);
+      const top10 = tmdb.data.results.slice(0, 8);
       res.json(top10);
 
     } catch (err) {

@@ -219,7 +219,8 @@ function Moviefilter({onSearch}) {
     const [selectedGenre, setSelectedGenre] = useState('');
     const [year, setYear] = useState('');
     const [languageFilter, setLanguageFilter] = useState('');
-    const [selectedSetLanguage, setSelectedLanguage] = useState('');
+    const [selectedLanguage, setSelectedLanguage] = useState('');
+    const [title, setTitle] = useState('');
 
     const filteredLanguages = languages.filter(lang =>
         lang.english_name.toLowerCase().startsWith(languageFilter.toLowerCase())
@@ -255,11 +256,17 @@ function Moviefilter({onSearch}) {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch({genre: selectedGenre, year, language});
+    onSearch({genre: selectedGenre, year, languages, title: title.trim()});
 };
 
     return (
         <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Search by title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+          />
             <select value={selectedGenre} onChange={(e) =>
                 setSelectedGenre(e.target.value)}>
                 <option value =''>Select Genre</option>
