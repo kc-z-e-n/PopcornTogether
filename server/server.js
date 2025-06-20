@@ -1,15 +1,14 @@
-//import records from "./routes/record.js";
-
 const express = require('express');
+const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config({path: './config.env'});
 
 const authRoutes = require('./routes/authRoutes'); // auth routes
-const friendRoutes = require('./routes/friendsRoutes'); // friends routes
+const friendsRoutes = require('./routes/friendsRoutes'); // friends routes
 app.use('/api/friends', friendsRoutes);
 
-const app = express();
+//const app = express();
 const PORT = process.env.PORT || 5050;
 
 app.use(cors());
