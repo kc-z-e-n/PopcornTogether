@@ -9,14 +9,12 @@ import LoginPage from './pages/LoginPage';
 function App() {
   return (
     <div className="App">
-      <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/auth" element={<AuthPage />} />
         </Routes>
-      </Router>
     </div>
   );
 }

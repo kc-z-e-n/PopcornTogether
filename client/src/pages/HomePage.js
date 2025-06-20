@@ -1,10 +1,6 @@
 import React from 'react';
 import './HomePage.css';
 import Header from '../components/Header';
-import TimelessFavourites from '../public/TimelessFavourites.png';
-import FriendActivity from '../public/FriendActivity.png';
-import FranchiseLogos from '../public/FranchiseLogos.png';
-import Monkey from '../public/Monkey.png';
 
 const HomePage = () => {
   return (
@@ -23,10 +19,11 @@ const HomePage = () => {
             </p>
             <h2 className="movie-title">Kingdom of the Planet of the Apes</h2>
             <p className="movie-meta">Movie • Action, Drama • 2024</p>
-            <button className="play-button">▶ Play Now</button>
+            <button className="play-button">+ Watched list</button>
+            <button className="play-button">+ Wishlist</button>
           </div>
           <div>
-            <img src={Monkey} alt="Kingdom of the Planet of the Apes" className="banner-image" />
+            <img src='./Monkey.png' alt="Kingdom of the Planet of the Apes" className="banner-image" />
           </div>
         </div>
       </section>
@@ -49,7 +46,7 @@ const HomePage = () => {
         <h2 className="section-heading">Timeless Favourites</h2>
         <div className="movie-grid">
           <div className="movie-card">
-            <img src={TimelessFavourites} alt="Timeless Favourites" className="poster" />
+            <img src='./TimelessFavourites.png' alt="Timeless Favourites" className="poster" />
             <p className="movie-label">Timeless Favourites</p>
           </div>
           {['Avatar', 'Final Destination', 'Frozen'].map((title, i) => (
@@ -66,7 +63,7 @@ const HomePage = () => {
         <h2 className="section-heading">Friend Activity</h2>
         <div className="movie-grid">
           <div className="movie-card">
-            <img src={FriendActivity} alt="Friend Activity" className="poster" />
+            <img src='./FriendActivity.png' alt="Friend Activity" className="poster" />
             <p className="movie-label">Friend Activity</p>
           </div>
           {['Spider-Man 3', 'Hawaizaada'].map((title, i) => (
@@ -82,7 +79,7 @@ const HomePage = () => {
       <section className="movie-section">
         <h2 className="section-heading">Franchise Logos</h2>
         <div className="movie-grid">
-          <img src={FranchiseLogos} alt="Franchise Logos" className="franchise-image" />
+          <img src='/FranchiseLogos.png' alt="Franchise Logos" className="franchise-image" />
         </div>
       </section>
     </div>
