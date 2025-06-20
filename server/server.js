@@ -6,8 +6,8 @@ const cors = require('cors');
 require('dotenv').config({path: './config.env'});
 
 const authRoutes = require('./routes/authRoutes'); // auth routes
-const friendRoutes = require('./routes/friendRoutes'); // friends routes
-app.use('/api/friends', friendRoutes);
+const friendRoutes = require('./routes/friendsRoutes'); // friends routes
+app.use('/api/friends', friendsRoutes);
 
 const app = express();
 const PORT = process.env.PORT || 5050;
