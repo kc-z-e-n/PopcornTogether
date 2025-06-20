@@ -4,14 +4,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config({path: './config.env'});
 
-const authRoutes = require('./routes/authRoutes'); // auth routes
-const friendsRoutes = require('./routes/friendsRoutes'); // friends routes
-app.use('/api/friends', friendsRoutes);
+const authRoutes = require('./routes/authRoutes');
+const movieRoutes = require('./routes/movieroutes');
+const friendsRoutes = require('./routes/friendsRoutes');
 
-//const app = express();
 const PORT = process.env.PORT || 5050;
 
-app.use(cors());
 /*
 const corsOptions ={
   origin: 'http://localhost:3000',
@@ -22,25 +20,25 @@ const corsOptions ={
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions))*/
 
+app.use(cors());
 app.use(express.json());
-//app.use('/record', records); // to get records from mongodb
-app.use('/api', authRoutes); // auth routes
+app.use('/api/friends', friendsRoutes);
+app.use('/api/movie', movieRoutes);
+app.use('/api', authRoutes);
 
 app.get('/', (req, res) => {
-  res.send('Backend running 🎬');
+    res.send('Backend running');
 });
 
-//connect to mongoDB
+//connect to mongodb
 mongoose.connect(process.env.ATLAS_URI, {
-  dbName: 'PopcornTogether_users'
+    dbName: 'PopcornTogether_users'
 }).then(() => {
-  console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB');
 }).catch((err) => {
-  console.error('MongoDB connection error:', err);
+    console.error('MongoDB connection error:', err);
 });
-
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
-

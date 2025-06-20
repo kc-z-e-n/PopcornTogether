@@ -1,135 +1,153 @@
 .home-container {
-    background-color: #000;
-    color: #fff;
+    background-color: black;
+    color: white;
     min-height: 100vh;
-    padding-top: 80px; /* space for fixed header */
-  }
-  
-  /* === Banner Section === */
-  .banner-section {
+    padding-top: 80px;
+}
+
+.banner-section {
     background: linear-gradient(to right, #000, #1a1a1a, #000);
     padding: 48px 24px;
-  }
-  
-  .banner-content {
+}
+
+.banner-content{
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
     align-items: center;
-  }
-  
-  @media (min-width: 768px) {
+}
+
+@media (min-width: 768px) {
     .banner-content {
-      grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
-  }
-  
-  .main-heading {
+}
+
+.main-heading {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 8px;
-  }
-  
-  .sub-heading {
+}
+
+.sub-heading {
     font-size: 1.5rem;
     margin-bottom: 16px;
-  }
-  
-  .highlight {
-    color: #facc15; /* Tailwind yellow-400 */
-  }
-  
-  .movie-title {
-    font-size: 1.25rem;
+}
+
+.highlight{
+    color: #facc15;
+}
+
+.movie-title {
+    font-size: 1.25rem; 
     font-weight: 600;
-  }
-  
-  .movie-meta {
+}
+
+.movie-meta {
     font-size: 0.875rem;
     color: #bbb;
     margin-bottom: 16px;
-  }
-  
-  .play-button {
+}
+
+.play-button{
     background-color: #facc15;
-    color: #000;
+    color: black;
     padding: 10px 16px;
     border: none;
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
+}
 
-  }
-  
-  .banner-image {
+.banner-image {
     width: 100%;
     height: 256px;
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-  }
-  
-  /* === Movie Sections === */
-  .movie-section {
+}
+
+.movie-section {
     padding: 40px 24px;
-  }
-  
-  .section-heading {
+}
+
+.section-heading {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 16px;
-  }
-  
-  .movie-grid {
+}
+
+.movie-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-  }
-  
-  @media (min-width: 640px) {
+
+}
+
+@media (min-width: 640px) {
     .movie-grid {
-      grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
-  }
-  
-  @media (min-width: 768px) {
+}
+
+@media (min-width: 768px) {
     .movie-grid {
-      grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
-  }
-  
-  .movie-card {
+}
+
+.movie-card {
     background-color: #1e1e1e;
-    padding: 12px;
-    border-radius: 8px;
     text-align: center;
-  }
-  
-  .movie-placeholder {
-    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    max-height: 500px;
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 6px;
+
+}
+
+.movie-placeholder {
+    height: 500px;
     background-color: #444;
     border-radius: 6px;
     margin-bottom: 8px;
-  }
-  
-  .poster {
+}
+
+.poster {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.franchise-poster {
     height: 160px;
     width: 100%;
     object-fit: cover;
     border-radius: 6px;
     margin-bottom: 8px;
-  }
-  
-  .movie-label {
+
+}
+
+.movie-label { 
     font-size: 0.875rem;
-  }
-  
-  /* === Franchise Image === */
-  .franchise-image {
+
+}
+
+.franchise-image {
     background-color: #fff;
     padding: 12px;
     border-radius: 8px;
     height: 160px;
     object-fit: contain;
     width: 100%;
-  }  
+}
