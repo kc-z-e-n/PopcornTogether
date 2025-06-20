@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   agreedToTerms: { type: Boolean, required: true },
   watchedlistMovies: [{type: Number}],
   wishlistMovies: [{type: Number}],
+  friends: [{ type: Schema.Types.ObjectId, ref:"User" }]
 });
 
 module.exports = mongoose.model('User', userSchema);

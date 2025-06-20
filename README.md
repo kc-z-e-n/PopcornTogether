@@ -117,12 +117,8 @@ should be dedicated pages for each function, and detailed information for each f
 
 ## API Usage
 MongoDB : database for storing user information
-TMDB (The movie database) : database for querying movie information
 
-## Completed features
-- Webapp: Hosted locally on localhost
-- Account registration: User data stored using  mongoDB integration
-- Account login: Implemented using Express
+TMDB (The movie database) : database for querying movie information
 
 ## Features
 
