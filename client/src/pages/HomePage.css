@@ -69,6 +69,7 @@
 
 .movie-section {
     padding: 40px 24px;
+    justify-content: center;
 }
 
 .section-heading {
@@ -81,7 +82,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-
+    width: 100%;
+    margin: 0 auto;
 }
 
 @media (min-width: 640px) {
@@ -119,6 +121,7 @@
     background-color: #444;
     border-radius: 6px;
     margin-bottom: 8px;
+    aspect-ratio: 2 / 3;
 }
 
 .poster {

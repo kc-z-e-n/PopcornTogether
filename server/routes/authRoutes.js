@@ -59,19 +59,40 @@ router.post('/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch)
             return res.status(401).json({ message: 'Invalid password' });
+    
+    req.session.user = {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+    };
 
     res.status(200).json({
         message: 'Login successful',
-        user: {
-            id: user._id,
-            firstName: user.firstName,
-            username: user.username,
-            email: user.email,
-        }
+        user: req.session.user
     });
     } catch (err) {
         res.status(500).json({ message: 'Login failed', error: err.message });
     }
 });
+
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+          console.error('Logout error: ', err);
+          return res.status(500).json({ message: 'Logout failed'});
+        }
+        res.clearCookie('connect.sid');
+        res.status(200).json({ message: 'Logout successful'});
+  });
+})
+
+router.post('/me', (req, res) => {
+    if (req.session && req.session.user) {
+        res.json({user : req.session.user});
+    }else {
+        req.status(401).json({message: 'Unauthorized'});
+    }
+})
 
 module.exports = router;

@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import './LoginPage.css';
 import axios from 'axios'; //for backend
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] =useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async(e) => {
         e.preventDefault(); //prevent refresh
@@ -13,8 +15,11 @@ function LoginPage() {
             const res = await axios.post('http://localhost:5050/api/login', {
                 email,
                 password
+            },{
+                withCredentials: true
             });
             alert('Login Successful');
+            navigate('/');
         } catch(err) {
             alert('Login Failed: ' + err.response.data.error);
         }

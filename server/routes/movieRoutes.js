@@ -4,7 +4,7 @@ const router = express.Router();
 require('dotenv').config();
 
 router.get('/search', async (req, res) => {
-    const {genre, year, language} = req.query;
+    const {genre, year, language, page = 1} = req.query;
 
     try {
         const tmdb = await axios.get('https://api.themoviedb.org/3/discover/movie', {
@@ -14,12 +14,13 @@ router.get('/search', async (req, res) => {
                 release_year: year,
                 languages: language || 'en_US',
                 sort_by: 'popularity.desc',
-                page: 1,
+                page,
             },
         });
 
-        const top10 = tmdb.data.results.slice(0, 8);
-        res.json(top10);
+        const result = tmdb.data.results.slice(0, 8);
+        const totalPages = tmdb.data.total_pages;
+        res.json({result, totalPages});
     } catch (err) {
         res.status(500).json({error: 'TMDB Request failed'});
     }
