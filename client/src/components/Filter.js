@@ -1,5 +1,6 @@
 import react, {useState} from 'react';
 import axios from 'axios';
+import './Filter.css';
 
 const genres = [
     {"id":28,"name":"Action"},
@@ -214,7 +215,7 @@ const languages = [
     ]//brute force lol
 
 
-function Moviefilter({onSearch}) {
+function Moviefilter({onSearch, onClose}) {
     // const [languages, setLanguages] = useState([]); //for querying tmdb languages
     const [selectedGenre, setSelectedGenre] = useState('');
     const [year, setYear] = useState('');
@@ -226,41 +227,13 @@ function Moviefilter({onSearch}) {
         lang.english_name.toLowerCase().startsWith(languageFilter.toLowerCase())
     );
 
-// for querying tmdb languages
- /*
-  useEffect(() => {
-    const fetchLanguages = async () => {
-      try {
-        const res = await axios.get('https://api.themoviedb.org/3/configuration/languages', {
-          headers: {
-            Authorization: `Bearer ${process.env. TMDB_READ}`
-          }
-        });
-        setLanguages(res.data);
-        setFilteredLanguages(res.data);
-      } catch (err) {
-        console.error('Failed to fetch languages:', err);
-      }
-    };
-    fetchLanguages();
-  }, []);
-
-  // Filter language list when typing
-  useEffect(() => {
-    const filtered = languages.filter(lang =>
-      lang.english_name.toLowerCase().startsWith(languageFilter.toLowerCase())
-    );
-    setFilteredLanguages(filtered);
-  }, [languageFilter, languages]);
- */
-
 const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch({genre: selectedGenre, year, languages, title: title.trim()});
+    onSearch({genre: selectedGenre, year, language: selectedLanguage, title: title.trim()});
 };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='filter-form'>
             <input
               type="text"
               placeholder="Search by title"
@@ -287,10 +260,11 @@ const handleSubmit = (e) => {
             </select>
             
             <button type='submit'>Search</button>
+            <button type='button' onClick={onClose}>x</button>
         </form>
     );
 } 
 
-export default MovieFilter
+export default Moviefilter;
 
 

@@ -1,11 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './HomePage.css';
 import Header from '../components/Header';
+import Filter from '../components/Filter';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const HomePage = () => {
+    const [showFilters, setShowFilters] = useState(false);
+    const navigate = useNavigate();
+
+    {/* will have to check for routes and results page */}
+    const handleSearch = async (queryParams) => {
+        try {
+            const res = await axios.get('/api/movie/search', {params : queryParams});
+            navigate('/results', {state : {results: res.data}} );
+        } catch (err) {
+            console.error('Search failed', err);
+        }
+    }
+
     return (
         <div className='home-container'>
-            <Header />
+            <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)}/>
+            {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
 
             <section className='banner-section'>
                 <div className='banner-content'>

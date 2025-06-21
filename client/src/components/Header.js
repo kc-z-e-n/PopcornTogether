@@ -2,7 +2,7 @@ import React from  'react';
 import { Link} from 'react-router-dom';
 import './Header.css';
 
-const Header = () => {
+const Header = ({onSearchBarFocus}) => {
     return (
         <header className="header">
             <div className='header-left'>
@@ -16,7 +16,7 @@ const Header = () => {
                 <Link to="/friends" className='nav-link'>MY FRIENDS</Link>
             </nav>
             <div className='header-search'>
-                <input type="text" placeholder="Search..." className='search-input' />
+                <input type="text" placeholder="Search..." className='search-input' onFocus={onSearchBarFocus} />
                 <button className="search-button">🔍</button>
             </div>
         </header>

@@ -4,7 +4,7 @@ const router = express.Router();
 require('dotenv').config();
 
 router.get('/search', async (req, res) => {
-    const {genre, year, language = req.query};
+    const {genre, year, language} = req.query;
 
     try {
         const tmdb = await axios.get('https://api.themoviedb.org/3/discover/movie', {
