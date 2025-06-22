@@ -12,7 +12,7 @@ const HomePage = () => {
     {/* will have to check for routes and results page */}
     const handleSearch = async (queryParams) => {
         try {
-            const res = await axios.get('/api/movie/search', {params : queryParams});
+            const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
             navigate('/results', {state : {results: res.data}} );
         } catch (err) {
             console.error('Search failed', err);
@@ -21,7 +21,7 @@ const HomePage = () => {
 
     return (
         <div className='home-container'>
-            <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)}/>
+            <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)} onSearch={handleSearch}/>
             {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
 
             <section className='banner-section'>
@@ -58,17 +58,17 @@ const HomePage = () => {
             </section>
 
             <section className='movie-section'>
-                <h2 className='section-heading'>TimelessFavourites</h2>'
+                <h2 className='section-heading'>TimelessFavourites</h2>
                 <img src='./TimelessFavourites.png' alt='Timeless Favourites' className='poster' />
             </section>
 
             <section className='movie-section'>
-                <h2 className='section-heading'>Friend Activity</h2>'
+                <h2 className='section-heading'>Friend Activity</h2>
                 <img src='./FriendActivity.png' alt='Friends' className='poster' />
             </section>
 
             <section className='movie-section'>
-                <h2 className='section-heading'>Popular Franchises</h2>'
+                <h2 className='section-heading'>Popular Franchises</h2>
                 <img src='./FranchiseLogos.png' alt='Franchises' className='franchise-poster' />
             </section>
 

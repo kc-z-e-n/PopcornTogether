@@ -1,5 +1,4 @@
-import react, {useState} from 'react';
-import axios from 'axios';
+import {useState} from 'react';
 import './Filter.css';
 
 const genres = [
@@ -223,14 +222,15 @@ function Moviefilter({onSearch, onClose}) {
     const [selectedLanguage, setSelectedLanguage] = useState('');
     const [title, setTitle] = useState('');
 
+    //sort alphabetically
     const filteredLanguages = languages.filter(lang =>
         lang.english_name.toLowerCase().startsWith(languageFilter.toLowerCase())
     );
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch({genre: selectedGenre, year, language: selectedLanguage, title: title.trim()});
-};
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSearch({genre: selectedGenre, year, language: selectedLanguage, title: title.trim()});
+    };
 
     return (
         <form onSubmit={handleSubmit} className='filter-form'>

@@ -15,10 +15,11 @@
     font-size: 1.25rem;
 }
 
+/*grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));*/
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(4,  1fr);
+    gap: 20px;
     padding: 32px;
     justify-items: center;
 }
@@ -28,7 +29,7 @@
     padding: 12px;
     border-radius: 8px;
     text-align: center;
-    width: 150px;
+    width: 17vw;
 }
 
 .movie-poster {

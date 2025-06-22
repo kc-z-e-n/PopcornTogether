@@ -1,25 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/Header';
+import Filter from '../components/Filter';
 import './ResultsPage.css';
+
 
 const ResultsPage = () => {
     const location = useLocation();
     const initialQuery = location.state?.query || {};
-    const [results, setResults] = useState(1);
+    const [results, setResults] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [showFilters, setShowFilters] = useState(false);
+    const navigate = useNavigate();
+
+    const handleSearch = async (queryParams) => {
+        try {
+            const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
+            navigate('/results', {state : {results: res.data}} );
+        } catch (err) {
+            console.error('Search failed', err);
+        }
+    }
 
     const fetchMovies = async (pageNum) => {
         try {
-            const res = await axios.get('/api/movie/search', {
+            const res = await axios.get('http://localhost:5050/api/movie/search', {
                 params: { ...initialQuery, page: pageNum }
             });
-            setResults(res.data.results);
+
+            const resultsArray = res.data.result || [];
+            setResults(res.data.result);
             setTotalPages(Math.min(res.data.totalPages, 10));
         } catch (err) {
             console.error(err);
+            setResults([]);
         }
     };
 
@@ -29,7 +45,9 @@ const ResultsPage = () => {
 
     return (
         <div className = "results-container">
-            <Header />
+            <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)} onSearch={handleSearch}/>
+            {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
+
             <div className = "results-banner">
                 <h2>Showing Matches for "{initialQuery.title || 'Your Filters'}"</h2>
             </div>
@@ -50,7 +68,7 @@ const ResultsPage = () => {
                     <button
                     key={i}
                     className={i + 1 === page ? 'active' : ''}
-                    onClick={() => setTotalPages(i + 1)}
+                    onClick={() => setPage(i + 1)}
                 >
                     {i+1}
                 </button>

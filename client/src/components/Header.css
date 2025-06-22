@@ -61,8 +61,8 @@
 }
 
 .logo {
-    height: 50px;
-    width: 10px;
+    height: 70px;
+    width: 2px;
     margin-right: 10px;
 }
 
@@ -71,6 +71,7 @@
     font-weight: bold;
     color: white;
     text-decoration: none;
+    font-family: Homenaje;
 }
 
 .nav-link {
