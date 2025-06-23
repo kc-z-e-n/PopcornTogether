@@ -48,7 +48,7 @@ Aditionally, the movie experience can be enhanced when undertaken with friends, 
 ### Popcorn Together's value
 ---
 
-The proposed web application Popcorn Together seeks to create a platform where movie enjoyers can go to consolidate their movie-going journey, allowing them to record their watches, as well as track films they want to watch. Furthermore, with a friends list integration, we empower users to find common movies to watch with their friends.
+The proposed web application PopcornTogether seeks to create a platform where movie enjoyers can go to consolidate their movie-going journey, allowing them to record their watches, as well as track films they want to watch. Furthermore, with a friends list integration, we empower users to find common movies to watch with their friends.
 
 ### Personal note
 ---
@@ -133,15 +133,24 @@ TMDB (The movie database) : database for querying movie information
 |Community reviews|Allow users to pool reviews on movies they have watched|Gives users a better idea of what they can expect from movies they are interested in|
 |Movie Match|For users who are unsure of what movie they want to watch, they would be able to specify a set of filters and random films will be generated and suggested to the user. We aim to mimic a social media for-you page layout for this|With a general idea of what kind of film they want to watch, users can begin to browse for movies that interest them. This feature targets users who do not know the exact movie they want to watch or are just looking for more|
 
+<ins>Landing page</ins>
+![landing page](Images/landing_.png)
+
+The user will first arrive on the **landing page**. From here, they are able to access the movie search function without logging in. Other features such as Friends list, Account profile, and Watched / Wish lists will prompt the user to login first.
+
+![landing page](Images/landing.png)
+
+After logging in, the user will be redirected to the landing page once again, they will now be able to access the various features. 
+
 ## Account
 Core feature 
 
-Users will first find themselves on the landing page where they can access the registration and login features. By creating an account, we are able to assign the user to their very own watched list and wishlists, as well as provide information on their watch statistics. 
+Users will first find themselves on the landing page where they can access the registration and login features. By creating an account, we are able to assign the user to their very own watched list and wishlists, as well as provide information on their watch statistics. Logging in also allows the user to have a session id, which will be used to track their session and allow them to make use of the different features of PopcornTogether.  
 
 <ins>Authentication page</ins>
 ![auth page](Images/auth_page.png)
 
-Users will first arrive at this page where they can then create an account or login in with their existing account.
+Users will be redirected to this page where they can then create an account or login in with their existing account.
 
 <ins>Register page</ins>
 ![register page](Images/register_page.png)
@@ -173,7 +182,7 @@ This includes storing the below data in order to enable ths web application's fe
 {
   "userId": "ObjectId",
   "movies": [
-    { "movieId": "123", "title": "Inception", "watchedAt": "2025-06-01T22:00:00Z" }
+    { "movieId": "123" }
   ]
 }
 ```
@@ -183,7 +192,7 @@ This includes storing the below data in order to enable ths web application's fe
 {
   "userId": "ObjectId",
   "movies": [
-    { "movieId": "456", "title": "The Matrix" }
+    { "movieId": "456" }
   ]
 }
 ```
@@ -214,6 +223,13 @@ The movie search feature will be the main way users can search for movies, the b
 3. Release year
 4. Language
 
+<ins>Search function</ins>
+![search bar](Images/header_filter.png)
+
+The user will be able to use the search function via the search bar. On clicking the search bar, the user will also be able to access a set of filters that they can use to search for films by passing in a set of parameters:
+
+>eg. Genre: Action, Release year: 2020, Language: English
+
 <ins>The Movie Database (TMDB)</ins>
 
 <img src="Images/Tmdb.new.logo.svg.png" alt="mongodb" width="250" height="200"/>
@@ -223,8 +239,19 @@ We use TMDB as our primary source of movie data. TMDB provides a robust and comp
 
 Upon user input (searching by title, genre, language, or year), our backend queries the TMDB API to retrieve relevant movie data. This data is then displayed on the frontend for user interaction.
 
- After successful query, the users will be able to view the following page which provides them with several actions. 
+ After successful query, the users will be able to view the following result page.
 
+ <ins>Results page</ins>
+![results](Images/results1.png)
+
+The results page will render results from the TMDB queery.The layout will be two rows of 4 movies, for a total of 8 movies a page. They can scroll down to view the next 4 movies, as well as view the next few pages, which will render the next 8 movies. The movie results are sorted based on TMDB's internal sorting mechanism.
+
+ <ins>Results pages</ins>
+![results](Images/results2.png)
+
+The user will be able to see up to 10 pages of suggested movies, based on their search parameters.
+
+If the user is logged in, they will be able to access the below two functions:
  1. Users can mark a movie as watched, which is then logged in the <ins>watchedlists</ins> collection for future reference or social sharing.
 2. Users can save movies they are interested in watching later. This is stored in the MongoDB <ins>wishlists</ins> collection.
 

@@ -39,14 +39,34 @@ const ResultsPage = () => {
         }
     };
 
+    const checkSessionLogin = async () => {
+        try {
+            const res = await axios.get('http://localhost:5050/api/me', {
+                withCredentials:true
+            });
+            if (res.status === 200) {
+                return true;
+            }
+        } catch (err) {
+            return false;
+        }
+    };
+
       const addToList = async (listType, movieId) => {
+        const isLoggedIn = await checkSessionLogin();
+        if (!isLoggedIn) {
+            alert('Please log in first');
+            navigate('/auth');
+            return;
+        }
+
         try {
             await axios.post(`http://localhost:5050/api/user/${listType}`, {movieId}, {withCredentials:true});
             alert('Add Successful!')
         } catch (err) {
             console.error('Add failed', err);
         }
-      };
+    };
 
     useEffect(() => {
         fetchMovies(page);
@@ -71,7 +91,7 @@ const ResultsPage = () => {
                     <p className="movie-title">{movie.title}</p>
                     <div className='button-group'>
                         <button className='add-button' onClick={() => addToList('addWatched', movie.id)}>+ Watched</button>
-                        <button className='add-button' onClick={() => addToList('addWish', movie.id)}>+ Watched</button>
+                        <button className='add-button' onClick={() => addToList('addWish', movie.id)}>+ Wish</button>
                     </div>
                 </div>
                 ))}

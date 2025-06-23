@@ -18,7 +18,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
                     setIsLoggedIn(true);
                 }
             } catch (err) {
-                setIsLoggedIn(false)
+                setIsLoggedIn(false);
             }
         };
         checkLogin();
