@@ -9,7 +9,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
 
     const handleProtectedRoute = async (path) => {
         try {
-            const res = await axios.get('/api/auth.me', {withCredentials: true}) ;
+            const res = await axios.get('http://localhost:5050/api/me', {withCredentials: true}) ;
             if (res.status==200) {
                 navigate(path);
             }

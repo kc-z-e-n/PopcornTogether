@@ -24,7 +24,6 @@ function LoginPage() {
             alert('Login Failed: ' + err.response.data.error);
         }
     };
-    
 
     return (
         <div className='login-container'>

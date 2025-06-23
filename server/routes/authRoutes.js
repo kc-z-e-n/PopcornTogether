@@ -60,13 +60,14 @@ router.post('/login', async (req, res) => {
         if (!isMatch)
             return res.status(401).json({ message: 'Invalid password' });
     
+    console.log('Session before: ', req.session);
     req.session.user = {
         id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
     };
-
+    console.log('Session after: ', req.session);
     res.status(200).json({
         message: 'Login successful',
         user: req.session.user
@@ -75,7 +76,7 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Login failed', error: err.message });
     }
 });
-
+  
 router.post('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -87,11 +88,11 @@ router.post('/logout', (req, res) => {
   });
 })
 
-router.post('/me', (req, res) => {
+router.get('/me', (req, res) => {
     if (req.session && req.session.user) {
         res.json({user : req.session.user});
     }else {
-        req.status(401).json({message: 'Unauthorized'});
+        res.status(401).json({message: 'Unauthorized'});
     }
 })
 

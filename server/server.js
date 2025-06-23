@@ -9,20 +9,7 @@ const MongoStore = require('connect-mongo');
 //port
 const PORT = process.env.PORT || 5050;
 
-//routes
-const authRoutes = require('./routes/authRoutes');
-const movieRoutes = require('./routes/movieroutes');
-const friendsRoutes = require('./routes/friendsRoutes');
-
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials:true
-}));
 app.use(express.json());
-app.use('/api/friends', friendsRoutes);
-app.use('/api/movie', movieRoutes);
-app.use('/api', authRoutes);
-
 //user session
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
@@ -38,6 +25,22 @@ app.use(session({
       collectionName: 'sessions'
     })
 }));
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials:true
+}));
+
+//routes
+const authRoutes = require('./routes/authRoutes');
+const movieRoutes = require('./routes/movieRoutes');
+const friendsRoutes = require('./routes/friendsRoutes');
+const userRoutes = require('./routes/userRoutes');
+
+app.use('/api/friends', friendsRoutes);
+app.use('/api/movie', movieRoutes);
+app.use('/api', authRoutes);
+app.use('/api/user', userRoutes);
 
 app.get('/', (req, res) => {
     res.send('Backend running');

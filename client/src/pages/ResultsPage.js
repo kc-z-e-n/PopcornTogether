@@ -39,6 +39,15 @@ const ResultsPage = () => {
         }
     };
 
+      const addToList = async (listType, movieId) => {
+        try {
+            await axios.post(`http://localhost:5050/api/user/${listType}`, {movieId}, {withCredentials:true});
+            alert('Add Successful!')
+        } catch (err) {
+            console.error('Add failed', err);
+        }
+      };
+
     useEffect(() => {
         fetchMovies(page);
     }, [page]);
@@ -60,6 +69,10 @@ const ResultsPage = () => {
                         className="movie-poster"
                     />
                     <p className="movie-title">{movie.title}</p>
+                    <div className='button-group'>
+                        <button className='add-button' onClick={() => addToList('addWatched', movie.id)}>+ Watched</button>
+                        <button className='add-button' onClick={() => addToList('addWish', movie.id)}>+ Watched</button>
+                    </div>
                 </div>
                 ))}
             </div>
