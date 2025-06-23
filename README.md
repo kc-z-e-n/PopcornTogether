@@ -12,6 +12,7 @@
 # Table of Contents
 
 ## [Project Overview](project-overview)
+- [Project Scope](#project-scope)
 - [Objectives](#objectives)
 - [Requirements](#requirements)
   - [Obesrvations](#observations)
@@ -22,6 +23,7 @@
 - [API Usage](#api-usage)
 
 ## **Features**
+- [Landing page](#landing-page)
 - [Account](#account)
 - [Movie Search](#movie-search)
 - [Watched List](#watched-list)
@@ -30,15 +32,26 @@
 - [Watch Statistics](#watch-statistics)
 - [Community Reviews](#community-reviews)
 - [Movie Match](#movie-match)
+- [Software engineering principles](#Software-engineering-principles)
+- [Version control](#version-control)
+
+## **Errors encountered**
+- [Frontend](#frontend)
+- [Baackend](#backend)
+- [Databse](#database)
+- [Deployment](#deployment)
 
 <div style="page-break-after: always;"></div>
 
-## Project Overview
+## Project Overview 
 With the proliferation of movies in cinemas and streaming platforms, it may be overwhelming for users to identify what movies they would like to watch. This is especially so when they are searching with friends and family, trying to find a  film they can watch together.
 
 Ever wondered what movies you have already watched or which of the hundreds of thousands should be next on your wishlist? Popcorn Together seeks to provide a solution to the Movie Weekend conundrum. 
 
 Aditionally, the movie experience can be enhanced when undertaken with friends, making features that support this shared entertainment experience an even seamless one.
+
+## Project scope
+A one-stop app for movie enthusiasts, a record of their movie-watching journey!
 
 ### Tech Stack
 
@@ -133,14 +146,19 @@ TMDB (The movie database) : database for querying movie information
 |Community reviews|Allow users to pool reviews on movies they have watched|Gives users a better idea of what they can expect from movies they are interested in|
 |Movie Match|For users who are unsure of what movie they want to watch, they would be able to specify a set of filters and random films will be generated and suggested to the user. We aim to mimic a social media for-you page layout for this|With a general idea of what kind of film they want to watch, users can begin to browse for movies that interest them. This feature targets users who do not know the exact movie they want to watch or are just looking for more|
 
+## Feature Descriptions
+The following section details the functionality and organisation of the respective features in PopcornTogether.
+
 <ins>Landing page</ins>
 ![landing page](Images/landing_.png)
 
-The user will first arrive on the **landing page**. From here, they are able to access the movie search function without logging in. Other features such as Friends list, Account profile, and Watched / Wish lists will prompt the user to login first.
+The user will first arrive on the **landing page**. From here, they are able to access the movie search function without logging in. This will be further expanded on in the movie search feature below.
+
+ Other features such as Friends list, Account profile, and Watched / Wish lists will prompt the user to login first, and is protected using an isAuthenticated function which checks for an active session before allowing access, it will redirect the user to the authentication page if no valid session is detected.
 
 ![landing page](Images/landing.png)
 
-After logging in, the user will be redirected to the landing page once again, they will now be able to access the various features. 
+After logging in, the user will be redirected to the landing page once again, they will now be able to access the various features. They will also be able to logout of their account.
 
 ## Account
 Core feature 
@@ -155,7 +173,7 @@ Users will be redirected to this page where they can then create an account or l
 <ins>Register page</ins>
 ![register page](Images/register_page.png)
 
-Users will register for an account on this registration page, or access the login page if they already have an account. The user information will be stored on MongoDb
+Users will register for an account on this registration page, or access the login page if they already have an account. The user information will be stored on MongoDb.
 
 <ins>MongoDB</ins>
 
@@ -168,42 +186,42 @@ This includes storing the below data in order to enable ths web application's fe
 1. Users
 ```
 {
-  "_id": "...",
-  "firstName": "Test",
-  "lastName": "1",
-  "username": "test1",
-  "email": "test@example.com",
-  "password": "...",
+    "_id": "...",
+    "firstName": "Test",
+    "lastName": "1",
+    "username": "test1",
+    "email": "test@example.com",
+    "password": "...",
 }
 ```
 
 2. Watchedlists
 ```
 {
-  "userId": "ObjectId",
-  "movies": [
-    { "movieId": "123" }
-  ]
+    "userId": "ObjectId",
+    "movies": [
+        { "movieId": "123" }
+    ]
 }
 ```
 
 3. Wishlists
 ```
 {
-  "userId": "ObjectId",
-  "movies": [
-    { "movieId": "456" }
-  ]
+    "userId": "ObjectId",
+    "movies": [
+        { "movieId": "456" }
+    ]
 }
 ```
 
 4. Friends list
 ```
 {
-  "userId": "ObjectId",
-  "friends": [
-    { "friendId": "ObjectId", "username": "janedoe" }
-  ]
+    "userId": "ObjectId",
+    "friends": [
+        { "friendId": "ObjectId", "username": "janedoe" }
+    ]
 }
 ```
 
@@ -212,7 +230,7 @@ Furthermore, MongoDB provides certain security features such as hashing password
 <ins>Login page</ins>
 ![login page](Images/login_page.png)
 
-Users will login through the login page
+Users will login through the login page. 
 
 ## Movie Search
 Core feature
@@ -229,6 +247,8 @@ The movie search feature will be the main way users can search for movies, the b
 The user will be able to use the search function via the search bar. On clicking the search bar, the user will also be able to access a set of filters that they can use to search for films by passing in a set of parameters:
 
 >eg. Genre: Action, Release year: 2020, Language: English
+
+This component is mounted via the header and filter components respectively. This allows the user to access the movie search function on all PopcornTogether pages with the exception of authentication pages.
 
 <ins>The Movie Database (TMDB)</ins>
 
@@ -254,6 +274,8 @@ The user will be able to see up to 10 pages of suggested movies, based on their 
 If the user is logged in, they will be able to access the below two functions:
  1. Users can mark a movie as watched, which is then logged in the <ins>watchedlists</ins> collection for future reference or social sharing.
 2. Users can save movies they are interested in watching later. This is stored in the MongoDB <ins>wishlists</ins> collection.
+
+Movies added to the respective lists are stored in MongoDb via their movieId. This will enable generation of the next few features.
 
 ## Watched List
 Core feature
@@ -302,3 +324,125 @@ Extension
 
 ## Movie Match
 Extension
+
+## Software engineering principles
+### Separation of concerns
+Each layer of the application has a clearly defined role:
+
+- Frontend (React) handles the user interface, routing, and rendering.
+- Backend (Express.js) is responsible for the functional logic, session management, and database operations.
+- Database (MongoDB) stores persistent user data such as account information, watched/wishlist movie IDs, and friendlists.
+
+By keeping UI, logic, and storage independent, the app is easier to maintain and modify without introducing bugs across unrelated features.
+
+### Modularity
+PopcornTogether is designed such that each feature is encapsulated in its own component or route file. For example:
+
+Frontend components like Header, Filter, and pages like LoginPage, and ResultsPage are separated into their own files, each responsible for a distinct piece of the UI.
+
+Backend logic is organized into route modules such as authRoutes.js, friendsRoutes.js, and movieRoutes.js, allowing easier maintenance, scalability, and testing. This ensures clarity of purpose for each file, keeping the functionality of each file distinct. This approach makes the application easier to debug, extend, and collaborate on.
+
+### Don't repeat yourself (DRY)
+The application avoids redundant code by abstracting repeated logic into reusable functions:
+
+handleProtectedRoute() is reused to protect routes like /profile, /friends, and /lists, reducing duplicated authentication checks.
+Shared Axios configurations (e.g., { withCredentials: true }) are consistently applied across API calls using centralized options where possible.
+This helps improve code readability and minimizes the risk of inconsistent behavior.
+
+The header and filter is also deployed in all pages, with the exception of the authentication pages. Hence, instead of repeating the code, it is mounted as a component using:
+```
+{
+    <Header />
+    <Filter />
+}
+```
+
+### Error handling
+To ensure robust handling of different routes and functions, as well as easier debugging, PopcornTogether makes use of the below practices:
+
+- Wrapping Axios API calls in try-catch blocks to handle server errors
+- Using console.log to display error messages and endpoints for accurate triangulation of errors for debugging.
+
+For example:
+
+```
+    const handleSearch = async (q) => {
+        try {
+            const res = await axios.get('SOME_ROUTE', {params : q});
+            navigate('/SOME_OTHER_ROUTE', {state : {results: res.data}} );
+        } catch (err) {
+            console.error('Search failed', err);
+        }
+    }
+```
+
+- Specific status codes used for respective errors:
+
+[Status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status)
+
+| Status Code | Meaning                      | When It’s Used                                                                 |
+|-------------|------------------------------|--------------------------------------------------------------------------------|
+| 200 OK    | Success                      | Returned on successful GET or POST actions (e.g., login success, data fetched). |
+| 201 Created | Resource Created            | After successful user registration.                                            |
+| 400 Bad Request | Invalid Input           | When required fields are missing or invalid (e.g., mismatched passwords).      |
+| 401 Unauthorized | Not Authenticated      | When accessing protected routes without a valid session (e.g., /me, /friends). |
+| 404 Not Found | Resource Not Found        | When user/email is not found in login or DB queries.                          |
+| 409 Conflict | Duplicate Resource         | When trying to register with an email or username that already exists.         |
+| 500 Internal Server Error | Server Crash | When an unexpected error occurs (e.g., DB errors, bcrypt failures).            |
+
+
+- Middleware function, isAuthenticated, intercepts unauthorised access by users without an active session before access to protected routes, such as friends list and profile, is granted.
+
+
+### Security management
+As the app handles user data such as email, passwords, date of birth, and API keys, we have integrated a few layers of security integration:
+
+- Password protection: All user passwords are securely hashed using bcrypt before being stored in MongoDB. They are not stored as their respective input strings.
+- Session management: Sessions are established using express-session and stored securely in MongoDB via connect-mongo. Cookies are set as httpOnly to prevent client-side access.
+- Route protection: Sensitive endpoints like adding to watched/wishlist or viewing friends are protected by middleware that checks for an active user session before allowing access.
+- When authentication is required for database querying, using env files makes it easy to run the codebase from different environments. 
+The env files are kept local with the git ignore file managing version control when running git push.
+
+Sensitive information such as passwords and API keys are all stored locally and not included in any code lines.
+
+## Version Control
+PopcornTogether uses Git for version control to ensure consistent and trackable development. All code changes are committed with commit messages, allowing for clearer workflow and separation of duties.
+
+```
+# Cloning repository
+git clone https://github.com/username/PopcornTogether.git
+cd PopcornTogether
+
+# Make changes, then stage and commit
+cd directory
+git add .
+git commit -m 'SOME_MESSAGE'
+
+# Push changes to GitHub
+git push 
+```
+
+This is especially crucial given the remote nature of the collaborative work done for PopcornTogether. By implementing a version control system, changes are easier to trach and new implementations are easily traceable. 
+
+## Errors encountered
+This serves as a documentation of errors we have encountered so far during Milestone 2:
+
+## Frontend
+
+The largest issue we faced was deciding how to integrate our most vital feature which is the movie search. We initally designed a standalone page for it. However, seeing as how many of the features will require the use of the search function in some way, we created the header component as a way of mounting the search function on all pages. This development also allowed us to tag on routes to other features such as the friends list, watched list, wishlist etc.
+
+As we are relatively new to using html and css for such webpage designs, finding the correct keywords for the syntax of our frontend pages posed a monumental challenge. One resource we made use of was the [Bootstrap](https://getbootstrap.com) library. We also made use of the <ins>npm start</ins> command to run our react app via localhost in our broswer. This enabled us to view changes to the webpage as we adjusted the css for the respective pages.
+
+Using the [Create-react-app](https://create-react-app.dev/docs/getting-started/) functon gave us a quick jumpstart to creating a react app, it also provided structural syntax for our subsequent files.
+
+Another general issues we encountered was the integration of frontend and backend. We made many mistakes regarding the use of axios, and the backend routes. We found that incorporating logs via the use of <ins>alert</ins>, <ins>console.log</ins>, and <ins>console.error</ins> helped us to debug these issues easier.
+
+## Backend
+
+## Database
+
+As this was our first time integrating a project using a database, we faced difficulties in finding out how to integrate database functionalities with PopcornTogether. Fortunately, the MongoDb youtube channel provided many tutorials with walkthroughs on setting up a working MongoDb database cluster for personal projects. After which, we just had to adapt our user schema in user.js to suit our intended functions.
+
+The database configuration was largely seamless owing to the detailed resources provided by MongoDb for the deployment of MongoDb atlas in projects.
+
+## Deployment
