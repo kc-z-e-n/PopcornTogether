@@ -32,76 +32,80 @@
 - [Watch Statistics](#watch-statistics)
 - [Community Reviews](#community-reviews)
 - [Movie Match](#movie-match)
-- [Software engineering principles](#Software-engineering-principles)
+- [Software Engineering Principles](#Software-engineering-principles)
 - [Version control](#version-control)
 
 ## **Errors encountered**
 - [Frontend](#frontend)
-- [Baackend](#backend)
+- [Backend](#backend)
 - [Databse](#database)
 - [Deployment](#deployment)
 
 <div style="page-break-after: always;"></div>
 
 ## Project Overview 
-With the proliferation of movies in cinemas and streaming platforms, it may be overwhelming for users to identify what movies they would like to watch. This is especially so when they are searching with friends and family, trying to find a  film they can watch together.
+With the proliferation of movies in cinemas and streaming platforms, it may be overwhelming for users to identify what movies they would like to watch. This is especially so when they are searching with friends and family, trying to find a film they can watch together.
 
-Ever wondered what movies you have already watched or which of the hundreds of thousands should be next on your wishlist? Popcorn Together seeks to provide a solution to the Movie Weekend conundrum. 
+Ever wondered what movies you have already watched, or which of the hundreds of thousands should be next on your wishlist? PopcornTogether seeks to provide a solution to the Movie Weekend conundrum. 
 
-Aditionally, the movie experience can be enhanced when undertaken with friends, making features that support this shared entertainment experience an even seamless one.
+Additionally, the movie experience can be enhanced when undertaken with friends, making features that support this shared entertainment experience an even seamless one.
+
 
 ## Project scope
-A one-stop app for movie enthusiasts, a record of their movie-watching journey!
+A one-stop app for movie enthusiasts, a record of their movie-watching journey together with friends, over a bucket of popcorn!
 
 ### Tech Stack
 
-- **Backend**: MongoDB, Express, Node
-- **Frontend**: React
+- **Backend**: MongoDB, Express, Node.js
+- **Frontend**: React.js, CSS
 
 ### Popcorn Together's value
 ---
 
-The proposed web application PopcornTogether seeks to create a platform where movie enjoyers can go to consolidate their movie-going journey, allowing them to record their watches, as well as track films they want to watch. Furthermore, with a friends list integration, we empower users to find common movies to watch with their friends.
+The proposed web application PopcornTogether seeks to create a platform where movie enjoyers can go to consolidate their movie-going journey, allowing them to record their watches, track films they want to watch, and even receive relevant recommendations. Furthermore, with a friends list integration, we empower users to find common movies to watch with their friends.
 
 ### Personal note
 ---
-Through this project, we aim to pick up industry relevant software engineering skills and practices. Additionally, the project is one that we believe can add value to one's leisure time by reducing the effort spent on collating one's watch history and finding movies.
+Through this project, we aim to pick up industry relevant software engineering skills and practices. We also hope to learn how to better cater to user interests and preferences, by designing a UI/UX that is intuitive, engaging, and responsive to user needs. Additionally, the project is one that we believe can add value to one's leisure time by reducing the effort spent on collating one's watch history and finding movies. Through the user interaction feature with their friends, we also hope to deepen the bond between friends by enabling them to share and discover movies based on common interests, fostering a more connected and meaningful viewing experience.
+
 
 ## Objectives
-This project aims to create a platform for users to maintain an account with information on movies they have and watched and want to watch. It also provides discovery functions where users can find movies through active searching or through friends they have connected with.
+This project aims to create a platform for users to maintain an account with information on movies they have and watched and want to watch. It also provides discovery functions where users can find movies through active searching, recommendations, or through friends they have connected with.
 
 ## Requirements
-## Observations
+### Observations
 | Identified area                   | User needs                                   |
 |-------------------------------------------|---------------------------------------------|
-|Unsure of what movie to watch|More avenues to discover movies that interest them |
-|Forgot what movies they have watched|A way to track movies that they have already watched|
+|Unsure of what movie to watch|More recommendation avenues to discover movies that interest them |
+|Forgot what movies they have watched|A list to track movies that they have already watched|
 |Difficulty finding films to watch with friends|A feature to match movies two or more users would like to watch|
+|Unable to remember which movies they planned to watch|A list to record movies they plan to watch|
 
 
-## User stories
-- As a user who wants to find a movie that fits my mood today, I want to be able to type genres etc. I want to use  the search bar to find movies that apply.  
+### User stories
+- As a user who wants to find a movie that fits my mood and preferences today, I want to be able to type genres and other search criterias. I want to use the search bar to find movies that apply.  
 - As a user who wants to see if a movie is worth watching or not.  
 - As a user who wants to remember what kind of movies I have watched and also want to watch.  
 - As a user who wants to see what my friends are watching, I want to add them to my friends list to keep track and stay connected with them.  
 - As a user who wants to find a movie both my friends and I will enjoy.
 
-## Analysis
+### Analysis
  Pain Point |  App Requirements |
 |-----------------------------------------------|---------------------------------------------|
 |Unsure of what movie to watch | Search functions made for active finding of specific movies that fit the user's preferences as well as passive methods to push movie recommendations for the user to discover |
-|Forgot what movies they have watched|Allow users to find and record all films they have watched before|
-|Difficulty finding films to watch with friends|A friends list with shareable records of previously watched movies and wishlisted movies, providing ways to narrow down their search for movies to watch together by eliminating previously wathced movies and by checking for matching wishlists|
+|Forgot what movies they have watched|Through a Watchedlist, allow users to find and record all films they have watched before, before translating into meaningful analytics for their use and sharing with friends|
+|As a user who wants to remember what kind of movies I want to watch|Develop a Wishlist feature to record movies the user plans to watch|
+|Difficulty finding films to watch with friends|A Friends list with shareable records of previously watched movies and wishlisted movies, providing ways to narrow down their search for movies to watch together by eliminating previously wathced movies and by checking for matching wishlists|
 |As a user who wants to see if a movie is worth watching or not|Include a communnity review function. While opinions on movies are quite subjective, allowing users to read reviews by others who have already watched the film can provide insight and help users decide if they want to watch the film|
-|As a user who wants to remember what kind of movies I have watched and also want to watch|Develop a feature to record aspects of movies saved in a user's watched lsit into meaningful analytics for their use|
+|To share movie analytics with friends as a conversation topic, or to find movies with common genres they can watch together|A Watch Statistics page will be useful to analyse a user's rating levels, and track quantity of movies watched and other numbers|
+
 
 ## Developer requirements
 The crux of the issue we have identified is the ability to find new movies to watch. The most important thing to consider in achieving this is narrowing the options as much as possible. PopcornTogether will form a collaborative effort with the user in this filttering process. Users can actively search for new movies and record movies they ahve already watched, PopcornTogether will provide robust features that allows users to discover new movies through a variety of methods, each with its own strength. Furthermore, through the compilation of statistics of the user's watch habits, the user can have more insight into what type of movies they may prefer.
 
-With so many funcitons serving different purposes, the user can become lost and not maximise the use of each one. There
-should be dedicated pages for each function, and detailed information for each fucntion's usage. 
+With so many funcitons serving different purposes, the user can become lost and not maximise the use of each one. There should be dedicated pages for each function, and detailed information for each fucntion's usage. 
 
- Powerful search and filter functions enable easy user queries when searching for movies, while a robust profile system enables discovery of new movies to watch together with friends or simply by themselves. 
+Powerful search and filter functions enable easy user queries when searching for movies, while a robust profile system enables discovery of new movies to watch together with friends or simply by themselves. 
 
 ## Development plan
 - **Milestone 1 (Week 1 - 3)**: Technical proof of concept  
@@ -114,32 +118,35 @@ should be dedicated pages for each function, and detailed information for each f
   - Querying of database implemented 
   - A working system with the core features 
     - Account registration
-    - Profile
+    - Movie Search
+    - Personal Profile
     - Watchedlist
     - Wishlist
-    - Movie Search
+    - Watch Statistics
   - User has edit access for the watchedlist  
-  - The app produces a list of movies given a set of filters  
+  - The app produces a list of movies given a set of filters, after search by user
 
 - **Milestone 3 (Week 9 - 12)**: Extended system  
-  - A working system with both the core and extension features  
-  - Users can add reviews to movies, which are then stored and retrieved from the database  
-  - Movie match feature implemented for alternate movie discovery  
+  - A working system with both the core and extension features
+    - Users can add reviews to movies, which are then stored and retrieved from the database
+    - Friends list
+    - Movie match feature implemented for alternate movie discovery with friends in Friends list
 
 - **Milestone 4**: Testing and debugging
 
 ## API Usage
 MongoDB : database for storing user information
 
-TMDB (The movie database) : database for querying movie information
+TMDB (The Movie Database) : database for querying movie information
+
 
 ## Features
 
 | Feature | Description                   | Purpose                                   |
 |----|-----------------------------------------------|---------------------------------------------|
-| Account  | Allows user to maintain their data. |Serves as a way to track their movie journey |
-| Movie Search  | Basic search function, allows users to search based on film title, genre, language or release date | Provides a way for users to search for a specific movie, or discover movies by specifying certain paramenters|
-|Watched list | Stores all the movies the user has watched before |Allows the user to track their films, it serves as their record so they do not double watch movies. It can also give them inspiration for films they could watch based on what they have enjoyed in the past.|
+| User Account/Profile | Allows user to maintain their data. |Serves as a way to track their movie journey |
+| Movie Search | Basic search function, allows users to search based on film title, genre, language or release date | Provides a way for users to search for a specific movie, or discover movies by specifying certain paramenters|
+|Watchedlist| Stores all the movies the user has watched before |Allows the user to track their films, it serves as their record so they do not double watch movies. It can also give them inspiration for films they could watch based on what they have enjoyed in the past.|
 |Wishlist|User can add movies they want to watch in the future here |Track movies that the user is interested in but hasnt gotten around to watching. With limited time to pursue leisure activities, users may nnot be able to watch every film immediately, the wishlist serves as a reminder for films they want to watch in the future|
 |Friends list|Allows users to connect with one another, friends can view each others watched lists and wishlists|For friends who want inspiration, they can browse through their friends' lists. For friends looking for a movie to watch together, they can find common movies in their wishlists.|
 |Watch Statistics|Tracks data based on movies they add to their watchedlist, for example, top genre|Gives the user some basic insights into what kind of movies they have enjoyed before, as well as their most watched genre. The watch statistics seek to provide users information on their watch habits for their movie hunt|
@@ -160,7 +167,7 @@ The user will first arrive on the **landing page**. From here, they are able to 
 
 After logging in, the user will be redirected to the landing page once again, they will now be able to access the various features. They will also be able to logout of their account.
 
-## Account
+### User Account/Profile
 Core feature 
 
 Users will first find themselves on the landing page where they can access the registration and login features. By creating an account, we are able to assign the user to their very own watched list and wishlists, as well as provide information on their watch statistics. Logging in also allows the user to have a session id, which will be used to track their session and allow them to make use of the different features of PopcornTogether.  
@@ -232,7 +239,7 @@ Furthermore, MongoDB provides certain security features such as hashing password
 
 Users will login through the login page. 
 
-## Movie Search
+### Movie Search
 Core feature
 
 The movie search feature will be the main way users can search for movies, the basic search function. It makes use of The Movie Database (TMDB) to handle queries. We plan to include filters for the following:
@@ -273,28 +280,33 @@ The user will be able to see up to 10 pages of suggested movies, based on their 
 
 If the user is logged in, they will be able to access the below two functions:
  1. Users can mark a movie as watched, which is then logged in the <ins>watchedlists</ins> collection for future reference or social sharing.
-2. Users can save movies they are interested in watching later. This is stored in the MongoDB <ins>wishlists</ins> collection.
+ 2. Users can save movies they are interested in watching later. This is stored in the MongoDB <ins>wishlists</ins> collection.
 
-Movies added to the respective lists are stored in MongoDb via their movieId. This will enable generation of the next few features.
+Movies added to the respective lists are stored in MongoDB via their movieId. This will enable generation of the next few features.
 
-## Watched List
+This addresses the user concern we have identified
+> As a user who wants to find a movie that fits my mood and preferences today, I want to be able to type genres and other search criterias. I want to use the search bar to find movies that apply. 
+
+### Watchedlist
 Core feature
 
-This page will display all the movies that the user has marked as watched. The data will be stored in MongoDB. We will also make use of the movies added to the watchedlist to compile statistics for our watch statistics feature. This collects information on the movies the user has watched to provide insight into their watch preferences and history.
+This page will display all the movies that the user has marked as watched. We will also make use of the movies added to the Watchedlist to compile statistics for our watch statistics feature. This collects information on the movies the user has watched to provide insight into their watch preferences and history.
 
-## Wishlist
+The data will also be stored in MongoDB. 
+
+### Wishlist
 Core feature
 
 This page allows users to record down movies that they wish to watch in the future but do not have time for now. The purpose of this feature is:
 1. Help the user track the movies they have not gotten around to watching.
 2. Help friends discover common movies they can watch together
 
-The data will be stored in MongoDB. 
+The data will also be stored in MongoDB. 
 
-Together, the watchedlists and wishlists address the user concern that we have identified
+Together, the Watchedlists and Wishlists address the user concern that we have identified
 > As a user who wants to remember what kind of movies I have watched and also want to watch.  
 
-## Friends List
+### Friends List
 Core feature
 
 Allow users to easily connect with others on the platform by adding them to their Friends List. This feature will allow them to:
@@ -305,10 +317,14 @@ Allow users to easily connect with others on the platform by adding them to thei
 
 The purpose of the feature is to let friends connect their movie history as a way for each user to find a film from their friend's watched list, or to filter out movies that have already been watched. It also shows the common films that friends have in their wishlists so that they can find a film to watch together.
 
-## Watch Statistics
+This addresses the user concern we have identified
+> As a user who wants to see what my friends are watching, I want to add them to my friends list to keep track and stay connected with them.
+
+### Watch Statistics
 Core feature
 
 Watch statistics track your movie-watching habits with real-time statistics. Get insights on your most-watched genres, and time periods. See total runtime, number of movies watched, and average ratings.
+
 Filter stats by month or genre to understand your viewing trends better.
 
 The purpose of this feature is to present the user's viewing habits and preferences in a more objective data-oriented manner in the hopes of helping user's filter films based on what they have enjoyed in the past. 
@@ -319,17 +335,36 @@ Note : This feature can have more depth, currently we are planning to include th
 3. Average ratings
 4. Average runtime
 
-## Community Reviews
-Extension
+### Community Reviews
+Extension feature
 
-## Movie Match
-Extension
+By collating the community opinions of a movie based on a 5 star scale, our community reviews feature enables users to view movie ratings and short reviews from fellow users within the platform. This provides a more personalized and relatable perspective compared to generic critic reviews.
+
+By seeing what their friends or the broader community think, users can:
+1. Make more informed choices about what to watch based on real, crowd-sourced experiences.
+2. Gauge alignment with their own taste, especially when a review is from someone with similar preferences.
+3. Avoid wasting time on low-quality or mismatched films, improving their overall viewing satisfaction.
+
+This addresses the user concerns we have identified
+> As a user who wants to see if a movie is worth watching or not.
+
+### Movie Match
+Extension feature
+
+The Movie Match feature allows users to compare their wish list with their friends’ wish lists to quickly find movies both parties are interested in watching. This simplifies the often time-consuming process of deciding what to watch together. This enables for streamlined coordination, eliminating the back-and-forth of suggesting and rejecting movie options. It also allows our website to be an all-in-one site for users, where they can finalise their group's movie decision in the same place as their own personal movie records.
+
+Note: As an addition to this extension feature, we hope to provide Smart Recommendations in the future with further developments – if no match is found, our platform suggests similar titles based on genre, themes, or popularity among the users’ networks.
+
+This addresses the user concern we have identified
+> As a user who wants to find a movie both my friends and I will enjoy.
+
 
 ## Software engineering principles
 ### Separation of concerns
 Each layer of the application has a clearly defined role:
 
-- Frontend (React) handles the user interface, routing, and rendering.
+- Frontend (React.js) handles the user interface, routing, and rendering.
+- Frontend (CSS) is used to style and layout components, ensuring a consistent, responsive, and visually appealing user interface across different devices and screen sizes.
 - Backend (Express.js) is responsible for the functional logic, session management, and database operations.
 - Database (MongoDB) stores persistent user data such as account information, watched/wishlist movie IDs, and friendlists.
 
@@ -427,7 +462,7 @@ This is especially crucial given the remote nature of the collaborative work don
 ## Errors encountered
 This serves as a documentation of errors we have encountered so far during Milestone 2:
 
-## Frontend
+### Frontend
 
 The largest issue we faced was deciding how to integrate our most vital feature which is the movie search. We initally designed a standalone page for it. However, seeing as how many of the features will require the use of the search function in some way, we created the header component as a way of mounting the search function on all pages. This development also allowed us to tag on routes to other features such as the friends list, watched list, wishlist etc.
 
@@ -437,12 +472,14 @@ Using the [Create-react-app](https://create-react-app.dev/docs/getting-started/)
 
 Another general issues we encountered was the integration of frontend and backend. We made many mistakes regarding the use of axios, and the backend routes. We found that incorporating logs via the use of <ins>alert</ins>, <ins>console.log</ins>, and <ins>console.error</ins> helped us to debug these issues easier.
 
-## Backend
+### Backend
 
-## Database
+### Database
 
 As this was our first time integrating a project using a database, we faced difficulties in finding out how to integrate database functionalities with PopcornTogether. Fortunately, the MongoDb youtube channel provided many tutorials with walkthroughs on setting up a working MongoDb database cluster for personal projects. After which, we just had to adapt our user schema in user.js to suit our intended functions.
 
 The database configuration was largely seamless owing to the detailed resources provided by MongoDb for the deployment of MongoDb atlas in projects.
 
-## Deployment
+### Deployment
+
+During deployment, we encountered a net::ERR_CONNECTION_REFUSED error when attempting to access backend routes (e.g., /api/login). This occurred because the frontend was trying to reach the backend on localhost:5050, which only works locally. We resolved this by updating the API base URL to point to the deployed backend server and ensuring the backend was hosted and running before the frontend was built.
