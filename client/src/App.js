@@ -6,6 +6,8 @@ import AuthPage from './pages/AuthPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import ResultsPage from './pages/ResultsPage';
+import WatchedListPage from './pages/WatchedListPage';
+import WishListPage from './pages/WishListPage';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/results" element={<ResultsPage />} />
+          <Route path="/watched" element={<WatchedListPage />} />
+          <Route path="/wish" element={<WishListPage />} />
         </Routes>
     </div>
   );

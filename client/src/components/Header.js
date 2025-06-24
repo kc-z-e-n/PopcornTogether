@@ -73,7 +73,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
                             <div className='dropdown-menu'>
                                 <span className='dropdown-item' onClick={() => handleProtectedRoute('/watched')}>Watched List</span>
                                 <p></p>
-                                <span className='dropdown-item' onClick={() => handleProtectedRoute('/watched')}>Watched List</span>
+                                <span className='dropdown-item' onClick={() => handleProtectedRoute('/wish')}>Wishist</span>
                             </div>
                         )
                     }

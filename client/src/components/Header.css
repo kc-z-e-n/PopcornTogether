@@ -88,8 +88,14 @@
     left: 0%;
     background: black;
     border: 1px solid #ccc;
-    padding: 5px;
+    padding-left: 0px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     z-index: 1100;
+    font-size: small;
+    margin-top: 10px;
+    align-items: center;
   }
 
   .dropdown-item{
