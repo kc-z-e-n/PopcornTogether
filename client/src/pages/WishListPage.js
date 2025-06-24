@@ -53,7 +53,7 @@ const WishlistPage = () => {
             {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
             
             <h1 className='page-title'>Your Wishlist</h1>
-            <p>Movies added to the wishlist will appear here</p>
+            <p>Movies added to the Wishlist will appear here</p>
 
             <div className='movie-grid'>
                 {movies.map((movie, index) => (

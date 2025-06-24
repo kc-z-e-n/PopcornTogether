@@ -21,7 +21,9 @@ function LoginPage() {
             alert('Login Successful');
             navigate('/');
         } catch(err) {
-            alert('Login Failed: ' + err.response.data.error);
+            console.error('Login failed:', err.message);
+            const errorMessage = err.response?.data?.error || 'Unable to connect to server.';
+            alert('Login Failed: ' + errorMessage);
         }
     };
 

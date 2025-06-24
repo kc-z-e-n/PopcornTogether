@@ -67,13 +67,13 @@ const Header = ({onSearchBarFocus, onSearch}) => {
                     <span className='nav-link' onClick={handleLogout}>LOGOUT</span>
                 )}
                 <span className='nav-link' onClick={() => handleProtectedRoute('/profile')}>MY PROFILE</span>
-                <div className='nav-link dropdown-wrapper' onClick={toggleDropdown}>MY LISTS
+                <div className='nav-link dropdown-wrapper' onClick={toggleDropdown}>MY LISTS ▾
                     {
                         showDropdown && (
                             <div className='dropdown-menu'>
-                                <span className='dropdown-item' onClick={() => handleProtectedRoute('/watched')}>Watched List</span>
+                                <span className='dropdown-item' onClick={() => handleProtectedRoute('/watched')}>Watchedlist</span>
                                 <p></p>
-                                <span className='dropdown-item' onClick={() => handleProtectedRoute('/wish')}>Wishist</span>
+                                <span className='dropdown-item' onClick={() => handleProtectedRoute('/wish')}>Wishlist</span>
                             </div>
                         )
                     }

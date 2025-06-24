@@ -52,8 +52,8 @@ const WatchedListPage = () => {
             <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)} onSearch={handleSearch}/>
             {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
             
-            <h1 className='page-title'>Your Watched List</h1>
-            <p>Movies marked as watched will appear here</p>
+            <h1 className='page-title'>Your Watchedlist</h1>
+            <p>Movies marked as Watched will appear here</p>
 
             <div className='movie-grid'>
                 {movies.map((movie, index) => (
