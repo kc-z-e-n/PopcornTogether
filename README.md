@@ -5,7 +5,7 @@
 
 <h2 style="text-align:center;">Apollo 11</h2>
 <p style="text-align:center;">Gan Ting En</p>
-<p style="text-align:center;">Kasey Choo</p>
+<p style="text-align:center;">Choo Kai Xi Kasey</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -26,7 +26,7 @@
 - [Landing page](#landing-page)
 - [Account](#account)
 - [Movie Search](#movie-search)
-- [Watched List](#watched-list)
+- [Watchedlist](#watched-list)
 - [Wishlist](#wishlist)
 - [Friends List](#friends-list)
 - [Watch Statistics](#watch-statistics)
