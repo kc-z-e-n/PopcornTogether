@@ -7,6 +7,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
     const navigate = useNavigate();
     const [query, setQuery] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
 
     useEffect(() => {
         const checkLogin = async () => {
@@ -49,6 +50,10 @@ const Header = ({onSearchBarFocus, onSearch}) => {
         }
     }
 
+    const toggleDropdown = () => {
+        setShowDropdown(prev => !prev);
+    };
+
     return (
         <header className="header">
             <div className='header-left'>
@@ -62,7 +67,17 @@ const Header = ({onSearchBarFocus, onSearch}) => {
                     <span className='nav-link' onClick={handleLogout}>LOGOUT</span>
                 )}
                 <span className='nav-link' onClick={() => handleProtectedRoute('/profile')}>MY PROFILE</span>
-                <span className='nav-link' onClick={() => handleProtectedRoute('/lists')}>MY LISTS</span>
+                <div className='nav-link dropdown-wrapper' onClick={toggleDropdown}>MY LISTS
+                    {
+                        showDropdown && (
+                            <div className='dropdown-menu'>
+                                <span className='dropdown-item' onClick={() => handleProtectedRoute('/watched')}>Watched List</span>
+                                <p></p>
+                                <span className='dropdown-item' onClick={() => handleProtectedRoute('/watched')}>Watched List</span>
+                            </div>
+                        )
+                    }
+                </div>
                 <span className='nav-link' onClick={() => handleProtectedRoute('/friends')}>MY FRIENDS</span>
             </nav>
             <div className='header-search'>
