@@ -344,6 +344,12 @@ This page allows users to record down movies that they wish to watch in the futu
 
 Similar to the watchedlist, movie IDs of films the user has marked as '+ wish' will be stored in MongoDb, then retrieved when rendering their personal Wishlist page.
 
+### Removal from List
+
+As the Wishlist serves a different purpose to the Watched List, that is to aid the user in curating their bucket list of movies for future use, there will be an added functionality to the page. This will be the Add to Watched List function, represented by the '+ Watched button' simiilar to the button on the Results page. In addition to adding the movie to the Watched List, this button also removes the movie from the Wishlist, allowing users to tick off movies as they progress on their watching journey.
+
+### Wrapping up
+
 Together, the Watchedlists and Wishlists address the user concern that were previously identified
 > As a user who wants to remember what kind of movies I have watched and also want to watch.  
 
