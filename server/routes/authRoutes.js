@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../models/User');
+const {isAuthenticated} = require('../middleware/auth');
 
 router.post('/register', async (req, res) => {
     const {
@@ -14,6 +15,7 @@ router.post('/register', async (req, res) => {
         confirmPassword,
         agreedToTerms,
     } = req.body;
+
 
     if (!agreedToTerms) {
         return res.status(400).json({ message: 'You must agree to the terms and privacy policy.' });
@@ -95,5 +97,19 @@ router.get('/me', (req, res) => {
         res.status(401).json({message: 'Unauthorized'});
     }
 })
+
+router.get('/retrieve', isAuthenticated, async (req, res) => {
+    try {
+        const user = await User.findById(req.session.user.id).select('-password');
+        if (!user) {
+            return res.status(404).json({message : 'User not found'});
+        }
+        console.log('User info:', user)
+        res.json({user});
+    } catch (err) {
+        console.error('Failed to retrieve info: ', err);
+        res.status(500).json({message : 'Error retrieving info'});
+    }
+});
 
 module.exports = router;

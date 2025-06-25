@@ -42,3 +42,10 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+
+.button-group {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}

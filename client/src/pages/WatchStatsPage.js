@@ -9,15 +9,14 @@ const WatchStatsPage = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get('http://localhost:5050/api/me', {
+                const res = await axios.get('http://localhost:5050/api/retrieve', {
                     withCredentials: true    
                 });
-                setUsername(res.data.user.username);        
+                setUsername(res.data.user.username);
             } catch (err) {
                 console.error('Failed to fetch user:', err);
             }
         };
-
         fetchUser();
     }, []);
 

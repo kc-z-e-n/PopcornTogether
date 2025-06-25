@@ -32,8 +32,11 @@
 - [Watch Statistics](#watch-statistics)
 - [Community Reviews](#community-reviews)
 - [Movie Match](#movie-match)
+
+## Software design
 - [Software Engineering Principles](#Software-engineering-principles)
 - [Version control](#version-control)
+- [Software Development Life Cycle (SDLC)](#software-development-life-cycle-(sdlc))
 
 ## **Errors encountered**
 - [Frontend](#frontend)
@@ -94,10 +97,10 @@ This project aims to create a platform for users to maintain an account with inf
 |-----------------------------------------------|---------------------------------------------|
 |Unsure of what movie to watch | Search functions made for active finding of specific movies that fit the user's preferences as well as passive methods to push movie recommendations for the user to discover |
 |Forgot what movies they have watched|Through a Watchedlist, allow users to find and record all films they have watched before, before translating into meaningful analytics for their use and sharing with friends|
-|As a user who wants to remember what kind of movies I want to watch|Develop a Wishlist feature to record movies the user plans to watch|
+|Wants to record what kind of movies I want to watch|Develop a Wishlist feature to record movies the user plans to watch|
 |Difficulty finding films to watch with friends|A Friends list with shareable records of previously watched movies and wishlisted movies, providing ways to narrow down their search for movies to watch together by eliminating previously wathced movies and by checking for matching wishlists|
-|As a user who wants to see if a movie is worth watching or not|Include a communnity review function. While opinions on movies are quite subjective, allowing users to read reviews by others who have already watched the film can provide insight and help users decide if they want to watch the film|
-|To share movie analytics with friends as a conversation topic, or to find movies with common genres they can watch together|A Watch Statistics page will be useful to analyse a user's rating levels, and track quantity of movies watched and other numbers|
+|Wants to see if a movie is worth watching or not|Include a communnity review function. While opinions on movies are quite subjective, allowing users to read reviews by others who have already watched the film can provide insight and help users decide if they want to watch the film|
+|Share movie analytics with friends as a conversation topic, or to find movies with common genres they can watch together|A Watch Statistics page will be useful to analyse a user's rating levels, and track quantity of movies watched and other numbers|
 
 
 ## Developer requirements
@@ -139,6 +142,7 @@ MongoDB : database for storing user information
 
 TMDB (The Movie Database) : database for querying movie information
 
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -239,6 +243,8 @@ Furthermore, MongoDB provides certain security features such as hashing password
 
 Users will login through the login page. 
 
+<div style="page-break-after: always;"></div>
+
 ### Movie Search
 Core feature
 
@@ -284,15 +290,44 @@ If the user is logged in, they will be able to access the below two functions:
 
 Movies added to the respective lists are stored in MongoDB via their movieId. This will enable generation of the next few features.
 
-This addresses the user concern we have identified
+This addresses the user concern we have identified:
 > As a user who wants to find a movie that fits my mood and preferences today, I want to be able to type genres and other search criterias. I want to use the search bar to find movies that apply. 
+
+<div style="page-break-after: always;"></div>
 
 ### Watchedlist
 Core feature
 
-This page will display all the movies that the user has marked as watched. We will also make use of the movies added to the Watchedlist to compile statistics for our watch statistics feature. This collects information on the movies the user has watched to provide insight into their watch preferences and history.
+When the user creates their profile, they will be able to store movies they have already watched before in the Watched list. This can be accessed using a dropdown menu. As shown below:
 
-The data will also be stored in MongoDB. 
+ <ins>Dropdown menu</ins>
+![Dropdown](Images/Dropdown.png)
+
+This allows the user to navigate to either the Watched list or Wishlist by clicking on the MY LISTS button in the header.
+
+Afterwards they will be redirected to the Watched list.
+
+This page will display all the movies that the user has marked as watched. The backend stores the movie IDs in MongoDb, the WatchedListPage then retrieves the movie IDs and queries TMDB for all the stored movie. It then displays 8 movies per page, similar to how the ResultsPage is shown but with one small change, instead of being able to press '+ watched' or '+ wish" buttons, they can now only remove the the movie from the Watched list.
+
+ <ins>Watched list</ins>
+![WatchedList](Images/watched1.png)
+
+ <ins>Watched list with pagination</ins>
+![WatchedList](Images/watched2.png)
+
+### Removal from list
+
+On the backend, thsis simply involves the removal of the respective Movie ID from the user's watchedlist array. When this occurs, the page does require a refresh to display the user's updated Watchedlist. An example of the before and after removal is shown below, note that this is without page refreshes.
+
+ <ins>Before removal</ins>
+![Before](Images/beforerem.png)
+
+ <ins>After removal</ins>
+![Before](Images/afterrem.png)
+
+PopcornTogether also makes use of the movies added to the Watchedlist to compile statistics for our watch statistics feature. This collects information on the movies the user has watched to provide insight into their watch preferences and history. Hence, the watched list is one of the most essential parts of the logic flow for PopcornTogether.
+
+<div style="page-break-after: always;"></div>
 
 ### Wishlist
 Core feature
@@ -301,10 +336,20 @@ This page allows users to record down movies that they wish to watch in the futu
 1. Help the user track the movies they have not gotten around to watching.
 2. Help friends discover common movies they can watch together
 
-The data will also be stored in MongoDB. 
+ <ins>Wishlist</ins>
+![Wishist](Images/wish1.png)
 
-Together, the Watchedlists and Wishlists address the user concern that we have identified
+ <ins>Wishlist with pagination</ins>
+![Wishist](Images/wish2.png)
+
+Similar to the watchedlist, movie IDs of films the user has marked as '+ wish' will be stored in MongoDb, then retrieved when rendering their personal Wishlist page.
+
+Together, the Watchedlists and Wishlists address the user concern that were previously identified
 > As a user who wants to remember what kind of movies I have watched and also want to watch.  
+
+Note : Future extension of this feature can include allowing the user different methods to filter their lists, and perhaps even including a search bar just for the lists.
+
+<div style="page-break-after: always;"></div>
 
 ### Friends List
 Core feature
@@ -358,6 +403,7 @@ Note: As an addition to this extension feature, we hope to provide Smart Recomme
 This addresses the user concern we have identified
 > As a user who wants to find a movie both my friends and I will enjoy.
 
+<div style="page-break-after: always;"></div>
 
 ## Software engineering principles
 ### Separation of concerns
@@ -441,7 +487,8 @@ The env files are kept local with the git ignore file managing version control w
 Sensitive information such as passwords and API keys are all stored locally and not included in any code lines.
 
 ## Version Control
-PopcornTogether uses Git for version control to ensure consistent and trackable development. All code changes are committed with commit messages, allowing for clearer workflow and separation of duties.
+
+PopcornTogether uses **Git** for version control to ensure consistent and trackable development. All code changes are committed with commit messages, allowing for clearer workflow and separation of duties.
 
 ```
 # Cloning repository
@@ -458,6 +505,71 @@ git push
 ```
 
 This is especially crucial given the remote nature of the collaborative work done for PopcornTogether. By implementing a version control system, changes are easier to trach and new implementations are easily traceable. 
+
+<ins>Commit Practices</ins>
+
+All commits are accompanied by clear and concise descriptions to what work was done. This helps achieve 2 objectives:
+
+1. Traceable points in our development history
+2. Clear worklog for both parties
+
+By utilising **Github** and maintaining proper commit practices and habits, we can avoid issues arising from untraceable bugs being pushed and requiring extra effort to address. This also avoids duplicate work streams and allows us to work on the project synchronously.
+
+<ins>Clear Updates</ins>
+
+After making a commit to Github, a follow up message is communicated between team members, covering a more detailed elaboration of work accomplished and changes made with the commit. This process makes changes even moer traceable, it keeps team members in the loop when it comes to the development of PopcornTogether, ensuring that team members are on the same page.
+
+<div style="page-break-after: always;"></div>
+
+## Software Development Life Cycle (SDLC)
+
+Our team implemented an iterative approach to the development of PopcornTogehter. We chose an iterative approach to allow:
+
+1. Continuous improvements with user feedback.
+    - This is an essential process for the development of PopcornTogether. At its core, PopcornTogether serves as a Quality of Life (QoL) improvement tool for users. Hence, the user experience is a crucial part of developing both the front end and backend of this project.
+2. Testing and validating features in small cycles.
+    - This allowed us to better manage the functional components as well as the user interface components of PopcornTogether. By maintaing a routine of testing and validation, we are able to ensure the functionality of one component before moving on to the next or passing it on to a team member. 
+    - This is especially crucial for features that will be integrated or used in othe rparts of the Project.
+3. Parallel progress on backend and frontend components.
+    - Synchronous work done on backend and frontend components allowed for expedient testing upon completion. Rather than work on them separately, we chose to work on each feature as a singular unit.
+
+<ins>Depth first implementation</ins>
+>depth-first: an iteration focuses on fleshing out only some components.
+
+The development of PopcornTogether followed a depth first implementation. Features were fully completed with basic user testing before beginning on the next feature. This ensured that team members were kept updated on every step of the development process, as well as ensure minimal bugs are present before beginning on the next stage of the project. As we seek to integrate certain features together, such as allowing the display of a friend's wishlist, or the use of wishlisted movies in determining watch statistics, fully completing a feature is crucial to the seamless development of the project.
+
+<ins>SDLC Breakdown</ins> 
+|Stage|What we did|
+|-|-|
+|1. Requirements|- Identified user requirements<br>- Matched key features <br> - Identified tech stack <br> - created relevant API integrated|
+|2. Design|- created individual rendering for each feature<br> - created user schema<br>|
+|3. Implementation|- Fully built authentication features to allow for user level testing<br>- Completed features by level of integration (eg. register => log in => add movies to wishlist => viewing wishlist)|
+|4. Testing|-Executed after completion of each individual feature|
+
+|Next steps|Plans|
+|-|-|
+|5. Deployment|- Use of Vercel to deploy the webapp|
+|6. Extension| - Implementation of extension features|
+|7. Refinement|- Add additional functionality for a robust Movie companion app|
+|8. Final testing|- Ensure everything runs seamlessly<br>- Optimisation|
+
+### Work completed
+<ins>Milestone 1</ins>
+- Finalised feature design
+- Created a minimal working system for authentication routes
+- Implemented registration function
+- Implemented login function
+- Setup of MongoDB database
+- Created user schema and respective page designs
+
+<ins>Milestone 2</ins>
+- Implemented session tracking
+- Implemented search function
+- Implemented results rendering function
+- Implemented Watched list and Wish list function
+
+
+<div style="page-break-after: always;"></div>
 
 ## Errors encountered
 This serves as a documentation of errors we have encountered so far during Milestone 2:

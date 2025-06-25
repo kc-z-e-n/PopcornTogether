@@ -21,12 +21,42 @@ const WishlistPage = () => {
         }
     }
 
+    const checkSessionLogin = async () => {
+        try {
+            const res = await axios.get('http://localhost:5050/api/me', {
+                withCredentials:true
+            });
+            if (res.status === 200) {
+                return true;
+            }
+        } catch (err) {
+            return false;
+        }
+    };
+
     const removeFromWishlist = async (movieId) => {
         try {
             await axios.post('http://localhost:5050/api/user/removeFromWishlist', {movieId }, { withCredentials: true});
             setMovies((prev) => prev.filter((m) => m.id !== movieId));
         } catch (err) {
             console.error('Failed to remove movie');
+        }
+    };
+
+    const addToWatchedList = async (movieId) => {
+        const isLoggedIn = await checkSessionLogin();
+        if (!isLoggedIn) {
+            alert('Please log in first');
+            navigate('/auth');
+            return;
+        }
+        try {
+            await axios.post('http://localhost:5050/api/user/addWatched', {movieId}, {withCredentials:true});
+            await axios.post('http://localhost:5050/api/user/removeFromWishlist', {movieId}, {withCredentials:true});
+            setMovies((prev) => prev.filter((m) => m.id !== movieId));
+            alert('Add Successful!')
+        } catch (err) {
+            console.error('Add failed', err);
         }
     };
 
@@ -60,8 +90,12 @@ const WishlistPage = () => {
                     <div className='movie-card' key={movie.id}>
                         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt= {movie.title} />
                         <h4>{movie.title}, {movie.release_date?.slice(0,4)}</h4>
-                        <button className='remove-button'
-                        onClick={() => removeFromWishlist(movie.id)}>Remove</button>
+                        <div className='button-group'>
+                            <button className='remove-button'
+                            onClick={() => removeFromWishlist(movie.id)}>Remove</button>
+                            <button className='remove-button'
+                            onClick={() => addToWatchedList(movie.id)}>+ Watched</button>
+                        </div>
                     </div>
                 ))}
             </div>

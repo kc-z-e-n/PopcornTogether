@@ -1,17 +1,32 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const { isAuthenticated } = require('../middleware/auth');
 const router = express.Router();
 const User = require('../models/User');
 
+router.get('/search', isAuthenticated, async (req, res) => {
+    const {query} = req.query;
+
+    try {
+        const users = await User.find({
+            Username : {username: {$regex: query, $options: 'i'}}
+        }).select('_id username');
+
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: 'Search failed'});
+    }
+});
+  
 router.post('/add', async (req, res) => {
     const {userId, friendId} = req.body;
 
-    if (!mongoose.Types.ObjectId.isValid(userId) || !mongooseTypes.ObjectId.isValid(friendId)) {
+    if (!mongoose.Types.ObjectId.isValid(userId) || !mongoose.Types.ObjectId.isValid(friendId)) {
         return res.status(400).json({message: "invalid user IDs"});
     }
 
     if (userId == friendId) {
-        return res.status(400).json({nessage: "You cannot add yourself"});
+        return res.status(400).json({message: "You cannot add yourself"});
     }
 
     try {
@@ -67,4 +82,3 @@ router.get('/:userId', async (req, res) => {
 });
 
 module.exports = router;
-  
