@@ -1,0 +1,130 @@
+.friendslist-container {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    padding-top: 100px;
+}
+
+.friendlist-banner {
+    background-color: #facc15;
+    padding: 16px 32px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e1e1e;
+}
+
+.friend-search-container {
+    margin: 20px;
+    text-align: center;
+}
+
+.friend-search-container input{
+    margin-right: 8px;
+    padding: 8px;
+    width: 200px;
+    background-color: #f1d26d;
+    border-radius: 30px;
+    padding-left: 10px;
+    flex-shrink: 0;
+    max-width: 200px;
+    min-width: 120px;
+    overflow: hidden;
+}
+
+.friend-search-container button{
+    padding: 8px 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    margin: 0 6px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.friend-search-container button.active{
+    background-color: #facc15;
+    color: black;
+}
+
+.search-user-result {
+    margin-top: 10px;
+    color: white;
+}
+
+.friendlist-table {
+    width: 80%;
+    margin: 32px auto;
+    border-collapse: collapse;
+}
+
+.friend-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    padding: 16px 0;
+}
+
+.friend-username { 
+    font-weight: bold;
+}
+
+.friend-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.friend-links a {
+    margin-left: 32px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.friend-links a:hover{
+    text-decoration: underline;
+}
+
+.link-button{
+    background-color: #facc15;
+    color: black;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.remove-button{
+    background-color: #facc15;
+    color: black;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.pagination button {
+    background-color: #333;
+    color: white;
+    border: none;
+    margin: 0 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.pagination button.active{
+    background-color: #facc15;
+    color: black;
+}
+

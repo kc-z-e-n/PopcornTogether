@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Header from '../components/Header';
 import './WishListPage.css';
 import Filter from '../components/Filter';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const WishlistPage = () => {
@@ -11,6 +11,7 @@ const WishlistPage = () => {
     const navigate = useNavigate();
     const [page, setPage] = useState(1);
     const [ totalPages, setTotalPages] = useState(1);
+    const {id} = useParams();
 
     const handleSearch = async (queryParams) => {
         try {
@@ -63,7 +64,12 @@ const WishlistPage = () => {
     useEffect(() => {
         const fetchWishMovies = async (pageNum) => {
             try {
-                const res = await axios.get('http://localhost:5050/api/user/wishlist', {
+                const endpoint = id 
+                ? `http://localhost:5050/api/user/${id}/wishlist`
+                : 'http://localhost:5050/api/user/wishlist'
+
+
+                const res = await axios.get(endpoint, {
                     params: {page: pageNum},
                     withCredentials : true
                 });
@@ -75,18 +81,18 @@ const WishlistPage = () => {
             }
         };
         fetchWishMovies(page);
-    }, [page]);
+    }, [page, id]);
 
     return (
         <div className='wishlist-container'>
             <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)} onSearch={handleSearch}/>
             {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
             
-            <h1 className='page-title'>Your Wishlist</h1>
+            <h1 className='page-title'>{id? "Friend's Wishlist" : "Your Wishlist"}</h1>
             <p>Movies added to the Wishlist will appear here</p>
 
             <div className='movie-grid'>
-                {movies.map((movie, index) => (
+                {movies.map((movie) => (
                     <div className='movie-card' key={movie.id}>
                         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt= {movie.title} />
                         <h4>{movie.title}, {movie.release_date?.slice(0,4)}</h4>

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import './WatchStatsPage.css';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const WatchStatsPage = () => {
     const [username, setUsername] = useState('');
+    const {id} = useParams();
 
     useEffect(() => {
         const fetchUser = async () => {

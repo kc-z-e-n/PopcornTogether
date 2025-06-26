@@ -108,5 +108,65 @@ router.post('/removeFromWishlist', isAuthenticated, async (req, res) => {
     }
 });
 
+//friends
+router.get('/:id/watchedlist', async (req, res) => {
+    const {id} = req.params;
+    const {page = 1, pageSize = 8} = req.query;
+    const skip = (page - 1) * pageSize;
+
+    try {
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({message:'User not found'});
+        }
+
+        const totalMovies = user.watchedListMovies.length;
+        const totalPages = Math.ceil(totalMovies / pageSize);
+        const movieIds = user.watchedListMovies.slice(skip, skip + parseInt(pageSize)) || [];
+
+        const movieDetails = await Promise.all(
+            movieIds.map(id => 
+                axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+                    params: {api_key: process.env.TMDB_API_KEY}
+            }).then(res=> res.data).catch(() => null)
+            )
+        );
+
+        res.json({result: movieDetails, totalPages});
+    } catch (err) {
+        console.error('Failed to fetch Watched List:', err);
+        res.status(500).json({message: 'Error fetching Watched List'});
+    }
+});
+
+router.get('/:id/wishlist', async (req, res) => {
+    const {id} = req.params;
+    const {page = 1, pageSize = 8} = req.query;
+    const skip = (page - 1) * pageSize;
+
+    try {
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({message:'User not found'});
+        }
+
+        const totalMovies = user.wishlistMovies.length;
+        const totalPages = Math.ceil(totalMovies / pageSize);
+        const movieIds = user.wishlistMovies.slice(skip, skip + parseInt(pageSize)) || [];
+
+        const movieDetails = await Promise.all(
+            movieIds.map(id => 
+                axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+                    params: {api_key: process.env.TMDB_API_KEY}
+            }).then(res=> res.data).catch(() => null)
+            )
+        );
+
+        res.json({result: movieDetails, totalPages});
+    } catch (err) {
+        console.error('Failed to fetch Wishlist:', err);
+        res.status(500).json({message: 'Error fetching Wishlist'});
+    }
+});
 
 module.exports = router;

@@ -57,7 +57,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
     return (
         <header className="header">
             <div className='header-left'>
-                <img src='PT_logo.jpg' alt='PopocornTogether' className='logo'/>
+                <img src='/PT_logo.jpg' alt='PopocornTogether' className='logo'/>
                 <Link to="/" className='brand'>PopcornTogether</Link>
             </div>
             <nav className='header-nav'>

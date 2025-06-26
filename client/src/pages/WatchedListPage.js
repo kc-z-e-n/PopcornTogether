@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Header from '../components/Header';
 import './WatchedListPage.css';
 import Filter from '../components/Filter';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const WatchedListPage = () => {
@@ -11,6 +11,7 @@ const WatchedListPage = () => {
     const navigate = useNavigate();
     const [page, setPage] = useState(1);
     const [ totalPages, setTotalPages] = useState(1);
+    const {id} = useParams();
 
     const handleSearch = async (queryParams) => {
         try {
@@ -33,7 +34,11 @@ const WatchedListPage = () => {
     useEffect(() => {
         const fetchWatchedMovies = async (pageNum) => {
             try {
-                const res = await axios.get('http://localhost:5050/api/user/watchedList', {
+                const endpoint = id 
+                ? `http://localhost:5050/api/user/${id}/watchedlist`
+                : 'http://localhost:5050/api/user/watchedlist'
+
+                const res = await axios.get(endpoint, {
                     params: {page: pageNum},
                     withCredentials : true
                 });
@@ -45,7 +50,7 @@ const WatchedListPage = () => {
             }
         };
         fetchWatchedMovies(page);
-    }, [page]);
+    }, [page, id]);
 
     return (
         <div className='watched-list-container'>

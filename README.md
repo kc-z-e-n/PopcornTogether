@@ -362,7 +362,7 @@ Core feature
 
 Allow users to easily connect with others on the platform by adding them to their Friends List. This feature will allow them to:
 
-1. View their friends' profiles and their favorite movies.
+1. View their friends' profiles.
 2. See what their friends have recently watched and are planning to watch in the future.
 3. Discover new titles based on their friends’ interests.
 
@@ -370,6 +370,8 @@ The purpose of the feature is to let friends connect their movie history as a wa
 
 This addresses the user concern we have identified
 > As a user who wants to see what my friends are watching, I want to add them to my friends list to keep track and stay connected with them.
+
+Note: future extension can involve an auto filter function or a separate page to instantly show users movies they have in common in both lists, this could be an add on to the current browsing feature users have.
 
 ### Watch Statistics
 Core feature

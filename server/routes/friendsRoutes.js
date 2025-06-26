@@ -9,9 +9,10 @@ router.get('/search', isAuthenticated, async (req, res) => {
 
     try {
         const users = await User.find({
-            Username : {username: {$regex: query, $options: 'i'}}
+            username: {$regex: query, $options: 'i'}
         }).select('_id username');
 
+        console.log({users})
         res.json(users);
     } catch (err) {
         res.status(500).json({ message: 'Search failed'});
@@ -19,13 +20,13 @@ router.get('/search', isAuthenticated, async (req, res) => {
 });
   
 router.post('/add', async (req, res) => {
-    const {userId, friendId} = req.body;
+    const {friendId, userId} = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(userId) || !mongoose.Types.ObjectId.isValid(friendId)) {
         return res.status(400).json({message: "invalid user IDs"});
     }
 
-    if (userId == friendId) {
+    if (userId === friendId) {
         return res.status(400).json({message: "You cannot add yourself"});
     }
 
@@ -37,7 +38,7 @@ router.post('/add', async (req, res) => {
             return res.status(404).json({message: "User or friend not found"});
         }
 
-        if (!user.friends.include(friendId)) {
+        if (!user.friends.map(id => id.toString()).includes(friendId.toString())) {
             user.friends.push(friendId);
             await user.save();
         }
@@ -48,7 +49,7 @@ router.post('/add', async (req, res) => {
     }
 });
 
-router.post('./remove', async (req, res) => {
+router.post('/remove', async (req, res) => {
     const {userId, friendId} = req.body;
 
     try {
@@ -66,18 +67,23 @@ router.post('./remove', async (req, res) => {
     }
 });
 
-router.get('/:userId', async (req, res) => {
-    const {userId} = req.params;
+router.get('/friendsList', isAuthenticated, async (req,res) => {
+    const {page = 1, pageSize = 10} = req.query;
+    const skip = (page - 1) * pageSize;
 
     try {
-        const user = await User.findById(userId).populate('friends', 'username firstName lastName watchedlistMovies wishlistMovies')
+        const user = await User.findById(req.session.user.id).populate('friends', '_id username');
         if (!user) {
-            return res.status(404).json({ message: "User not found"});
-        };
+            return res.status(400).json({message : 'User not found'});
+        }
+        const totalFriends = user.friends.length;
+        const totalPages = Math.ceil(totalFriends / pageSize);
+        const paginatedFriends = user.friends.slice(skip, skip + parseInt(pageSize));
         
-        res.status(200).json({friends: user.friends});
+        res.json({friends: paginatedFriends, totalPages});
     } catch (err) {
-        res.status(500).json({message: 'Server error', error: err.message});
+        console.error('Faield to fetch friends list', err);
+        res.status(500).json({message: 'Failed to fetch friends list'});
     }
 });
 
