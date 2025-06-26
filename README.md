@@ -368,6 +368,30 @@ Allow users to easily connect with others on the platform by adding them to thei
 
 The purpose of the feature is to let friends connect their movie history as a way for each user to find a film from their friend's watched list, or to filter out movies that have already been watched. It also shows the common films that friends have in their wishlists so that they can find a film to watch together.
 
+ <ins>Friends List Page</ins>
+![No Friends](Images/nofriends.png)
+
+This page will be rendered at first for new users and users who currently do not have anyone in their friends list. They will be able to access the search username function that searches for a user with a matching username. As usernames are unique, they will be able to definitively find their friends through this search function. They will not be able to search for themselves or an existing friend.
+
+ <ins>Add Friends</ins>
+![add](Images/addfriend.png)
+
+This shows the search result with the Add Friend option available. By clicking the button, the user will be able to add them to their friends list. The Friends list acts in a 'follower' style format whereby users are able to follow other users who they want to. This will not trigger a mutual follow. For example:
+
+-> Test1 adds Test2
+
+->Test1 has one friend added to their friends list and that is Test2
+
+->Test1 is not added to Test2's friends list
+
+ <ins>Added Friends</ins>
+![add](Images/addedfriend.png)
+
+After adding a friend, the user will be able to perform several actions. The basic one would be to remove the friend as part of their friends list curation experience. The other functions are as we have described, to view the friends' watched list or wishlist to find movie inspirations or common films. An example is shown below.
+
+ <ins>Friends Watched List</ins>
+![Friends watched list](Images/friendswatchedlist.png)
+
 This addresses the user concern we have identified
 > As a user who wants to see what my friends are watching, I want to add them to my friends list to keep track and stay connected with them.
 

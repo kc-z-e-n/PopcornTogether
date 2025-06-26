@@ -36,13 +36,13 @@ const authRoutes = require('./routes/authRoutes');
 const movieRoutes = require('./routes/movieRoutes');
 const friendsRoutes = require('./routes/friendsRoutes');
 const userRoutes = require('./routes/userRoutes');
-const watchListRoutes = require('./routes/watchListRoutes');
+const watchStatsRoutes = require('./routes/watchStatsRoutes');
 
 app.use('/api/friends', friendsRoutes);
 app.use('/api/movie', movieRoutes);
 app.use('/api', authRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api', watchListRoutes);
+app.use('/api/stats', watchStatsRoutes);
 
 app.get('/', (req, res) => {
     res.send('Backend running');

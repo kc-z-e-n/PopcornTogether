@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 const { isAuthenticated } = require('../middleware/auth');
 
-router.get('/watchedList', async (req, res) => {
+router.get('/watchedStats', async (req, res) => {
     try {
         const userId = req.session.user.id;
         console.log('Session user ID:', userId);

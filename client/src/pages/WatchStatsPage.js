@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Filter from '../components/Filter';
 import './WatchStatsPage.css';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const WatchStatsPage = () => {
     const [username, setUsername] = useState('');
-    const {id} = useParams();
     const [watchedList, setWatchedList] = useState([]);
+    const [watched, setWatched] = useState(0);
+    const [showFilters, setShowFilters] = useState(false);
+    const navigate = useNavigate();
+
+    const handleSearch = async (queryParams) => {
+        try {
+            const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
+            navigate('/results', {state : {results: res.data}} );
+        } catch (err) {
+            console.error('Search failed', err);
+        }
+    }
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -16,6 +28,7 @@ const WatchStatsPage = () => {
                     withCredentials: true    
                 });
                 setUsername(res.data.user.username);
+                setWatched(res.data.user.watchedListMovies.length);
             } catch (err) {
                 console.error('Failed to fetch user:', err);
             }
@@ -23,7 +36,7 @@ const WatchStatsPage = () => {
 
         const fetchWatchedList = async () => {
             try {
-                const res = await axios.get('http://localhost:5050/api/watchedList', {
+                const res = await axios.get('http://localhost:5050/api/stats/watchedStats', {
                     withCredentials: true
                 });
                 setWatchedList(res.data.watchedListMovies);
@@ -43,7 +56,9 @@ const WatchStatsPage = () => {
 
     return (
         <div>
-            <Header />
+            <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)} onSearch={handleSearch}/>
+            {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
+
             <div className='watch-stats-container'>
                 <div className='watch-stats-banner'>
                     <h2>Watch Statistics</h2>
@@ -53,7 +68,7 @@ const WatchStatsPage = () => {
                     <div className='watch-stats-grid'>
                         <div className='watch-stats-item'>
                             <i className='fas fa-eye'></i>
-                            <h1>{watchedList.length}</h1>
+                            <h1>{watched}</h1>
                             <p>Films Watched</p>
                         </div>
                         <div className='watch-stats-item'>
