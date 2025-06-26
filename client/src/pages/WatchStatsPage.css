@@ -1,3 +1,10 @@
+.watch-stats-username {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1 rem;
+    margin-bottom: 4rem;
+}
+
 .watch-stats-container {
     background-color: black;
     color: white;
@@ -21,16 +28,24 @@
 .watch-stats-grid {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 10rem;
     margin-top: 1rem;
 }
 
 .watch-stats-item h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
     margin: 0;
 }
 
 .watch-stats-item p {
     margin: 0;
     font-weight: 500;
+    font-size: 1.25rem;
+}
+
+.watch-stats-item i {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    color: #facc15;
+    display: block;
 }

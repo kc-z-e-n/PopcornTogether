@@ -36,11 +36,13 @@ const authRoutes = require('./routes/authRoutes');
 const movieRoutes = require('./routes/movieRoutes');
 const friendsRoutes = require('./routes/friendsRoutes');
 const userRoutes = require('./routes/userRoutes');
+const watchListRoutes = require('./routes/watchListRoutes');
 
 app.use('/api/friends', friendsRoutes);
 app.use('/api/movie', movieRoutes);
 app.use('/api', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api', watchListRoutes);
 
 app.get('/', (req, res) => {
     res.send('Backend running');
@@ -63,3 +65,12 @@ app.use((err, req, res, next) => {
     console.error('Unhandled error:', err);
     res.status(500).json({ message: 'Server error' });
   });
+
+app.get('/api/retrieve', async (req, res) => {
+  try {
+    const user = await User.findById(req.session.use.id);
+    req.json({ user });
+  } catch (err) {
+    res.status(500).json({ message: 'User retrieval failed'});
+  }
+});

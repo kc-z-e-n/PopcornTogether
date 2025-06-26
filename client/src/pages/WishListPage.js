@@ -68,7 +68,6 @@ const WishlistPage = () => {
                 ? `http://localhost:5050/api/user/${id}/wishlist`
                 : 'http://localhost:5050/api/user/wishlist'
 
-
                 const res = await axios.get(endpoint, {
                     params: {page: pageNum},
                     withCredentials : true
