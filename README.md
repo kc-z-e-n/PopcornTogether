@@ -400,11 +400,29 @@ Note: future extension can involve an auto filter function or a separate page to
 ### Watch Statistics
 Core feature
 
-Watch statistics track your movie-watching habits with real-time statistics. Get insights on your most-watched genres, and time periods. See total runtime, number of movies watched, and average ratings.
+Watch statistics track your movie-watching habits with real-time statistics. Get insights on your most-watched genres, and time periods. See total runtime, number of movies watched, and average ratings. This will be the profile page that users can view for themselves. 
 
-Filter stats by month or genre to understand your viewing trends better.
+ <ins>Profile Page</ins>
+![Watch Statistics](Images/stats.png)
+
+This is an example of the profile page. Currently we have 4 intended statistics set up for the watch statistics. These are:
+
+1. Films watched
+    - Tracks the total number of films in the user's Watched List
+2. Total time watched
+    - This tracks the total runtime of all the films that the user has watched thus far
+3. Top genres
+    - This finds the top genres of films that users have watched thus far
+4. Reviews given
+    - Currently we have not implemented the community reviews extension feature. When this is set up, the reviews given statistic will then track the total number of reviews the user has given
 
 The purpose of this feature is to present the user's viewing habits and preferences in a more objective data-oriented manner in the hopes of helping user's filter films based on what they have enjoyed in the past. 
+
+This addresses the concern we have identified :
+
+ > As a user who wants to find a movie that fits my mood and preferences today, I want to be able to type genres and other search criterias. I want to use the search bar to find movies that apply.  
+
+ The Watch statistics can help the user understand a more objective take on the films they enjoy watching, aiding in their movie search journey.
 
 Note : This feature can have more depth, currently we are planning to include the below statistics:
 1. Top genres

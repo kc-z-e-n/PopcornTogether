@@ -27,7 +27,6 @@ router.get('/watchedList', isAuthenticated, async (req, res) => {
     const skip = (page - 1) * pageSize;
 
     try {
-        console.log('User session id: ', req.session.user.id)
         const user = await User.findById(req.session.user.id);
         if (!user) {
             return res.status(404).json({message: 'User not found'}) ;
@@ -58,7 +57,6 @@ router.get('/wishList', isAuthenticated, async (req, res) => {
     const skip = (page - 1) * pageSize;
 
     try {
-        console.log('User session id: ', req.session.user.id)
         const user = await User.findById(req.session.user.id);
         if (!user) {
             return res.status(404).json({message: 'User not found'}) ;

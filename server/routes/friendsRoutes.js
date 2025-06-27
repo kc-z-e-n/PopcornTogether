@@ -12,7 +12,6 @@ router.get('/search', isAuthenticated, async (req, res) => {
             username: {$regex: query, $options: 'i'}
         }).select('_id username');
 
-        console.log({users})
         res.json(users);
     } catch (err) {
         res.status(500).json({ message: 'Search failed'});
