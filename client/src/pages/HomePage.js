@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './HomePage.css';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
@@ -8,8 +8,8 @@ import axios from 'axios';
 const HomePage = () => {
     const [showFilters, setShowFilters] = useState(false);
     const navigate = useNavigate();
+    const [latestMovies, setLatestMovies] = useState([]);
 
-    {/* will have to check for routes and results page */}
     const handleSearch = async (queryParams) => {
         try {
             const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
@@ -18,6 +18,20 @@ const HomePage = () => {
             console.error('Search failed', err);
         }
     }
+
+    useEffect(() => {
+        const fetchLatestMovies = async () => {
+            try {
+                const res = await axios.get(
+                    `https://api.themoviedb.org/3/movie/now_playing?api_key=4dfda16375a1b5d4f55333fc85b7a5e1&language=en-US&page=1`
+                );
+                setLatestMovies(res.data.results.slice(0, 4));
+            } catch (err) {
+                console.error('Failed to fetch latest movies:', err);
+            }
+        };
+        fetchLatestMovies();
+    }, [])
 
     return (
         <div className='home-container'>
@@ -48,10 +62,10 @@ const HomePage = () => {
             <section className="movie-section">
                 <h2 className="section-heading">Latest Movies</h2>
                     <div className="movie-grid">
-                        {['Sinners', 'Mission: Impossible', 'Ballerina', 'How to Train Your Dragon'].map((title, i) => (
-                            <div key={i} className="movie-card">
-                                <div className="movie-placeholder"></div>
-                                <p className="movie-label">{title}</p>
+                        {latestMovies.map((movie) => (
+                            <div key={movie.id} className="movie-card">
+                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='movie-poster'/>
+                                <p className="movie-label">{movie.title}</p>
                             </div>
                         ))}
                     </div>
