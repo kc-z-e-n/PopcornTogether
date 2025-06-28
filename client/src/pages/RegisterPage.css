@@ -1,42 +1,42 @@
-  .register-container {
+.register-container {
     background-color: #fef9e6;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 40px 20px;
-  }
+}
 
-  .register-form {
+.register-form {
     width: 100%;
     max-width: 600px;
     text-align: center;
-  }
+      }
 
-  .logo {
+.logo {
     width: 80px;
     margin-bottom: 20px;
-  }
+}
 
-  .subtitle {
+.subtitle {
     color: #555;
     font-size: 14px;
     margin-bottom: 30px;
-  }
+}
 
-  form {
+form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
+}
 
-  .form-grid {
+.form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-  }
+}
 
-  .form-grid input {
+.form-grid input {
     padding: 10px 12px;
     font-size: 14px;
     border-radius: 8px;
@@ -50,7 +50,7 @@
     display: flex;
     align-items: flex-start;
     text-align: left;
-  }
+}
 
 .checkbox {
     display: flex;
@@ -82,7 +82,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
+}
 
 
 .container input {
@@ -100,7 +100,7 @@
     height: 16px;
     width: 16px;
     background-color: #eee;
-  }
+}
 
 .container .checkmark:after {
     left: 5px;
@@ -164,11 +164,11 @@
     gap: 12px;
     color: #999;
     margin: 20px 0;
-  }
+}
 
-  .separator hr {
+.separator hr {
     flex: 1;
     border: none;
     border-top: 1px solid #ccc;
     margin: 0;
-  }
+}

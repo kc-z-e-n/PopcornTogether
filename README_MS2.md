@@ -115,9 +115,10 @@ Powerful search and filter functions enable easy user queries when searching for
   - A minimal working system with both frontend and backend integrated for core features   
   - Develop Login features
   - Watchlist and wishlist is able to store movie data  
+  - Design individual pages using [Figma](https://www.figma.com)
 
 - **Milestone 2 (Week 4 - 8)**: Prototype  
-  - Database integration added  
+  - Database integration added using MongoDb
   - Querying of database implemented 
   - A working system with the core features 
     - Account registration
@@ -128,6 +129,7 @@ Powerful search and filter functions enable easy user queries when searching for
     - Watch Statistics
   - User has edit access for the watchedlist  
   - The app produces a list of movies given a set of filters, after search by user
+  - Deployment of core features
 
 - **Milestone 3 (Week 9 - 12)**: Extended system  
   - A working system with both the core and extension features
@@ -245,7 +247,7 @@ Users will login through the login page.
 
 <div style="page-break-after: always;"></div>
 
-### Movie Search
+## Movie Search
 Core feature
 
 The movie search feature will be the main way users can search for movies, the basic search function. It makes use of The Movie Database (TMDB) to handle queries. We plan to include filters for the following:
@@ -295,7 +297,7 @@ This addresses the user concern we have identified:
 
 <div style="page-break-after: always;"></div>
 
-### Watchedlist
+## Watchedlist
 Core feature
 
 When the user creates their profile, they will be able to store movies they have already watched before in the Watched list. This can be accessed using a dropdown menu. As shown below:
@@ -329,7 +331,7 @@ PopcornTogether also makes use of the movies added to the Watchedlist to compile
 
 <div style="page-break-after: always;"></div>
 
-### Wishlist
+## Wishlist
 Core feature
 
 This page allows users to record down movies that they wish to watch in the future but do not have time for now. The purpose of this feature is:
@@ -357,7 +359,7 @@ Note : Future extension of this feature can include allowing the user different 
 
 <div style="page-break-after: always;"></div>
 
-### Friends List
+## Friends List
 Core feature
 
 Allow users to easily connect with others on the platform by adding them to their Friends List. This feature will allow them to:
@@ -368,19 +370,63 @@ Allow users to easily connect with others on the platform by adding them to thei
 
 The purpose of the feature is to let friends connect their movie history as a way for each user to find a film from their friend's watched list, or to filter out movies that have already been watched. It also shows the common films that friends have in their wishlists so that they can find a film to watch together.
 
+ <ins>Friends List Page</ins>
+![No Friends](Images/nofriends.png)
+
+This page will be rendered at first for new users and users who currently do not have anyone in their friends list. They will be able to access the search username function that searches for a user with a matching username. As usernames are unique, they will be able to definitively find their friends through this search function. They will not be able to search for themselves or an existing friend.
+
+ <ins>Add Friends</ins>
+![add](Images/addfriend.png)
+
+This shows the search result with the Add Friend option available. By clicking the button, the user will be able to add them to their friends list. The Friends list acts in a 'follower' style format whereby users are able to follow other users who they want to. This will not trigger a mutual follow. For example:
+
+-> Test1 adds Test2
+
+->Test1 has one friend added to their friends list and that is Test2
+
+->Test1 is not added to Test2's friends list
+
+ <ins>Added Friends</ins>
+![add](Images/addedfriend.png)
+
+After adding a friend, the user will be able to perform several actions. The basic one would be to remove the friend as part of their friends list curation experience. The other functions are as we have described, to view the friends' watched list or wishlist to find movie inspirations or common films. An example is shown below.
+
+ <ins>Friends Watched List</ins>
+![Friends watched list](Images/friendswatchedlist.png)
+
 This addresses the user concern we have identified
 > As a user who wants to see what my friends are watching, I want to add them to my friends list to keep track and stay connected with them.
 
 Note: future extension can involve an auto filter function or a separate page to instantly show users movies they have in common in both lists, this could be an add on to the current browsing feature users have.
 
-### Watch Statistics
+<div style="page-break-after: always;"></div>
+
+## Watch Statistics
 Core feature
 
-Watch statistics track your movie-watching habits with real-time statistics. Get insights on your most-watched genres, and time periods. See total runtime, number of movies watched, and average ratings.
+Watch statistics track your movie-watching habits with real-time statistics. Get insights on your most-watched genres, and time periods. See total runtime, number of movies watched, and average ratings. This will be the profile page that users can view for themselves. 
 
-Filter stats by month or genre to understand your viewing trends better.
+ <ins>Profile Page</ins>
+![Watch Statistics](Images/stats.png)
+
+This is an example of the profile page. Currently we have 4 intended statistics set up for the watch statistics. These are:
+
+1. Films watched
+    - Tracks the total number of films in the user's Watched List
+2. Total time watched
+    - This tracks the total runtime of all the films that the user has watched thus far
+3. Top genres
+    - This finds the top genres of films that users have watched thus far
+4. Reviews given
+    - Currently we have not implemented the community reviews extension feature. When this is set up, the reviews given statistic will then track the total number of reviews the user has given
 
 The purpose of this feature is to present the user's viewing habits and preferences in a more objective data-oriented manner in the hopes of helping user's filter films based on what they have enjoyed in the past. 
+
+This addresses the concern we have identified :
+
+ > As a user who wants to find a movie that fits my mood and preferences today, I want to be able to type genres and other search criterias. I want to use the search bar to find movies that apply.  
+
+ The Watch statistics can help the user understand a more objective take on the films they enjoy watching, aiding in their movie search journey.
 
 Note : This feature can have more depth, currently we are planning to include the below statistics:
 1. Top genres
@@ -388,10 +434,19 @@ Note : This feature can have more depth, currently we are planning to include th
 3. Average ratings
 4. Average runtime
 
-### Community Reviews
+<div style="page-break-after: always;"></div>
+
+## Community Reviews
 Extension feature
 
-By collating the community opinions of a movie based on a 5 star scale, our community reviews feature enables users to view movie ratings and short reviews from fellow users within the platform. This provides a more personalized and relatable perspective compared to generic critic reviews.
+The following feature will not be developed at milestone 2, but will be extended upon to further complement the full suite of movie finding and tracking options the user has with PopcornTogether.
+
+By collating the community opinions of a movie based on a 5 star scale, our community reviews feature enables users to view movie ratings and short reviews from fellow users within the platform. This provides a more personalized and relatable perspective compared to generic critic reviews. Furthermore, critics tend to have a more skewed and distinct perspective towards movies and are not liekly to give accurate, representative, or actionable information when it comes to subjective fields such as movie enjoyment.
+
+We have created a preliminary render using [Figma](https://www.figma.com) to help us visualise what the review page would look like. This is displayed below: 
+
+ <ins>Review page render</ins>
+![Community Reviews](Images/ratings.jpg)
 
 By seeing what their friends or the broader community think, users can:
 1. Make more informed choices about what to watch based on real, crowd-sourced experiences.
@@ -401,8 +456,12 @@ By seeing what their friends or the broader community think, users can:
 This addresses the user concerns we have identified
 > As a user who wants to see if a movie is worth watching or not.
 
-### Movie Match
+<div style="page-break-after: always;"></div>
+
+## Movie Match
 Extension feature
+
+The following feature will not be developed at milestone 2, but will be further extended upon to provide yet another alternative way to discover new movies to watch.
 
 The Movie Match feature allows users to compare their wish list with their friends’ wish lists to quickly find movies both parties are interested in watching. This simplifies the often time-consuming process of deciding what to watch together. This enables for streamlined coordination, eliminating the back-and-forth of suggesting and rejecting movie options. It also allows our website to be an all-in-one site for users, where they can finalise their group's movie decision in the same place as their own personal movie records.
 
@@ -575,6 +634,8 @@ The development of PopcornTogether followed a depth first implementation. Featur
 - Implemented search function
 - Implemented results rendering function
 - Implemented Watched list and Wish list function
+- Implemented Profile and watch statistics function
+- Implemented Friends List and functionality for viewing friend's Watched and Wish lists.
 
 
 <div style="page-break-after: always;"></div>
@@ -590,7 +651,7 @@ As we are relatively new to using html and css for such webpage designs, finding
 
 Using the [Create-react-app](https://create-react-app.dev/docs/getting-started/) functon gave us a quick jumpstart to creating a react app, it also provided structural syntax for our subsequent files.
 
-Another general issues we encountered was the integration of frontend and backend. We made many mistakes regarding the use of axios, and the backend routes. We found that incorporating logs via the use of <ins>alert</ins>, <ins>console.log</ins>, and <ins>console.error</ins> helped us to debug these issues easier.
+Another general issue cowe encountered was the integration of frontend and backend. We made many mistakes regarding the use of axios, and the backend routes. We found that incorporating logs via the use of <ins>alert</ins>, <ins>console.log</ins>, and <ins>console.error</ins> helped us to debug these issues easier.
 
 ### Backend
 
