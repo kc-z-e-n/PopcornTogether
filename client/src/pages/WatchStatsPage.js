@@ -110,11 +110,13 @@ const WatchStatsPage = () => {
                         </div>
                         <div className='watch-stats-item'>
                             <i className='fas fa-theater-masks'></i>
-                            <ul>
-                                {topGenre.map((genre, idx) => (
-                                    <li key={idx}>{genre}</li>
-                            ))}
-                            </ul>
+                            <div className='genres-container'>
+                                <ul className='watch-stats-genres'>
+                                    {topGenre.map((genre, idx) => (
+                                        <li key={idx}>{genre}</li>
+                                    ))}
+                                </ul>
+                            </div>
                             <p>Top Genres</p>
                         </div>
                         <div className='watch-stats-item'>

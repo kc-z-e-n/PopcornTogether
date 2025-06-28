@@ -2,7 +2,7 @@
     background-color: black;
     color: white;
     min-height: 100vh;
-    padding-top: 100px;
+    padding-top: 130px;
 }
 
 .results-banner {
@@ -10,9 +10,9 @@
     padding: 16px;
     color: black;
     font-weight: bold;
-    text-align: left;
-    padding-left:32px;
-    font-size: 1.25rem;
+    text-align: center;
+    padding-left: 32px;
+    font-size: 1.5rem;
 }
 
 .results-grid {

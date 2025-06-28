@@ -49,3 +49,24 @@
     color: #facc15;
     display: block;
 }
+
+.genres-container {
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+.watch-stats-genres {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    list-style: disc;
+    padding-left: 1rem;
+    margin: 0;
+    text-align: left;
+}
+
+.watch-stats-genres li {
+    margin: 0;
+}

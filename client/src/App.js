@@ -10,6 +10,7 @@ import WatchedListPage from './pages/WatchedListPage';
 import WishListPage from './pages/WishListPage';
 import WatchStatsPage from './pages/WatchStatsPage';
 import FriendsListPage from './pages/FriendsListPage';
+import TimelessFavouritesPage from './pages/TimelessFavouritesPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/wish" element={<WishListPage />} />
             <Route path="/profile" element={<WatchStatsPage />} />
             <Route path="/friends" element={<FriendsListPage />} />
+            <Route path="/timeless" element={<TimelessFavouritesPage />} />
 
             {/*friend paths*/}
             <Route path="/user/:id/watched" element={<WatchedListPage />} />

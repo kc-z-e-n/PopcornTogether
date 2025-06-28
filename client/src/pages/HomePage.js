@@ -49,9 +49,10 @@ const HomePage = () => {
                         </p>
                         <h2 className='movie-title'>Kingdom of the Planet of the Apes</h2>
                         <p className='movie-meta'>Movie - Action, Drama - 2024</p>
-                        <button className='play-button'>+ Watchedlist</button>
-                        <p></p>
-                        <button className='play-button'>+ Wishlist</button>
+                        <div className='button-group'>
+                            <button className='play-button'>+ Watchedlist</button>
+                            <button className='play-button'>+ Wishlist</button>
+                        </div>
                     </div>
                     <div>
                         <img src='./Monkey.png' alt="Kingdom of the Planet of the Apes" className='banner-image' />
@@ -66,6 +67,10 @@ const HomePage = () => {
                             <div key={movie.id} className="movie-card">
                                 <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='movie-poster'/>
                                 <p className="movie-label">{movie.title}</p>
+                                <div className='button-group'>
+                                    <button className='play-button'>+ Watchedlist</button>
+                                    <button className='play-button'>+ Wishlist</button>
+                                </div>    
                             </div>
                         ))}
                     </div>
@@ -73,7 +78,10 @@ const HomePage = () => {
 
             <section className='movie-section'>
                 <h2 className='section-heading'>Timeless Favourites</h2>
-                <img src='./TimelessFavourites.png' alt='Timeless Favourites' className='poster' />
+                <img
+                    src='./TimelessFavourites.png' alt='Timeless Favourites' className='poster'
+                    onClick={() => navigate('/timeless')} style={{ custor: 'pointer'}}
+                />
             </section>
 
             <section className='movie-section'>

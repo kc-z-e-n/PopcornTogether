@@ -90,8 +90,8 @@ const ResultsPage = () => {
                     />
                     <p className="movie-title">{movie.title}</p>
                     <div className='button-group'>
-                        <button className='add-button' onClick={() => addToList('addWatched', movie.id)}>+ Watched</button>
-                        <button className='add-button' onClick={() => addToList('addWish', movie.id)}>+ Wish</button>
+                        <button className='add-button' onClick={() => addToList('addWatched', movie.id)}>+ Watchedlist</button>
+                        <button className='add-button' onClick={() => addToList('addWish', movie.id)}>+ Wishlist</button>
                     </div>
                 </div>
                 ))}

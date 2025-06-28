@@ -25,8 +25,8 @@ router.get('/search', async (req, res) => {
     }
 
     try {
-        const tmdb = await axios.get('https://api.themoviedb.org/3/discover/movie', {
-
+        // const tmdb = await axios.get('https://api.themoviedb.org/3/discover/movie', {
+        const tmdb = await axios.get(tmdbUrl, {
             params : tmdbParams
         });
 
@@ -36,6 +36,30 @@ router.get('/search', async (req, res) => {
     } catch (err) {
         console.error('TMDB search error:', err.message);
         res.status(500).json({error: 'TMDB Request failed'});
+    }
+});
+
+router.get('/timeless', async (req, res) => {
+    const tmdbParams = {
+        api_key: process.env.TMDB_API_KEY,
+        sort_by: 'popularity.desc',
+        'primary_release_date.lte': '2015-12-31',
+        'vote_count.gte': 1000,
+        page: req.query.page || 1,
+    };
+    try {
+        const tmdb = await axios.get('https://api.themoviedb.org/3/discover/movie', {
+            params: tmdbParams
+        });
+
+        res.json({
+            result: tmdb.data.results.slice(0, 12),
+            totalPages: tmdb.data.total_pages
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'TMDB timeless favourites failed'});
     }
 });
 
