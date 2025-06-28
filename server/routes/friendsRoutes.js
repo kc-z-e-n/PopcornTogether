@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { isAuthenticated } = require('../middleware/auth');
+const { isAuthenticated } = require('../middleware/Auth');
 const router = express.Router();
 const User = require('../models/User');
 

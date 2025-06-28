@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../models/User');
-const {isAuthenticated} = require('../middleware/auth');
+const {isAuthenticated} = require('../middleware/Auth');
 
 router.post('/register', async (req, res) => {
     const {

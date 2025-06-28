@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const { isAuthenticated } = require('../middleware/auth');
+const { isAuthenticated } = require('../middleware/Auth');
 const axios = require('axios');
 
 router.get('/watchedStats', async (req, res) => {

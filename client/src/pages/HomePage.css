@@ -86,7 +86,7 @@
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 0px;
     width: 95%;
     margin: 0 auto;
     margin-top: 0;

@@ -8,6 +8,9 @@ const MongoStore = require('connect-mongo');
 
 //port
 const PORT = process.env.PORT || 5050;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
 app.use(express.json());
 //user session
@@ -55,10 +58,6 @@ mongoose.connect(process.env.ATLAS_URI, {
     console.log('Connected to MongoDB');
 }).catch((err) => {
     console.error('MongoDB connection error:', err);
-});
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
 });
 
 app.use((err, req, res, next) => {
