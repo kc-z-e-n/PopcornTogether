@@ -83,7 +83,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
             <div className='header-search'>
                 <input type="text" placeholder="Search..." className='search-input' onFocus={onSearchBarFocus} 
                 value={query} onChange={(e) => setQuery(e.target.value)}/>
-                <button className="search-button" onClick={() => onSearch({q:query})}>🔍</button>
+                <button className="search-button" onClick={() => onSearch({q: query})}>🔍</button>
             </div>
         </header>
     );
