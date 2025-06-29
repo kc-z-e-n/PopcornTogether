@@ -31,8 +31,9 @@ app.use(session({
     })
 }));
 
+//'https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app'
 app.use(cors({
-    origin: 'https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app',
+    origin: 'popcorn-together-skhc-3jfmvz3he-kcs-projects-bcc9092b.vercel.app',
     credentials:true
 }));
 
