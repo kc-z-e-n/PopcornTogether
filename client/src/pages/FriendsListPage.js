@@ -145,8 +145,8 @@ const FriendsListPage = () => {
                     <div className='friend-row' key={friend._id}>
                         <span className='friend-username'>@{friend.username}</span>
                         <span className='friend-links'>
-                            <button className='link-button' onClick={() => window.location.href=`/user/${friend._id}/watched`}>WATCHED LIST</button>
-                            <button className='link-button' onClick={() => window.location.href=`/user/${friend._id}/wish`}>WISHLIST</button>
+                            <button className='link-button' onClick={() => window.location.href=`/user/${friend._id}/watchedlist`}>WATCHED LIST</button>
+                            <button className='link-button' onClick={() => window.location.href=`/user/${friend._id}/wishlist`}>WISHLIST</button>
                             <button className='remove-button' onClick={() => removeFromFriendsList(friend._id)}>REMOVE</button>
                         </span>
                     </div>
