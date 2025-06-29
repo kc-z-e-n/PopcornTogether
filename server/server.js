@@ -22,6 +22,7 @@ app.use(cors({
     credentials: true
 }));
 
+app.set('trust proxy', 1);
 //user session
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
