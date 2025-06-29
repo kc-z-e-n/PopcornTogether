@@ -16,13 +16,6 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use(express.json());
-/*
-//'popcorn-together-skhc-3jfmvz3he-kcs-projects-bcc9092b.vercel.app'
-const deploy = ['https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app', 'https://popcorn-together.vercel.app', 'https://popcorntogether-test.onrender.com'];
-app.use(cors({
-    origin: deploy,
-    credentials:true
-}));*/
 
 app.use(cors({
     origin: true,
@@ -60,10 +53,6 @@ app.use('/api', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/stats', watchStatsRoutes);
 
-app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
-
 app.get('/', (req, res) => {
     res.send('Backend running');
 });
@@ -90,3 +79,8 @@ app.get('/api/retrieve', async (req, res) => {
     res.status(500).json({ message: 'User retrieval failed'});
   }
 });
+
+/* //fallback route
+app.get('.*', (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});*/
