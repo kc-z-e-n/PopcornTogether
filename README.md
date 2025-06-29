@@ -64,11 +64,10 @@ A one-stop app for movie enthusiasts, a record of their movie-watching journey t
 
 - **Backend**: MongoDB, Express, Node.js
 - **Frontend**: React.js, CSS
-- **Deployment**: Vercel ( Frontend), Render (Backend)
+- **Deployment**: Vercel (Frontend), Render (Backend)
 
 ### Popcorn Together's value
 ---
-
 The proposed web application PopcornTogether seeks to create a platform where movie enjoyers can go to consolidate their movie-going journey, allowing them to record their watches, track films they want to watch, and even receive relevant recommendations. Furthermore, with a friends list integration, we empower users to find common movies to watch with their friends.
 
 ### Personal note
@@ -127,11 +126,11 @@ Powerful search and filter functions enable easy user queries when searching for
   - A working system with the core features 
     - Account Authentication
     - Movie Search
-    - Personal Profile
+    - Personal Profile & Watch Statistics
     - Watchedlist
     - Wishlist
-    - Watch Statistics
-  - User has edit access for the watchedlist  
+    - Movie Discovery
+  - User has edit access for the Watchedlist and Wishlist
   - The app produces a list of movies given a set of filters, after search by user
   - Deployment of core features
 
@@ -139,6 +138,7 @@ Powerful search and filter functions enable easy user queries when searching for
   - A working system with both the core and extension features
     - Users can add reviews to movies, which are then stored and retrieved from the database
     - Friends list
+    - Friend Activity 
     - Movie match feature implemented for alternate movie discovery with friends in Friends list
 
 - **Milestone 4**: Testing and debugging
@@ -157,8 +157,9 @@ Render : Render API for hosting the backend express server
 The objective in milestone 2 for PopcornTogether is to develop a working app in order for user testing as well as extension of features. This version will incorporate the authentication functionality built in Milestone 1, improving upon it for user sessions, and adding our other core features which include:
     - Account Authentication
     - Movie Search
-    - Personal Profile + Watch Statistics
-    - Watched List
+    - Movie Discovery
+    - Personal Profile & Watch Statistics
+    - Watchedlist
     - Wishlist
     - Friends List
 
@@ -180,9 +181,10 @@ At this stage, PopcornTogether has been deployed on Vercel at the following link
 - Implemented session tracking
 - Implemented search function
 - Implemented results rendering function
-- Implemented Watched list and Wish list function
-- Implemented Profile and watch statistics function
-- Implemented Friends List and functionality for viewing friend's Watched and Wish lists.
+- Implemented Movie Discovery function
+- Implemented Watchedlist and Wishlist function
+- Implemented Profile and Watch Statistics function
+- Implemented Friends List and functionality for viewing friends' Watchedlists and Wishlists.
 - Deployment of PopcornTogether using Vercel and Render.
 
 <div style="page-break-after: always;"></div>
@@ -193,6 +195,7 @@ At this stage, PopcornTogether has been deployed on Vercel at the following link
 |----|-----------------------------------------------|---------------------------------------------|
 | User Account/Profile | Allows user to maintain their data. |Serves as a way to track their movie journey |
 | Movie Search | Basic search function, allows users to search based on film title, genre, language or release date | Provides a way for users to search for a specific movie, or discover movies by specifying certain paramenters|
+|Movie Discover| With catergories displayed in the Homepage, users can click into 4 separate sections, namely Latest Movies, Timeless Favourites, Friend Activity, and Popular Franchises to discover movies under these 4 categories. Upon entering those sections, buttons are available for users to add the movies into either their Wishlist or Watchedlist.|
 |Watchedlist| Stores all the movies the user has watched before |Allows the user to track their films, it serves as their record so they do not double watch movies. It can also give them inspiration for films they could watch based on what they have enjoyed in the past.|
 |Wishlist|User can add movies they want to watch in the future here |Track movies that the user is interested in but hasnt gotten around to watching. With limited time to pursue leisure activities, users may nnot be able to watch every film immediately, the wishlist serves as a reminder for films they want to watch in the future|
 |Friends list|Allows users to connect with one another, friends can view each others watched lists and wishlists|For friends who want inspiration, they can browse through their friends' lists. For friends looking for a movie to watch together, they can find common movies in their wishlists.|
@@ -208,7 +211,9 @@ The following section details the functionality and organisation of the respecti
 
 The user will first arrive on the **landing page**. From here, they are able to access the movie search function without logging in. This will be further expanded on in the movie search feature below.
 
- Other features such as Friends list, Account profile, and Watched / Wish lists will prompt the user to login first, and is protected using an isAuthenticated function which checks for an active session before allowing access, it will redirect the user to the authentication page if no valid session is detected.
+For Movie Discovery, users can also access recommended movies under the 4 categories (Latest Movies, Timeless Favourites, Friend Activity, and Popular Franchises) in the **landing page** to find more movies. However, to access the Watchedlists/Wishlists function, users will have to login, elaborated below.
+
+Other features such as Friends List and Account Profile will also prompt the user to login first, and is protected using an isAuthenticated function which checks for an active session before allowing access, it will redirect the user to the authentication page if no valid session is detected.
 
 ![landing page](Images/landing.png)
 
@@ -338,6 +343,24 @@ This addresses the user concern we have identified:
 
 <div style="page-break-after: always;"></div>
 
+## Movie Discovery
+Core feature
+
+By clicking in either one of the 4 discover sections (Latest Movies, Timeless Favourites, Friend Activity, and Popular Franchises), users will be redirected to new pages where they can explore movies under the 4 categories respectively.
+
+ <ins>Movie Discovery in Homepage</ins>
+![moviediscovery](Images/MovieDiscovery.png)
+
+Latest Movies provides recommendations for movies released in the last 3 months as of the current date. 
+Timeless Favourites suggests movies released before 2015-12-31, yet still remain popular today, quantified by filtering movies that have received more than 1000 votes in the TMDB database.
+Friend Activity pushes all movies that have been watched by the user's friends in the past 3 months, into one consolidated list. It will be sorted in reverse chronological order, as per the date the movie was added to the friend's Watchedlist. 
+Popular Franchises consits of 4 mainstream American franchises, namely Disney, Marvel, DC and Star Wars. By clicking into the image of each franchise, popular movies from that franchise will be featured.
+
+The image below is a sample of what the discover pages look like, in this case for the Disney Franchise:
+
+ <ins>Disney Franchise Movie Discovery</ins>
+![Disney](Images/Disney.png)
+
 ## Watchedlist
 Core feature
 
@@ -380,10 +403,10 @@ This page allows users to record down movies that they wish to watch in the futu
 2. Help friends discover common movies they can watch together
 
  <ins>Wishlist</ins>
-![Wishist](Images/wish1.png)
+![Wishlist](Images/wish1.png)
 
  <ins>Wishlist with pagination</ins>
-![Wishist](Images/wish2.png)
+![Wislhist](Images/wish2.png)
 
 Similar to the watchedlist, movie IDs of films the user has marked as '+ wish' will be stored in MongoDb, then retrieved when rendering their personal Wishlist page.
 
@@ -423,9 +446,9 @@ This shows the search result with the Add Friend option available. By clicking t
 
 -> Test1 adds Test2
 
-->Test1 has one friend added to their friends list and that is Test2
+-> Test1 has one friend added to their friends list and that is Test2
 
-->Test1 is not added to Test2's friends list
+-> Test1 is not added to Test2's friends list
 
  <ins>Added Friends</ins>
 ![add](Images/addedfriend.png)
@@ -609,7 +632,10 @@ git add .
 git commit -m 'SOME_MESSAGE'
 
 # Push changes to GitHub
-git push 
+git push
+
+# Pulling each other's code from Github to continue edits
+git pull
 ```
 
 This is especially crucial given the remote nature of the collaborative work done for PopcornTogether. By implementing a version control system, changes are easier to trach and new implementations are easily traceable. 
@@ -672,15 +698,23 @@ The largest issue we faced was deciding how to integrate our most vital feature 
 
 As we are relatively new to using html and css for such webpage designs, finding the correct keywords for the syntax of our frontend pages posed a monumental challenge. One resource we made use of was the [Bootstrap](https://getbootstrap.com) library. We also made use of the <ins>npm start</ins> command to run our react app via localhost in our broswer. This enabled us to view changes to the webpage as we adjusted the css for the respective pages.
 
+We have also faced CSS selector conflicts while designing the frontend layout of our pages. As we used the same generic class name .movie-title on different pages like the Homepage, Disney, and Timeless Favourites. As a result, styles from one page sometimes overrode the intended styles for another, depending on the CSS load order. We resolved this by either increasing selector specificity — for example using .results-container .movie-title — or by giving page-specific elements unique class names.
+
 Using the [Create-react-app](https://create-react-app.dev/docs/getting-started/) functon gave us a quick jumpstart to creating a react app, it also provided structural syntax for our subsequent files.
 
-Another general issue cowe encountered was the integration of frontend and backend. We made many mistakes regarding the use of axios, and the backend routes. We found that incorporating logs via the use of <ins>alert</ins>, <ins>console.log</ins>, and <ins>console.error</ins> helped us to debug these issues easier.
+Another general issue we encountered was the integration of frontend and backend. We made many mistakes regarding the use of axios, and the backend routes. We found that incorporating logs via the use of <ins>alert</ins>, <ins>console.log</ins>, and <ins>console.error</ins> helped us to debug these issues easier.
 
 ### Backend
+
+One of the main problems we faced on the backend was route naming inconsistencies. For example, the backend defined routes like /addWatched and /addWish, but sometimes the frontend incorrectly made requests to /add-watched or /add-wish. This mismatch caused 404 Not Found errors that took time to trace. 
+
+We also had to ensure that our isAuthenticated middleware properly checked whether a user was logged in before allowing them to add movies to their watched list or wishlist, since missing this check would have allowed unauthorized actions.
 
 ### Database
 
 As this was our first time integrating a project using a database, we faced difficulties in finding out how to integrate database functionalities with PopcornTogether. Fortunately, the MongoDb youtube channel provided many tutorials with walkthroughs on setting up a working MongoDb database cluster for personal projects. After which, we just had to adapt our user schema in user.js to suit our intended functions.
+
+Since our authentication relies on session IDs, you needed to ensure that our database queries safely pulled the correct user based on req.session.user.id. Any session handling bugs could easily result in updating the wrong document or rejecting valid requests, so robust session and user ID management is essential when updating user-specific lists in the database.
 
 The database configuration was largely seamless owing to the detailed resources provided by MongoDb for the deployment of MongoDb atlas in projects.
 
