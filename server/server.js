@@ -30,7 +30,7 @@ app.use(session({
 }));
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app',
     credentials:true
 }));
 

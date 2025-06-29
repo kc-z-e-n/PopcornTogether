@@ -22,6 +22,9 @@
 - [Development plan](#development-plan)
 - [API Usage](#api-usage)
 
+## [Milestone 2 summary](milestone-2-summary)
+- [Work completed](#work-completed)
+
 ## **Features**
 - [Landing page](#landing-page)
 - [Account](#account)
@@ -61,6 +64,7 @@ A one-stop app for movie enthusiasts, a record of their movie-watching journey t
 
 - **Backend**: MongoDB, Express, Node.js
 - **Frontend**: React.js, CSS
+- **Deployment**: Vercel ( Frontend), Render (Backend)
 
 ### Popcorn Together's value
 ---
@@ -121,7 +125,7 @@ Powerful search and filter functions enable easy user queries when searching for
   - Database integration added using MongoDb
   - Querying of database implemented 
   - A working system with the core features 
-    - Account registration
+    - Account Authentication
     - Movie Search
     - Personal Profile
     - Watchedlist
@@ -143,6 +147,43 @@ Powerful search and filter functions enable easy user queries when searching for
 MongoDB : database for storing user information
 
 TMDB (The Movie Database) : database for querying movie information
+
+Render : Render API for hosting the backend express server
+
+<div style="page-break-after: always;"></div>
+
+## Milestone 2 summary
+
+The objective in milestone 2 for PopcornTogether is to develop a working app in order for user testing as well as extension of features. This version will incorporate the authentication functionality built in Milestone 1, improving upon it for user sessions, and adding our other core features which include:
+    - Account Authentication
+    - Movie Search
+    - Personal Profile + Watch Statistics
+    - Watched List
+    - Wishlist
+    - Friends List
+
+After simple local testing and completion of core features, we aim to deploy PopcornTogether using [Vercel](https://vercel.com/) for the frontend and [Render](https://render.com) for the backend.
+
+At this stage, PopcornTogether has been deployed on Vercel at the following link [https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app](https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app) with the backend running at [https://popcorntogether.onrender.com](https://popcorntogether.onrender.com) on Render. The list of completed features are expanded on below.
+
+## Work completed
+<ins>Milestone 1</ins>
+- Finalised feature design
+- Created a minimal working system for authentication routes
+- Implemented registration function
+- Implemented login function
+- Setup of MongoDB database
+- Created user schema and respective page designs
+
+<ins>Milestone 2</ins>
+- Created the landing page (Homepage)
+- Implemented session tracking
+- Implemented search function
+- Implemented results rendering function
+- Implemented Watched list and Wish list function
+- Implemented Profile and watch statistics function
+- Implemented Friends List and functionality for viewing friend's Watched and Wish lists.
+- Deployment of PopcornTogether using Vercel and Render.
 
 <div style="page-break-after: always;"></div>
 
@@ -186,13 +227,13 @@ Users will be redirected to this page where they can then create an account or l
 <ins>Register page</ins>
 ![register page](Images/register_page.png)
 
-Users will register for an account on this registration page, or access the login page if they already have an account. The user information will be stored on MongoDb.
+Users will register for an account on this registration page, or access the login page if they already have an account. Upon registration, user information will be stored on MongoDb.
 
 <ins>MongoDB</ins>
 
 ![mongodb](Images/mongodb.png)
 
-This project uses MongoDB Atlas, a cloud-hosted NoSQL database, to securely store and manage all user-related data. MongoDB’s flexible document structure makes it ideal for our needs, including handling dynamic user preferences and relationships.
+This project uses MongoDB Atlas, a cloud-hosted NoSQL database, to securely store and manage all user-related data. MongoDB’s flexible document structure makes it ideal for our needs, including handling dynamic user preferences. This is essential to our core features that provide the users functionality to curate their personal Watched List, Wishlist and Friends List, whereby data is managed through the MongoDb database.
 
 This includes storing the below data in order to enable ths web application's features:
 
@@ -238,12 +279,12 @@ This includes storing the below data in order to enable ths web application's fe
 }
 ```
 
-Furthermore, MongoDB provides certain security features such as hashing passwords using bycrypt before storing, and access to the MongoDB API being secured using environment variables and IP whitelisting.
+Furthermore, MongoDB provides certain security features such as hashing passwords using bcrypt before storing, and access to the MongoDB API being secured using environment variables and IP whitelisting.
 
 <ins>Login page</ins>
 ![login page](Images/login_page.png)
 
-Users will login through the login page. 
+Users will login through the login page by using their username and password. The details are verified by matching with an existing account that has been registered and stored on MongoDb. Upon successful login, the user is issued a session token which allows them to use PopcornTogether's features.
 
 <div style="page-break-after: always;"></div>
 
@@ -619,24 +660,6 @@ The development of PopcornTogether followed a depth first implementation. Featur
 |6. Extension| - Implementation of extension features|
 |7. Refinement|- Add additional functionality for a robust Movie companion app|
 |8. Final testing|- Ensure everything runs seamlessly<br>- Optimisation|
-
-### Work completed
-<ins>Milestone 1</ins>
-- Finalised feature design
-- Created a minimal working system for authentication routes
-- Implemented registration function
-- Implemented login function
-- Setup of MongoDB database
-- Created user schema and respective page designs
-
-<ins>Milestone 2</ins>
-- Implemented session tracking
-- Implemented search function
-- Implemented results rendering function
-- Implemented Watched list and Wish list function
-- Implemented Profile and watch statistics function
-- Implemented Friends List and functionality for viewing friend's Watched and Wish lists.
-
 
 <div style="page-break-after: always;"></div>
 
