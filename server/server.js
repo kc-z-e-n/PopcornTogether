@@ -12,13 +12,24 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use(express.json());
+/*
 //'popcorn-together-skhc-3jfmvz3he-kcs-projects-bcc9092b.vercel.app'
-const deploy = ['https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app', 'https://popcorn-together.vercel.app', 'https://popcorntogether-client.onrender.com'];
+const deploy = ['https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app', 'https://popcorn-together.vercel.app', 'https://popcorntogether-test.onrender.com'];
 app.use(cors({
     origin: deploy,
     credentials:true
+}));*/
+
+const cors = require(cors());
+app.use(cors({
+    origin: true,
+    credentials: true
 }));
+
 //user session
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
@@ -49,6 +60,10 @@ app.use('/api/movie', movieRoutes);
 app.use('/api', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/stats', watchStatsRoutes);
+
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 app.get('/', (req, res) => {
     res.send('Backend running');
