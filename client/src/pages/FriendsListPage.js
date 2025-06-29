@@ -33,7 +33,7 @@ const FriendsListPage = () => {
         };
 
         try {
-            const res = await axios.get('http://localhost:5050/api/friends/search', {
+            const res = await axios.get(`${BACKEND_URL}/api/friends/search`, {
                 params: {query: searchFriend},
                 withCredentials: true
             });
@@ -55,7 +55,7 @@ const FriendsListPage = () => {
 
     const handleAddFriend = async (friendId) => {
         try {
-            const res = await axios.post('http://localhost:5050/api/friends/add', {
+            const res = await axios.post(`${BACKEND_URL}/api/friends/add`, {
                 friendId,
                 userId : user._id,
             }, {withCredentials:true}
@@ -81,7 +81,7 @@ const FriendsListPage = () => {
 
     const removeFromFriendsList = async (friendId) => {
         try {
-            await axios.post('http://localhost:5050/api/friends/remove', {friendId , userId : user._id}, { withCredentials: true});
+            await axios.post(`${BACKEND_URL}http://localhost:5050/api/friends/remove`, {friendId , userId : user._id}, { withCredentials: true});
             setFriends((prev) => prev.filter((f) => f._id !== friendId));
             alert('Remove success');
         } catch (err) {
@@ -92,7 +92,7 @@ const FriendsListPage = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get('http://localhost:5050/api/retrieve', {withCredentials: true});
+                const res = await axios.get(`${BACKEND_URL}http://localhost:5050/api/retrieve`, {withCredentials: true});
                 setUsername(res.data.user.username);
                 setUser(res.data.user);
             } catch (err) {
@@ -105,7 +105,7 @@ const FriendsListPage = () => {
     useEffect(() => {
         const fetchFriends = async (pageNum) => {
             try {
-                const res = await axios.get('http://localhost:5050/api/friends/friendsList', {
+                const res = await axios.get(`${BACKEND_URL}http://localhost:5050/api/friends/friendsList`, {
                     params: {page: pageNum},
                     withCredentials : true
                 });

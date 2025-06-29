@@ -8,11 +8,12 @@ const Header = ({onSearchBarFocus, onSearch}) => {
     const [query, setQuery] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
         const checkLogin = async () => {
             try {
-                const res = await axios.get('http://localhost:5050/api/me', {
+                const res = await axios.get(`${BACKEND_URL}/api/me`, {
                     withCredentials:true
                 });
                 if (res.status === 200) {
@@ -27,7 +28,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
 
     const handleProtectedRoute = async (path) => {
         try {
-            const res = await axios.get('http://localhost:5050/api/me', {withCredentials: true}) ;
+            const res = await axios.get(`${BACKEND_URL}/api/me`, {withCredentials: true}) ;
             if (res.status === 200) {
                 navigate(path);
             }
@@ -39,7 +40,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
 
     const handleLogout = async () => {
         try {
-            await axios.post('http://localhost:5050/api/logout', {}, {
+            await axios.post(`${BACKEND_URL}http://localhost:5050/api/logout`, {}, {
                 withCredentials: true
             });
             setIsLoggedIn(false);
