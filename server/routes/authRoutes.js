@@ -90,6 +90,7 @@ router.post('/logout', (req, res) => {
 
 router.get('/me', (req, res) => {
     if (req.session && req.session.user) {
+        console.log('Session:', req.session);
         res.json({user : req.session.user});
     }else {
         res.status(401).json({message: 'Unauthorized'});
