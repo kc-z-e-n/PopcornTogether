@@ -14,7 +14,7 @@ app.listen(PORT, () => {
 
 app.use(express.json());
 //'popcorn-together-skhc-3jfmvz3he-kcs-projects-bcc9092b.vercel.app'
-const deploy = ['https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app', 'https://popcorn-together.vercel.app/'];
+const deploy = ['https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app', 'https://popcorn-together.vercel.app'];
 app.use(cors({
     origin: deploy,
     credentials:true
