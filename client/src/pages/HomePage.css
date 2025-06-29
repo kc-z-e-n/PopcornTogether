@@ -92,7 +92,6 @@
     margin: 0 auto;
     margin-top: 0;
     justify-content: center;
-    border: 2px solid red;
 }
 
 @media (min-width: 640px) {
