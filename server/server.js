@@ -13,6 +13,12 @@ app.listen(PORT, () => {
 });
 
 app.use(express.json());
+//'popcorn-together-skhc-3jfmvz3he-kcs-projects-bcc9092b.vercel.app'
+const deploy = 'https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app'
+app.use(cors({
+    origin: deploy,
+    credentials:true
+}));
 //user session
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
@@ -29,13 +35,6 @@ app.use(session({
       dbName:'PopcornTogether_users',
       collectionName: 'sessions'
     })
-}));
-
-//'popcorn-together-skhc-3jfmvz3he-kcs-projects-bcc9092b.vercel.app'
-const deploy = 'https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app'
-app.use(cors({
-    origin: deploy,
-    credentials:true
 }));
 
 //routes
@@ -71,8 +70,8 @@ app.use((err, req, res, next) => {
 
 app.get('/api/retrieve', async (req, res) => {
   try {
-    const user = await User.findById(req.session.use.id);
-    req.json({ user });
+    const user = await User.findById(req.session.user.id);
+    res.json({ user });
   } catch (err) {
     res.status(500).json({ message: 'User retrieval failed'});
   }

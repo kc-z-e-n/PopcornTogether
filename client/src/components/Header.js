@@ -40,7 +40,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
 
     const handleLogout = async () => {
         try {
-            await axios.post(`${BACKEND_URL}http://localhost:5050/api/logout`, {}, {
+            await axios.post(`${BACKEND_URL}/api/logout`, {}, {
                 withCredentials: true
             });
             setIsLoggedIn(false);
