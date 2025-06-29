@@ -13,7 +13,7 @@ app.listen(PORT, () => {
 });
 
 const path = require('path');
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use(express.json());
 /*
@@ -24,7 +24,6 @@ app.use(cors({
     credentials:true
 }));*/
 
-const cors = require(cors());
 app.use(cors({
     origin: true,
     credentials: true
@@ -62,7 +61,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/stats', watchStatsRoutes);
 
 app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 app.get('/', (req, res) => {
