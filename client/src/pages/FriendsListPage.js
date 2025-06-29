@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Filter from '../components/Filter';
 import './FriendsListPage.css';
 
+
 const FriendsListPage = () => {
     const [friends, setFriends] = useState([]);
     const [page, setPage] = useState(1);
@@ -15,10 +16,11 @@ const FriendsListPage = () => {
     const [searchFriend, setSearchFriend] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     const handleSearch = async (queryParams) => {
         try {
-            const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
             navigate('/results', {state : {results: res.data}} );
         } catch (err) {
             console.error('Search failed', err);

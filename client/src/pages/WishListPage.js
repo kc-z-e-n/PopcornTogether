@@ -12,10 +12,11 @@ const WishlistPage = () => {
     const [page, setPage] = useState(1);
     const [ totalPages, setTotalPages] = useState(1);
     const {id} = useParams();
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     const handleSearch = async (queryParams) => {
         try {
-            const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
             navigate('/results', {state : {results: res.data}} );
         } catch (err) {
             console.error('Search failed', err);
@@ -24,7 +25,7 @@ const WishlistPage = () => {
 
     const checkSessionLogin = async () => {
         try {
-            const res = await axios.get('http://localhost:5050/api/me', {
+            const res = await axios.get(`${BACKEND_URL}/api/me`, {
                 withCredentials:true
             });
             if (res.status === 200) {
@@ -37,7 +38,7 @@ const WishlistPage = () => {
 
     const removeFromWishlist = async (movieId) => {
         try {
-            await axios.post('http://localhost:5050/api/user/removeFromWishlist', {movieId }, { withCredentials: true});
+            await axios.post(`${BACKEND_URL}/api/user/removeFromWishlist`, {movieId }, { withCredentials: true});
             setMovies((prev) => prev.filter((m) => m.id !== movieId));
         } catch (err) {
             console.error('Failed to remove movie');
@@ -52,8 +53,8 @@ const WishlistPage = () => {
             return;
         }
         try {
-            await axios.post('http://localhost:5050/api/user/addWatched', {movieId}, {withCredentials:true});
-            await axios.post('http://localhost:5050/api/user/removeFromWishlist', {movieId}, {withCredentials:true});
+            await axios.post(`${BACKEND_URL}/api/user/addWatched`, {movieId}, {withCredentials:true});
+            await axios.post(`${BACKEND_URL}/api/user/removeFromWishlist`, {movieId}, {withCredentials:true});
             setMovies((prev) => prev.filter((m) => m.id !== movieId));
             alert('Add Successful!')
         } catch (err) {
@@ -65,8 +66,8 @@ const WishlistPage = () => {
         const fetchWishMovies = async (pageNum) => {
             try {
                 const endpoint = id 
-                ? `http://localhost:5050/api/user/${id}/wishlist`
-                : 'http://localhost:5050/api/user/wishlist'
+                ? `${BACKEND_URL}/api/user/${id}/wishlist`
+                : `${BACKEND_URL}/api/user/wishlist`
 
                 const res = await axios.get(endpoint, {
                     params: {page: pageNum},

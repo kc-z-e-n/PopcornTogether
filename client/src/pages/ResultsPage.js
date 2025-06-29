@@ -14,10 +14,11 @@ const ResultsPage = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [showFilters, setShowFilters] = useState(false);
     const navigate = useNavigate();
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     const handleSearch = async (queryParams) => {
         try {
-            const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
             navigate('/results', {state : {results: res.data}} );
         } catch (err) {
             console.error('Search failed', err);
@@ -26,7 +27,7 @@ const ResultsPage = () => {
 
     const fetchMovies = async (pageNum) => {
         try {
-            const res = await axios.get('http://localhost:5050/api/movie/search', {
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {
                 params: { ...initialQuery, page: pageNum }
             });
 
@@ -41,7 +42,7 @@ const ResultsPage = () => {
 
     const checkSessionLogin = async () => {
         try {
-            const res = await axios.get('http://localhost:5050/api/me', {
+            const res = await axios.get(`${BACKEND_URL}/api/me`, {
                 withCredentials:true
             });
             if (res.status === 200) {
@@ -61,7 +62,7 @@ const ResultsPage = () => {
         }
 
         try {
-            await axios.post(`http://localhost:5050/api/user/${listType}`, {movieId}, {withCredentials:true});
+            await axios.post(`${BACKEND_URL}/api/user/${listType}`, {movieId}, {withCredentials:true});
             alert('Add Successful!')
         } catch (err) {
             console.error('Add failed', err);

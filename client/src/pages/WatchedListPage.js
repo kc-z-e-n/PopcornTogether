@@ -12,10 +12,11 @@ const WatchedListPage = () => {
     const [page, setPage] = useState(1);
     const [ totalPages, setTotalPages] = useState(1);
     const {id} = useParams();
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     const handleSearch = async (queryParams) => {
         try {
-            const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
             navigate('/results', {state : {results: res.data}} );
         } catch (err) {
             console.error('Search failed', err);
@@ -24,7 +25,7 @@ const WatchedListPage = () => {
 
     const removeFromWatchedList = async (movieId) => {
         try {
-            await axios.post('http://localhost:5050/api/user/removeFromWatchedlist', {movieId }, { withCredentials: true});
+            await axios.post(`${BACKEND_URL}/api/user/removeFromWatchedlist`, {movieId }, { withCredentials: true});
             setMovies((prev) => prev.filter((m) => m.id !== movieId));
         } catch (err) {
             console.error('Failed to remove movie');
@@ -35,8 +36,8 @@ const WatchedListPage = () => {
         const fetchWatchedMovies = async (pageNum) => {
             try {
                 const endpoint = id 
-                ? `http://localhost:5050/api/user/${id}/watchedlist`
-                : 'http://localhost:5050/api/user/watchedlist'
+                ? `${BACKEND_URL}/api/user/${id}/watchedlist`
+                : `${BACKEND_URL}/api/user/watchedlist`
 
                 const res = await axios.get(endpoint, {
                     params: {page: pageNum},

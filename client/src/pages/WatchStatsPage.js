@@ -13,10 +13,11 @@ const WatchStatsPage = () => {
     const [showFilters, setShowFilters] = useState(false);
     const [topGenre, setTopGenre] = useState([]);
     const navigate = useNavigate();
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     const handleSearch = async (queryParams) => {
         try {
-            const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
             navigate('/results', {state : {results: res.data}} );
         } catch (err) {
             console.error('Search failed', err);
@@ -32,7 +33,7 @@ const WatchStatsPage = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get('http://localhost:5050/api/retrieve', {
+                const res = await axios.get(`${BACKEND_URL}/api/retrieve`, {
                     withCredentials: true    
                 });
                 setUsername(res.data.user.username);
@@ -44,7 +45,7 @@ const WatchStatsPage = () => {
         
         const fetchWatchedList = async () => {
             try {
-                const res = await axios.get('http://localhost:5050/api/stats/watchedStats', {
+                const res = await axios.get(`${BACKEND_URL}/api/stats/watchedStats`, {
                     withCredentials: true
                 });
                 setWatchedList(res.data.watchedListMovies);
@@ -62,7 +63,7 @@ const WatchStatsPage = () => {
             const fetchRuntime = async () => {
                 try {
                     console.log('watched list state:', watched);
-                    const res = await axios.post('http://localhost:5050/api/stats/runtime', {
+                    const res = await axios.post(`${BACKEND_URL}/api/stats/runtime`, {
                         movieIds : watched
                     });
                     setRuntime(res.data.totalRuntime);
@@ -73,7 +74,7 @@ const WatchStatsPage = () => {
 
             const fetchTopGenre = async () => {
                 try {
-                    const res = await axios.post('http://localhost:5050/api/stats/top-genre', {
+                    const res = await axios.post(`${BACKEND_URL}/api/stats/top-genre`, {
                         movieIds : watched
                     });
                     setTopGenre(res.data.topGenres);

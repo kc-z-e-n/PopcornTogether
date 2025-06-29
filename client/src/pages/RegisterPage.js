@@ -6,8 +6,9 @@ import axios from 'axios'; // for backend
 function RegisterPage() {
     const location = useLocation(); 
     const navigate = useNavigate();
-    const email = location.state?.email || ''; // retrieve email info, if no info, use ''
-    const [agreed, setAgreed] = useState(false); // checkbox ticked
+    const email = location.state?.email || '';
+    const [agreed, setAgreed] = useState(false);
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     const handleRegister = async(e)=> {
         e.preventDefault();
@@ -25,7 +26,7 @@ function RegisterPage() {
         };
 
         try {
-            const res = await axios.post('http://localhost:5050/api/register', data);
+            const res = await axios.post(`${BACKEND_URL}/api/register`, data);
             alert('Registration successful');
         } catch(err) {
             const msg = err.response?.data?.message || err.message || 'Unknown error'
