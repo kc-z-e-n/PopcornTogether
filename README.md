@@ -89,7 +89,8 @@ This project aims to create a platform for users to maintain an account with inf
 
 
 ### User stories
-- As a user who wants to find a movie that fits my mood and preferences today, I want to be able to type genres and other search criterias. I want to use the search bar to find movies that apply.  
+- As a user who wants to find a movie that fits my mood and preferences today, I want to be able to type genres and other search criterias. I want to use the search bar to find movies that apply.
+- As a user who wants to easily and purposefully discover new movies to watch, based on specific categories provided.
 - As a user who wants to see if a movie is worth watching or not.  
 - As a user who wants to remember what kind of movies I have watched and also want to watch.  
 - As a user who wants to see what my friends are watching, I want to add them to my friends list to keep track and stay connected with them.  
@@ -195,7 +196,7 @@ At this stage, PopcornTogether has been deployed on Vercel at the following link
 |----|-----------------------------------------------|---------------------------------------------|
 | User Account/Profile | Allows user to maintain their data. |Serves as a way to track their movie journey |
 | Movie Search | Basic search function, allows users to search based on film title, genre, language or release date | Provides a way for users to search for a specific movie, or discover movies by specifying certain paramenters|
-|Movie Discover| With catergories displayed in the Homepage, users can click into 4 separate sections, namely Latest Movies, Timeless Favourites, Friend Activity, and Popular Franchises to discover movies under these 4 categories. Upon entering those sections, buttons are available for users to add the movies into either their Wishlist or Watchedlist.|
+|Movie Discover| With catergories displayed in the Homepage, users can click into 4 separate sections, namely Latest Movies, Timeless Favourites, Friend Activity, and Popular Franchises to discover movies under these 4 categories. Upon entering those sections, buttons are available for users to add the movies into either their Wishlist or Watchedlist.| Allows users to uncover new movies they have not watched before, and gain timely recommendations from their friends' activity.|
 |Watchedlist| Stores all the movies the user has watched before |Allows the user to track their films, it serves as their record so they do not double watch movies. It can also give them inspiration for films they could watch based on what they have enjoyed in the past.|
 |Wishlist|User can add movies they want to watch in the future here |Track movies that the user is interested in but hasnt gotten around to watching. With limited time to pursue leisure activities, users may nnot be able to watch every film immediately, the wishlist serves as a reminder for films they want to watch in the future|
 |Friends list|Allows users to connect with one another, friends can view each others watched lists and wishlists|For friends who want inspiration, they can browse through their friends' lists. For friends looking for a movie to watch together, they can find common movies in their wishlists.|
@@ -361,6 +362,9 @@ The image below is a sample of what the discover pages look like, in this case f
  <ins>Disney Franchise Movie Discovery</ins>
 ![Disney](Images/Disney.png)
 
+This addresses the concern we have identified :
+> As a user who wants to easily and purposefully discover new movies to watch, based on specific categories provided.
+
 ## Watchedlist
 Core feature
 
@@ -487,7 +491,6 @@ This is an example of the profile page. Currently we have 4 intended statistics 
 The purpose of this feature is to present the user's viewing habits and preferences in a more objective data-oriented manner in the hopes of helping user's filter films based on what they have enjoyed in the past. 
 
 This addresses the concern we have identified :
-
  > As a user who wants to find a movie that fits my mood and preferences today, I want to be able to type genres and other search criterias. I want to use the search bar to find movies that apply.  
 
  The Watch statistics can help the user understand a more objective take on the films they enjoy watching, aiding in their movie search journey.
