@@ -13,7 +13,7 @@ const HomePage = () => {
 
     const handleSearch = async (queryParams) => {
         try {
-            const res = await axios.get(`${BACKEND_URL}/api/movie/search```, {params : queryParams});
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
             navigate('/results', {state : {results: res.data}} );
         } catch (err) {
             console.error('Search failed', err);

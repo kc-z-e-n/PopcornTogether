@@ -64,7 +64,7 @@ A one-stop app for movie enthusiasts, a record of their movie-watching journey t
 
 - **Backend**: MongoDB, Express, Node.js
 - **Frontend**: React.js, CSS
-- **Deployment**: Vercel (Frontend), Render (Backend)
+- **Deployment**: Render
 
 ### Popcorn Together's value
 ---
@@ -164,9 +164,9 @@ The objective in milestone 2 for PopcornTogether is to develop a working app in 
     - Wishlist
     - Friends List
 
-After simple local testing and completion of core features, we aim to deploy PopcornTogether using [Vercel](https://vercel.com/) for the frontend and [Render](https://render.com) for the backend.
+After simple local testing and completion of core features, we aim to deploy PopcornTogether using  [Render](https://render.com).
 
-At this stage, PopcornTogether has been deployed on Vercel at the following link [https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app](https://popcorn-together-j8bpcfv30-kcs-projects-bcc9092b.vercel.app) with the backend running at [https://popcorntogether.onrender.com](https://popcorntogether.onrender.com) on Render. The list of completed features are expanded on below.
+At this stage, PopcornTogether has been deployed at [https://popcorntogether-test.onrender.com](https://popcorntogether-test.onrender.com) on Render. The list of completed features are expanded on below.
 
 ## Work completed
 <ins>Milestone 1</ins>
@@ -186,7 +186,7 @@ At this stage, PopcornTogether has been deployed on Vercel at the following link
 - Implemented Watchedlist and Wishlist function
 - Implemented Profile and Watch Statistics function
 - Implemented Friends List and functionality for viewing friends' Watchedlists and Wishlists.
-- Deployment of PopcornTogether using Vercel and Render.
+- Deployment of PopcornTogether using Render.
 
 <div style="page-break-after: always;"></div>
 
@@ -571,6 +571,7 @@ The header and filter is also deployed in all pages, with the exception of the a
     <Filter />
 }
 ```
+<div style="page-break-after: always;"></div>
 
 ### Error handling
 To ensure robust handling of different routes and functions, as well as easier debugging, PopcornTogether makes use of the below practices:
@@ -685,7 +686,7 @@ The development of PopcornTogether followed a depth first implementation. Featur
 
 |Next steps|Plans|
 |-|-|
-|5. Deployment|- Use of Vercel to deploy the webapp|
+|5. Deployment|- Use of Render to deploy the webapp|
 |6. Extension| - Implementation of extension features|
 |7. Refinement|- Add additional functionality for a robust Movie companion app|
 |8. Final testing|- Ensure everything runs seamlessly<br>- Optimisation|
@@ -701,9 +702,9 @@ The largest issue we faced was deciding how to integrate our most vital feature 
 
 As we are relatively new to using html and css for such webpage designs, finding the correct keywords for the syntax of our frontend pages posed a monumental challenge. One resource we made use of was the [Bootstrap](https://getbootstrap.com) library. We also made use of the <ins>npm start</ins> command to run our react app via localhost in our broswer. This enabled us to view changes to the webpage as we adjusted the css for the respective pages.
 
-We have also faced CSS selector conflicts while designing the frontend layout of our pages. As we used the same generic class name .movie-title on different pages like the Homepage, Disney, and Timeless Favourites. As a result, styles from one page sometimes overrode the intended styles for another, depending on the CSS load order. We resolved this by either increasing selector specificity — for example using .results-container .movie-title — or by giving page-specific elements unique class names.
-
 Using the [Create-react-app](https://create-react-app.dev/docs/getting-started/) functon gave us a quick jumpstart to creating a react app, it also provided structural syntax for our subsequent files.
+
+We have also faced CSS selector conflicts while designing the frontend layout of our pages. As we used the same generic class name .movie-title on different pages like the Homepage, Disney, and Timeless Favourites. As a result, styles from one page sometimes overrode the intended styles for another, depending on the CSS load order. We resolved this by either increasing selector specificity — for example using .results-container .movie-title — or by giving page-specific elements unique class names.
 
 Another general issue we encountered was the integration of frontend and backend. We made many mistakes regarding the use of axios, and the backend routes. We found that incorporating logs via the use of <ins>alert</ins>, <ins>console.log</ins>, and <ins>console.error</ins> helped us to debug these issues easier.
 
@@ -713,14 +714,43 @@ One of the main problems we faced on the backend was route naming inconsistencie
 
 We also had to ensure that our isAuthenticated middleware properly checked whether a user was logged in before allowing them to add movies to their watched list or wishlist, since missing this check would have allowed unauthorized actions.
 
+Another issue was the ordering of functions in our server.js. There were many moving parts, such as the route imports, the database connection, the express session configruation. Initially, there was no clear order to each component in our server.js, resulting in several connection issues (Error 500). This was eventually resolved when we correctly ordered our express session before the route imports.
+
+### Unresolved error
+
+Currently, we still have an unresolved error for a feature that we are intending to rectify. That is to include a fall back route '*' such that refreshing of pages will succesfully load the page. At present, the inclusion of our fallback route leads to 'path-to-regexp' errors.
+
+
 ### Database
 
 As this was our first time integrating a project using a database, we faced difficulties in finding out how to integrate database functionalities with PopcornTogether. Fortunately, the MongoDb youtube channel provided many tutorials with walkthroughs on setting up a working MongoDb database cluster for personal projects. After which, we just had to adapt our user schema in user.js to suit our intended functions.
 
 Since our authentication relies on session IDs, you needed to ensure that our database queries safely pulled the correct user based on req.session.user.id. Any session handling bugs could easily result in updating the wrong document or rejecting valid requests, so robust session and user ID management is essential when updating user-specific lists in the database.
 
+An issue we faced when initialising our user schema was assigning unique:true to the friends array. The intention was to ensure friends added were unique and could not be added twice. However, this created an issue. Unique actually enforced the friends field to be unique amongst user -- no two users can have the exact same friends list. A unique index in MongoDb ensures that no two documents in the collection can have the same value for that field. This resulted in the backend throwing errors when:
+1. adding or removing friends
+2. Trying to create a new user
+
+The issue being that there was already a user with an empty friends array. The fix was to remove the unique:true, and manually delete the friends index from MongoDb that was created using this unique tag.
+
 The database configuration was largely seamless owing to the detailed resources provided by MongoDb for the deployment of MongoDb atlas in projects.
 
 ### Deployment
 
+As this was our first time deploying a web app, we enconutered a wide range of issues.
+
+Firstly, we initially wanted to deploy the frontend and backend separately with the frontend being on Vercel and the backend on Render. This gave rise to an issue with our express session as both sites assigned their own respective domains. Since the domains were different, the cookies that were used for our session tokens were not sent across domains. As such we had two options, to deploy both frontend and backend together, or purchase a custom domain for upwards of $18. We decided to instead deploy the entire repository on Render as a webservice. 
+
 During deployment, we encountered a net::ERR_CONNECTION_REFUSED error when attempting to access backend routes (e.g., /api/login). This occurred because the frontend was trying to reach the backend on localhost:5050, which only works locally. We resolved this by updating the API base URL to point to the deployed backend server and ensuring the backend was hosted and running before the frontend was built.
+
+The deployed code required slight tweaks to our frontend backend communication as we were no longer using localhost for our testing. This included changes to all our pages and component functions, as well as our server.js. An example of an issue that caused our deployment to crash was the hardcoding of PORT for our local testing. Before discovering that Render would assign its own PORT, we had given it a hardcoded value of 5050, which resulted in our deployment timing out.
+
+Overall, the summary of our deployment errors encountered and fixes, centers around small code adjustments when moving from local testing to Render, and figuring out how Render deployments worked.
+
+<div style="page-break-after: always;"></div>
+
+## Conclusion
+
+Despite challenges faced during the setup and deployment for Milestone 2, we have managed to successfully develop our core features for PopcornTogether, barring some fringe functionalisties that can be completed as extension work to complement the existing web app. 
+
+Our next steps will be to debug the unresolved fallback route, including the fringe functionalities to complete our core app, and add in our two extension features.
