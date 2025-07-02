@@ -7,6 +7,7 @@ const TimelessFavouritesPage = () => {
     const [results,setResults] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -15,7 +16,7 @@ const TimelessFavouritesPage = () => {
     useEffect(() => {
         const fetchTimelessFavourites = async () => {
             try {
-                const res = await axios.get(`http://localhost:5050/api/movie/timeless?page=${page}`);
+                const res = await axios.get(`${BACKEND_URL}/api/movie/timeless?page=${page}`);
                     /*params: {page: page},
                     withCredentials: true
             }); */

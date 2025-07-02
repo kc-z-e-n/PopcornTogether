@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Filter from '../components/Filter';
 import './FriendsListPage.css';
 
+
 const FriendsListPage = () => {
     const [friends, setFriends] = useState([]);
     const [page, setPage] = useState(1);
@@ -15,10 +16,11 @@ const FriendsListPage = () => {
     const [searchFriend, setSearchFriend] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     const handleSearch = async (queryParams) => {
         try {
-            const res = await axios.get('http://localhost:5050/api/movie/search', {params : queryParams});
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
             navigate('/results', {state : {results: res.data}} );
         } catch (err) {
             console.error('Search failed', err);
@@ -31,7 +33,7 @@ const FriendsListPage = () => {
         };
 
         try {
-            const res = await axios.get('http://localhost:5050/api/friends/search', {
+            const res = await axios.get(`${BACKEND_URL}/api/friends/search`, {
                 params: {query: searchFriend},
                 withCredentials: true
             });
@@ -53,7 +55,7 @@ const FriendsListPage = () => {
 
     const handleAddFriend = async (friendId) => {
         try {
-            const res = await axios.post('http://localhost:5050/api/friends/add', {
+            const res = await axios.post(`${BACKEND_URL}/api/friends/add`, {
                 friendId,
                 userId : user._id,
             }, {withCredentials:true}
@@ -79,7 +81,7 @@ const FriendsListPage = () => {
 
     const removeFromFriendsList = async (friendId) => {
         try {
-            await axios.post('http://localhost:5050/api/friends/remove', {friendId , userId : user._id}, { withCredentials: true});
+            await axios.post(`${BACKEND_URL}/api/friends/remove`, {friendId , userId : user._id}, { withCredentials: true});
             setFriends((prev) => prev.filter((f) => f._id !== friendId));
             alert('Remove success');
         } catch (err) {
@@ -87,10 +89,18 @@ const FriendsListPage = () => {
         }
     };
 
+    const handleFriendsWatchedList = async (friendId) => {
+        navigate(`/user/${friendId}/watched`);
+    };
+
+    const handleFriendsWishList = async (friendId) => {
+        navigate(`/user/${friendId}/wish`);
+    };
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get('http://localhost:5050/api/retrieve', {withCredentials: true});
+                const res = await axios.get(`${BACKEND_URL}/api/retrieve`, {withCredentials: true});
                 setUsername(res.data.user.username);
                 setUser(res.data.user);
             } catch (err) {
@@ -103,7 +113,7 @@ const FriendsListPage = () => {
     useEffect(() => {
         const fetchFriends = async (pageNum) => {
             try {
-                const res = await axios.get('http://localhost:5050/api/friends/friendsList', {
+                const res = await axios.get(`${BACKEND_URL}/api/friends/friendsList`, {
                     params: {page: pageNum},
                     withCredentials : true
                 });
@@ -143,8 +153,8 @@ const FriendsListPage = () => {
                     <div className='friend-row' key={friend._id}>
                         <span className='friend-username'>@{friend.username}</span>
                         <span className='friend-links'>
-                            <button className='link-button' onClick={() => window.location.href=`/user/${friend._id}/watched`}>WATCHED LIST</button>
-                            <button className='link-button' onClick={() => window.location.href=`/user/${friend._id}/wish`}>WISHLIST</button>
+                            <button className='link-button' onClick={() => handleFriendsWatchedList(friend._id)}>WATCHED LIST</button>
+                            <button className='link-button' onClick={() => handleFriendsWishList(friend._id)}>WISHLIST</button>
                             <button className='remove-button' onClick={() => removeFromFriendsList(friend._id)}>REMOVE</button>
                         </span>
                     </div>

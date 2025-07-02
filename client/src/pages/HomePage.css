@@ -87,6 +87,16 @@
     text-align: center;
 }
 
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 0;
+    justify-content: center;
+}
+
 @media (min-width: 640px) {
     .movie-grid {
         grid-template-columns: repeat(3, 1fr);

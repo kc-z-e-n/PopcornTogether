@@ -7,12 +7,13 @@ function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] =useState('');
     const navigate = useNavigate();
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     const handleLogin = async(e) => {
         e.preventDefault(); //prevent refresh
         console.log('Logging in with:', {email, password});
         try {
-            const res = await axios.post('http://localhost:5050/api/login', {
+            const res = await axios.post(`${BACKEND_URL}/api/login`, {
                 email,
                 password
             },{

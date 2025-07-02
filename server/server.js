@@ -12,7 +12,17 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../client/build')));
+
 app.use(express.json());
+
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
+
+app.set('trust proxy', 1);
 //user session
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
@@ -20,6 +30,8 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
       httpOnly:true,
+      secure:true,
+      sameSite:'none',
       maxAge:1000*60*60*24
     },
     store: MongoStore.create({
@@ -27,11 +39,6 @@ app.use(session({
       dbName:'PopcornTogether_users',
       collectionName: 'sessions'
     })
-}));
-
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials:true
 }));
 
 //routes
@@ -67,9 +74,14 @@ app.use((err, req, res, next) => {
 
 app.get('/api/retrieve', async (req, res) => {
   try {
-    const user = await User.findById(req.session.use.id);
-    req.json({ user });
+    const user = await User.findById(req.session.user.id);
+    res.json({ user });
   } catch (err) {
     res.status(500).json({ message: 'User retrieval failed'});
   }
 });
+
+/* //fallback route
+app.get('.*', (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});*/

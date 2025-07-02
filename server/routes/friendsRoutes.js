@@ -50,6 +50,7 @@ router.post('/add', async (req, res) => {
 
 router.post('/remove', async (req, res) => {
     const {userId, friendId} = req.body;
+    console.log('remove:', req.body);
 
     try {
         const user = await User.findById(userId);
