@@ -16,8 +16,8 @@ const DCPage = () => {
     useEffect(() => {
         const fetchDCMovies = async () => {
             try {
-                // const res = await axios.get(`http://localhost:5050/api/movie/disney?page=${page}`);
                 const res = await axios.get(`${BACKEND_URL}/api/movie/dc?page=${page}`);
+                withCredentials: true;
                 setDCMovies(res.data.result);
                 setTotalPages(res.data.totalPages);
             } catch (err) {
