@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import axios from 'axios';
 
 const TimelessFavouritesPage = () => {
-    const [results,setResults] = useState([]);
+    const [results, setResults] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;

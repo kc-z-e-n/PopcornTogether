@@ -8,6 +8,7 @@ const DisneyPage = () => {
     const [disneyMovies, setDisneyMovies] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -16,7 +17,8 @@ const DisneyPage = () => {
     useEffect(() => {
         const fetchDisneyMovies = async () => {
             try {
-                const res = await axios.get(`http://localhost:5050/api/movie/disney?page=${page}`);
+                // const res = await axios.get(`http://localhost:5050/api/movie/disney?page=${page}`);
+                const res = await axios.get(`${BACKEND_URL}/api/movie/disney?page=${page}`);
                 setDisneyMovies(res.data.result);
                 setTotalPages(res.data.totalPages);
             } catch (err) {
