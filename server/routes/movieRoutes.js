@@ -87,4 +87,28 @@ router.get('/disney', async (req, res) => {
     }
 });    
 
+router.get('/marvel', async (req, res) => {
+    const tmdbParams = {
+        api_key: process.env.TMDB_API_KEY,
+        with_companies: 420,
+        sort_by: 'popularity.desc',
+        page: req.query.page || 1,
+    };
+
+    try {
+        const tmdb = await axios.get('https://api.themoviedb.org/3/discover/movie', {
+            params: tmdbParams
+        });
+
+        res.json({
+            result: tmdb.data.results.slice(0, 12),
+            totalPages: tmdb.data.total_pages
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'TMDB Marvel fetch failed'});
+    }
+});    
+
 module.exports = router;
