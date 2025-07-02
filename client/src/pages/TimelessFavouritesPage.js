@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import Header from '../components/Header';
 import './TimelessFavouritesPage.css';
+import Header from '../components/Header';
 import axios from 'axios';
 
 const TimelessFavouritesPage = () => {
@@ -35,9 +35,12 @@ const TimelessFavouritesPage = () => {
             <div className='movie-grid'>
                 {results.map((movie) => (
                     <div key={movie.id} className='movie-card'>
-                        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} 
-                        className='movie-poster'/>
-                        <p className='movie-title'>{movie.title}</p>
+                        <div>
+                            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} 
+                            className='movie-poster'
+                            />
+                        <p className='timeless-movie-title'>{movie.title}</p>
+                        </div>
                         <div className='button-group'>
                             <button className='add-button'>+ Watchedlist</button>
                             <button className='add-button'>+ Wishlist</button>

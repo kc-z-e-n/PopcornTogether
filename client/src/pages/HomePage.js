@@ -2,13 +2,17 @@ import React, {useEffect, useState} from 'react';
 import './HomePage.css';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const HomePage = () => {
     const [showFilters, setShowFilters] = useState(false);
     const navigate = useNavigate();
     const [latestMovies, setLatestMovies] = useState([]);
+    const location = useLocation();
+    const initialQuery = location.state?.query || {};
+    const [results, setResults] = useState([]);
+    const [totalPages, setTotalPages] = useState(1);
 
     const handleSearch = async (queryParams) => {
         try {
@@ -18,6 +22,50 @@ const HomePage = () => {
             console.error('Search failed', err);
         }
     }
+
+    const fetchMovies = async (pageNum) => {
+        try {
+            const res = await axios.get('http://localhost:5050/api/movie/search', {
+                params: { ...initialQuery, page: pageNum }
+            });
+
+            const resultsArray = res.data.result || [];
+            setResults(res.data.result);
+            setTotalPages(Math.min(res.data.totalPages, 10));
+        } catch (err) {
+            console.error(err);
+            setResults([]);
+        }
+    };
+
+    const addToList = async (listType, movieId) => {
+        const isLoggedIn = await checkSessionLogin();
+        if (!isLoggedIn) {
+            alert('Please log in first');
+            navigate('/auth');
+            return;
+        }
+
+        try {
+            await axios.post(`http://localhost:5050/api/user/${listType}`, {movieId}, {withCredentials:true});
+            alert('Add Successful!')
+        } catch (err) {
+            console.error('Add failed', err);
+        }
+    };
+
+    const checkSessionLogin = async () => {
+        try {
+            const res = await axios.get('http://localhost:5050/api/me', {
+                withCredentials:true
+            });
+            if (res.status === 200) {
+                return true;
+            }
+        } catch (err) {
+            return false;
+        }
+    };
 
     useEffect(() => {
         const fetchLatestMovies = async () => {
@@ -50,8 +98,10 @@ const HomePage = () => {
                         <h2 className='movie-title'>Kingdom of the Planet of the Apes</h2>
                         <p className='movie-meta'>Movie - Action, Drama - 2024</p>
                         <div className='button-group'>
-                            <button className='play-button'>+ Watchedlist</button>
-                            <button className='play-button'>+ Wishlist</button>
+                            <button className='play-button'
+                            onClick={() => addToList('addWatched', 'kingdom-of-apes')} >+ Watchedlist</button>
+                            <button className='play-button'
+                            onClick={() => addToList('addWish', 'kingdom-of-apes')} >+ Wishlist</button>
                         </div>
                     </div>
                     <div>
@@ -60,20 +110,20 @@ const HomePage = () => {
                 </div>
             </section>
 
-            <section className="movie-section">
-                <h2 className="section-heading">Latest Movies</h2>
-                    <div className="movie-grid">
-                        {latestMovies.map((movie) => (
-                            <div key={movie.id} className="movie-card">
-                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='movie-poster'/>
-                                <p className="movie-label">{movie.title}</p>
-                                <div className='button-group'>
-                                    <button className='play-button'>+ Watchedlist</button>
-                                    <button className='play-button'>+ Wishlist</button>
-                                </div>    
-                            </div>
-                        ))}
+            <section className='movie-section'>
+                <h2 className='section-heading'>Latest Movies</h2>
+                {latestMovies.map((movie) => (
+                    <div key={movie.id} className='movie-card'>
+                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='movie-poster'/>
+                    <p className='movie-label'>{movie.title}</p>
+                    <div className='button-group'>
+                        <button className='play-button'
+                        onClick={() => addToList('addWatched', movie.id)} >+ Watchedlist</button>
+                        <button className='play-button'
+                        onClick={() => addToList('addWish', movie.id)} >+ Wishlist</button>
                     </div>
+                    </div>
+                ))}
             </section>
 
             <section className='movie-section'>
@@ -89,11 +139,30 @@ const HomePage = () => {
                 <img src='./FriendActivity.png' alt='Friends' className='poster' />
             </section>
 
-            <section className='movie-section'>
+            <section className='movie-section franchise-section'>
                 <h2 className='section-heading'>Popular Franchises</h2>
-                <img src='./FranchiseLogos.png' alt='Franchises' className='franchise-poster' />
-            </section>
+                <div className='franchise-grid'>
+                    <div className='franchise-card' onClick={() => navigate('/franchise/disney')}>
+                        <h3>Disney</h3>
+                        <img src='./Disney.png' alt='Disney' />
+                    </div>
 
+                    <div className='franchise-card' onClick={() => navigate('/franchise/marvel')}>
+                        <h3>Marvel</h3>
+                        <img src='./Marvel.png' alt='Marvel' />
+                    </div>
+
+                    <div className='franchise-card dc' onClick={() => navigate('/franchise/dc')}>
+                        <h3>DC</h3>
+                        <img src='./DC.png' alt='DC' />
+                    </div>
+
+                    <div className='franchise-card starwars' onClick={() => navigate('/franchise/starwars')}>
+                        <h3>Star Wars</h3>
+                        <img src='./StarWars.png' alt='Star Wars' />
+                    </div>
+                </div>
+            </section>
         </div>
     );
 };
