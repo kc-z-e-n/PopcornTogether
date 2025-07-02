@@ -26,7 +26,7 @@ const HomePage = () => {
 
     const fetchMovies = async (pageNum) => {
         try {
-            const res = await axios.get('http://localhost:5050/api/movie/search', {
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {
                 params: { ...initialQuery, page: pageNum }
             });
 
@@ -48,7 +48,7 @@ const HomePage = () => {
         }
 
         try {
-            await axios.post(`http://localhost:5050/api/user/${listType}`, {movieId}, {withCredentials:true});
+            await axios.post(`${BACKEND_URL}/api/user/${listType}`, {movieId}, {withCredentials:true});
             alert('Add Successful!')
         } catch (err) {
             console.error('Add failed', err);
@@ -57,7 +57,7 @@ const HomePage = () => {
 
     const checkSessionLogin = async () => {
         try {
-            const res = await axios.get('http://localhost:5050/api/me', {
+            const res = await axios.get(`${BACKEND_URL}/api/me`, {
                 withCredentials:true
             });
             if (res.status === 200) {
