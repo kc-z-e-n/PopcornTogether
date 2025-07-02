@@ -41,7 +41,7 @@
 - [Version control](#version-control)
 - [Software Development Life Cycle (SDLC)](#software-development-life-cycle-(sdlc))
 
-## **Errors encountered**
+## **Testing: Errors encountered**
 - [Frontend](#frontend)
 - [Backend](#backend)
 - [Databse](#database)
@@ -203,6 +203,11 @@ At this stage, PopcornTogether has been deployed at [https://popcorntogether-tes
 |Watch Statistics|Tracks data based on movies they add to their watchedlist, for example, top genre|Gives the user some basic insights into what kind of movies they have enjoyed before, as well as their most watched genre. The watch statistics seek to provide users information on their watch habits for their movie hunt|
 |Community reviews|Allow users to pool reviews on movies they have watched|Gives users a better idea of what they can expect from movies they are interested in|
 |Movie Match|For users who are unsure of what movie they want to watch, they would be able to specify a set of filters and random films will be generated and suggested to the user. We aim to mimic a social media for-you page layout for this|With a general idea of what kind of film they want to watch, users can begin to browse for movies that interest them. This feature targets users who do not know the exact movie they want to watch or are just looking for more|
+
+<ins>User diagram</ins>
+![Diagram](Images/PT_diagram.jpg)
+
+We have designed a preliminary sketch to visualise the various functionalities and the interaction between moving parts for Popcorntogether. Subsequent work may stray from this setup but the actions and functionalities should remain consistent.
 
 ## Feature Descriptions
 The following section details the functionality and organisation of the respective features in PopcornTogether.
@@ -693,7 +698,7 @@ The development of PopcornTogether followed a depth first implementation. Featur
 
 <div style="page-break-after: always;"></div>
 
-## Errors encountered
+## Testing: Errors encountered
 This serves as a documentation of errors we have encountered so far during Milestone 2:
 
 ### Frontend
@@ -708,6 +713,18 @@ We have also faced CSS selector conflicts while designing the frontend layout of
 
 Another general issue we encountered was the integration of frontend and backend. We made many mistakes regarding the use of axios, and the backend routes. We found that incorporating logs via the use of <ins>alert</ins>, <ins>console.log</ins>, and <ins>console.error</ins> helped us to debug these issues easier.
 
+#### Frontend Testing:
+- Landing page: placeholders to be replaced
+- Authentication page: completed
+- Register page: completed (possible user schema issue from backend)
+- Login page: completed
+- Profile: completed
+- Watched List: Completed
+- Wishlist: Completed
+- Friends List: Completed
+- Search function: Completed (to differentiate /search and /discover for TMDB routes)
+- Results page: Completed
+
 ### Backend
 
 One of the main problems we faced on the backend was route naming inconsistencies. For example, the backend defined routes like /addWatched and /addWish, but sometimes the frontend incorrectly made requests to /add-watched or /add-wish. This mismatch caused 404 Not Found errors that took time to trace. 
@@ -716,10 +733,19 @@ We also had to ensure that our isAuthenticated middleware properly checked wheth
 
 Another issue was the ordering of functions in our server.js. There were many moving parts, such as the route imports, the database connection, the express session configruation. Initially, there was no clear order to each component in our server.js, resulting in several connection issues (Error 500). This was eventually resolved when we correctly ordered our express session before the route imports.
 
-### Unresolved error
+#### Backend Testing:
+
+- authRoutes: completed
+- friendsRoutes: completed
+- userRoutes: completed
+- movieRotues: completed
+- watchStatsRotues: completed
+- user.js: possible unresolved friends field error, require more testing
+- server.js: fallback route unresolved
+
+#### Unresolved error 
 
 Currently, we still have an unresolved error for a feature that we are intending to rectify. That is to include a fall back route '*' such that refreshing of pages will succesfully load the page. At present, the inclusion of our fallback route leads to 'path-to-regexp' errors.
-
 
 ### Database
 
@@ -734,6 +760,10 @@ An issue we faced when initialising our user schema was assigning unique:true to
 The issue being that there was already a user with an empty friends array. The fix was to remove the unique:true, and manually delete the friends index from MongoDb that was created using this unique tag.
 
 The database configuration was largely seamless owing to the detailed resources provided by MongoDb for the deployment of MongoDb atlas in projects.
+
+#### User.js
+
+Unique field input for friends still being enforced despite user schema rectification and dropping the index.
 
 ### Deployment
 
@@ -753,4 +783,4 @@ Overall, the summary of our deployment errors encountered and fixes, centers aro
 
 Despite challenges faced during the setup and deployment for Milestone 2, we have managed to successfully develop our core features for PopcornTogether, barring some fringe functionalisties that can be completed as extension work to complement the existing web app. 
 
-Our next steps will be to debug the unresolved fallback route, including the fringe functionalities to complete our core app, and add in our two extension features.
+Our next steps will be to debug the unresolved errors, including the fringe functionalities to complete our core app, and add in our two extension features.
