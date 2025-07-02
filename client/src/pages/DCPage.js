@@ -17,7 +17,7 @@ const DCPage = () => {
         const fetchDCMovies = async () => {
             try {
                 const res = await axios.get(`${BACKEND_URL}/api/movie/dc?page=${page}`);
-                withCredentials: true;
+                // withCredentials: true;
                 setDCMovies(res.data.result);
                 setTotalPages(res.data.totalPages);
             } catch (err) {

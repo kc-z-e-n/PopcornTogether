@@ -17,7 +17,7 @@ const MarvelPage = () => {
         const fetchMarvelMovies = async () => {
             try {
                 const res = await axios.get(`${BACKEND_URL}/api/movie/marvel?page=${page}`);
-                withCredentials: true;
+                // withCredentials: true;
                 setMarvelMovies(res.data.result);
                 setTotalPages(res.data.totalPages);
             } catch (err) {
