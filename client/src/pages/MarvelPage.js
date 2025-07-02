@@ -31,7 +31,7 @@ const MarvelPage = () => {
             <Header />
             <div className='results-banner'>Marvel Movies</div>
             <div className='movie-grid'>
-                {disneyMovies.map((movie) => (
+                {marvelMovies.map((movie) => (
                     <div key={movie.id} className='movie-card'>
                         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} 
                         className='movie-poster'/>
