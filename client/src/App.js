@@ -12,6 +12,8 @@ import WatchStatsPage from './pages/WatchStatsPage';
 import FriendsListPage from './pages/FriendsListPage';
 import TimelessFavouritesPage from './pages/TimelessFavouritesPage';
 import DisneyPage from './pages/DisneyPage';
+import MarvelPage from './pages/MarvelPage';
+import DCPage from './pages/DCPage';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route path="/friends" element={<FriendsListPage />} />
             <Route path="/timeless" element={<TimelessFavouritesPage />} />
             <Route path="/franchise/disney" element={<DisneyPage />} />
+            <Route path="/franchise/marvel" element={<MarvelPage />} />
+            <Route path="/franchise/dc" element={<DCPage />} />
 
             {/*friend paths*/}
             <Route path="/user/:id/watched" element={<WatchedListPage />} />

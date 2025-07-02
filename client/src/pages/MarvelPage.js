@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
-import './DisneyPage.css';
+import './MarvelPage.css';
 
-const DisneyPage = () => {
-    const [disneyMovies, setDisneyMovies] = useState([]);
+const MarvelPage = () => {
+    const [marvelMovies, setMarvelMovies] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -14,25 +14,25 @@ const DisneyPage = () => {
     }, []);
 
     useEffect(() => {
-        const fetchDisneyMovies = async () => {
+        const fetchMarvelMovies = async () => {
             try {
-                // const res = await axios.get(`http://localhost:5050/api/movie/disney?page=${page}`);
-                const res = await axios.get(`${BACKEND_URL}/api/movie/disney?page=${page}`);
-                setDisneyMovies(res.data.result);
+                const res = await axios.get(`${BACKEND_URL}/api/movie/marvel?page=${page}`);
+                // withCredentials: true;
+                setMarvelMovies(res.data.result);
                 setTotalPages(res.data.totalPages);
             } catch (err) {
-                console.error('Failed to fetch Disney movies:', err);
+                console.error('Failed to fetch Marvel movies:', err);
             }
         };
-        fetchDisneyMovies();
+        fetchMarvelMovies();
     }, []);
 
     return (
         <div className='results-container'>
             <Header />
-            <div className='results-banner'>Disney Movies</div>
+            <div className='results-banner'>Marvel Movies</div>
             <div className='movie-grid'>
-                {disneyMovies.map((movie) => (
+                {marvelMovies.map((movie) => (
                     <div key={movie.id} className='movie-card'>
                         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} 
                         className='movie-poster'/>
@@ -60,4 +60,4 @@ const DisneyPage = () => {
     );
 };
 
-export default DisneyPage;
+export default MarvelPage;
