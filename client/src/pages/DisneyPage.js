@@ -8,6 +8,7 @@ const DisneyPage = () => {
     const [disneyMovies, setDisneyMovies] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     useEffect(() => {
         window.scrollTo(0, 0);
