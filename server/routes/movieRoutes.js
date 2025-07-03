@@ -114,9 +114,8 @@ router.get('/marvel', async (req, res) => {
 router.get('/dc', async (req, res) => {
     const tmdbParams = {
         api_key: process.env.TMDB_API_KEY,
-        with_companies: '429, 9993,174',
+        with_companies: 9993, //'429,9993,174'
         sort_by: 'popularity.desc',
-        page: req.query.page || 1,
     };
 
     try {
