@@ -1,0 +1,82 @@
+.results-container {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    padding-top: 130px;
+}
+
+.results-banner {
+    background-color: #facc15;
+    padding: 16px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 32px;
+    font-size: 1.5rem;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(4,  1fr);
+    gap: 20px;
+    padding: 32px;
+    justify-items: center;
+}
+
+.movie-card{
+    background-color: #1e1e1e;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    width: 17vw;
+}
+
+.movie-poster {
+    width: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.movie-title {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
+}
+
+.pagination button {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pagination button.active {
+    background-color: #facc15;
+    color: black;
+}
+
+.add-button{
+    background-color: #facc15;
+    color: black;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button-group {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
