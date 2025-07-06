@@ -81,7 +81,7 @@ const WishlistPage = () => {
             }
         };
         fetchWishMovies(page);
-    }, [page, id]);
+    }, [page, id, BACKEND_URL]);
 
     return (
         <div className='wishlist-container'>

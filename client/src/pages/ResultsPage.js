@@ -90,6 +90,8 @@ const ResultsPage = () => {
                         className="movie-poster"
                     />
                     <p className="movie-title">{movie.title}</p>
+                    <button className='add-button' onClick={() => navigate(`/community/${movie.id}`)}>Reviews</button>
+                    <hr/>
                     <div className='button-group'>
                         <button className='add-button' onClick={() => addToList('addWatched', movie.id)}>+ Watchedlist</button>
                         <button className='add-button' onClick={() => addToList('addWish', movie.id)}>+ Wishlist</button>

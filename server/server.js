@@ -18,21 +18,20 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.json());
 
 app.use(cors({
-    origin: true,
+    origin: /*true,*/'http://localhost:3000',
     credentials: true
 }));
 
-app.set('trust proxy', 1);
-//user session
+//app.set('trust proxy', 1);
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly:true,
-      secure:true,
-      sameSite:'none',
-      maxAge:1000*60*60*24
+        httpOnly:true,
+        secure:/*true*/false,
+        sameSite:/*'none'*/'lax',
+        maxAge:1000*60*60*24
     },
     store: MongoStore.create({
       mongoUrl: process.env.ATLAS_URI,

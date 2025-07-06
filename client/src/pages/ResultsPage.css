@@ -65,6 +65,12 @@
     color: black;
 }
 
+hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
 .add-button{
     background-color: #facc15;
     color: black;

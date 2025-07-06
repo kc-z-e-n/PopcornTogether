@@ -157,4 +157,22 @@ router.get('/starwars', async (req, res) => {
     }
 });   
 
+router.get('/community/:movieId', async (req, res) => {
+    const {movieId} = req.params;
+    const tmdbParams ={
+        api_key: process.env.TMDB_API_KEY,
+    }
+
+    try {
+        const tmdbRes = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
+            params: tmdbParams
+        });
+
+        res.json(tmdbRes.data);
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({error: 'Failed to retrieve movie'});
+    }
+});
+
 module.exports = router;

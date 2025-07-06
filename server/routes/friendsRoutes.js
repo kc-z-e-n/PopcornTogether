@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { isAuthenticated } = require('../middleware/Auth');
 const router = express.Router();
 const User = require('../models/User');
+const { default: axios } = require('axios');
 
 router.get('/search', isAuthenticated, async (req, res) => {
     const {query} = req.query;
@@ -86,5 +87,45 @@ router.get('/friendsList', isAuthenticated, async (req,res) => {
         res.status(500).json({message: 'Failed to fetch friends list'});
     }
 });
+
+router.get('/activity', async (req, res) => {
+    try {
+        const userId = req.session?.user?.id;
+        if (!userId) {
+            return res.status(401).json({message: 'Unauthorized'});
+        }
+
+        const user = await User.findById(userId).populate('friends');
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        const movieCountMap = {};
+
+        for (const friend of user.friends) {
+            if (Array.isArray(friend.watchedListMovies)) {
+                friend.watchedListMovies.forEach(movieId => {
+                    movieCountMap[movieId] = (movieCountMap[movieId] || 0) + 1;
+                });
+            }
+        }
+
+        const topMovies = Object.entries(movieCountMap)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 4)
+            .map(([movieId]) => movieId);
+
+        const movieDetails = await Promise.all(
+            topMovies.map(id => axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+                params: {api_key: process.env.TMDB_API_KEY}
+            }).then(res => res.data).catch(() => null)
+            )
+        );
+
+        res.json({ movies: movieDetails.filter(Boolean)});
+    } catch (err) {
+        console.error('Error fetching friends activity', err);
+        res.status(500).json({message: 'Server error', error: err.message});
+    }
+});
+
 
 module.exports = router;

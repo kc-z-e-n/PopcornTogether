@@ -15,6 +15,7 @@ import DisneyPage from './pages/DisneyPage';
 import MarvelPage from './pages/MarvelPage';
 import DCPage from './pages/DCPage';
 import StarWarsPage from './pages/StarWarsPage';
+import CommunityReviewsPage from './pages/CommunityReviewsPage';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/franchise/marvel" element={<MarvelPage />} />
             <Route path="/franchise/dc" element={<DCPage />} />
             <Route path="/franchise/starwars" element={<StarWarsPage />} />
+            <Route path="/community/:movieId" element={<CommunityReviewsPage />} />
 
             {/*friend paths*/}
             <Route path="/user/:id/watched" element={<WatchedListPage />} />

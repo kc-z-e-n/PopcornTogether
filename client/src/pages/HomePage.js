@@ -11,8 +11,8 @@ const HomePage = () => {
     const [latestMovies, setLatestMovies] = useState([]);
     const location = useLocation();
     const initialQuery = location.state?.query || {};
-    const [results, setResults] = useState([]);
-    const [totalPages, setTotalPages] = useState(1);
+    const [friendsActivity, setFriendsActivity] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(null);
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
     const handleSearch = async (queryParams) => {
@@ -23,21 +23,6 @@ const HomePage = () => {
             console.error('Search failed', err);
         }
     }
-
-    const fetchMovies = async (pageNum) => {
-        try {
-            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {
-                params: { ...initialQuery, page: pageNum }
-            });
-
-            const resultsArray = res.data.result || [];
-            setResults(res.data.result);
-            setTotalPages(Math.min(res.data.totalPages, 10));
-        } catch (err) {
-            console.error(err);
-            setResults([]);
-        }
-    };
 
     const addToList = async (listType, movieId) => {
         const isLoggedIn = await checkSessionLogin();
@@ -79,7 +64,26 @@ const HomePage = () => {
                 console.error('Failed to fetch latest movies:', err);
             }
         };
+
+        const fetchFriendsActivity = async () => {
+            try {
+                const res = await axios.get(`${BACKEND_URL}/api/friends/activity`, {
+                    withCredentials: true,
+                });
+                setFriendsActivity(res.data.movies);
+            } catch (err) {
+                console.error('Failed to fetch friends activity', err);
+            }
+        };
+
+        const checkLogin = async () => {
+            const loggedIn = await checkSessionLogin();
+            setIsLoggedIn(loggedIn);
+        }
+        
+        checkLogin();
         fetchLatestMovies();
+        fetchFriendsActivity();
     }, [])
 
     return (
@@ -137,7 +141,24 @@ const HomePage = () => {
 
             <section className='movie-section'>
                 <h2 className='section-heading'>Friend Activity</h2>
-                <img src='./FriendActivity.png' alt='Friends' className='poster' />
+                {isLoggedIn === null ? (
+                    <p>Loading</p>
+                ) : isLoggedIn ? (
+                friendsActivity.map((movie) => (
+                    <div key={movie.id} className='movie-card'>
+                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='movie-poster'/>
+                    <p className='movie-label'>{movie.title}</p>
+                    <div className='button-group'>
+                        <button className='play-button'
+                        onClick={() => addToList('addWatched', movie.id)} >+ Watchedlist</button>
+                        <button className='play-button'
+                        onClick={() => addToList('addWish', movie.id)} >+ Wishlist</button>
+                    </div>
+                    </div>
+                ))
+                ) : (
+                    <img src='./FriendActivity.png' alt='Friends' className='poster' />
+                )}
             </section>
 
             <section className='movie-section franchise-section'>

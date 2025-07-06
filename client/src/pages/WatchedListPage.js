@@ -51,7 +51,7 @@ const WatchedListPage = () => {
             }
         };
         fetchWatchedMovies(page);
-    }, [page, id]);
+    }, [page, id, BACKEND_URL]);
 
     return (
         <div className='watched-list-container'>
