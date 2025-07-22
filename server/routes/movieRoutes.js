@@ -4,7 +4,7 @@ const router = express.Router();
 require('dotenv').config();
 
 router.get('/search', async (req, res) => {
-    const {genre, year, language, q, page = 1} = req.query;
+    const {genre, year, language, q = '', page = 1} = req.query;
 
     let tmdbUrl = 'https://api.themoviedb.org/3/';
     const tmdbParams = {
@@ -13,26 +13,36 @@ router.get('/search', async (req, res) => {
       page,
     };
 
-    if (q) {
+    if (q.trim() !== '') {
         tmdbUrl += 'search/movie';
         tmdbParams.query = q;
     } else {
         tmdbUrl += 'discover/movie';
-        tmdbParams.sort_by = 'popularity.desc';
-        if (genre) tmdbParams.with_genres = genre;
+        if (genre && genre !== '') tmdbParams.with_genres = genre;
         if (year) tmdbParams.primary_release_year = year;
         if (language) tmdbParams.with_original_language = language;
     }
 
-    try {
-        // const tmdb = await axios.get('https://api.themoviedb.org/3/discover/movie', {
-        const tmdb = await axios.get(tmdbUrl, {
-            params : tmdbParams
-        });
+    console.log('movieroutes TMDB URL:', tmdbUrl);
+    console.log('movieroutes Params:', tmdbParams);
 
-        const result = tmdb.data.results.slice(0, 8);
-        const totalPages = tmdb.data.total_pages;
-        res.json({result, totalPages});
+    try {
+        const result = [];
+        const resultsToGet = 100;
+        const totalPagesToGet = resultsToGet / 20;
+
+        for (let i = 1; i <= totalPagesToGet; i++) {
+            const tmdb = await axios.get(tmdbUrl, {
+                params : {...tmdbParams, page: i}
+            });
+
+            if (tmdb.data?.results) {
+                result.push(...tmdb.data.results);
+            }
+        }
+
+        res.json({result, totalPages: Math.ceil(result.length / 8)});
+        console.log('Returned TMDB titles:', tmdb.data.results.map(m => m.title));
     } catch (err) {
         console.error('TMDB search error:', err.message);
         res.status(500).json({error: 'TMDB Request failed'});

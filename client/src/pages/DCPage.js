@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/Header';
+import Filter from '../components/Filter';
 import './DCPage.css';
 
 const DCPage = () => {
     const [dcMovies, setDCMovies] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [showFilters, setShowFilters] = useState(false);
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+    const navigate = useNavigate();
+
+    const handleSearch = async (queryParams) => {
+        try {
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
+            navigate('/results', {state : {results: res.data.result, totalPages: res.data.totalPages, query: queryParams}} );
+        } catch (err) {
+            console.error('Search failed', err);
+        }
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -29,7 +42,8 @@ const DCPage = () => {
 
     return (
         <div className='results-container'>
-            <Header />
+            <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)} onSearch={handleSearch}/>
+            {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
             <div className='results-banner'>DC Movies</div>
             <div className='movie-grid'>
                 {dcMovies.map((movie) => (

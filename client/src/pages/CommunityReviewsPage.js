@@ -15,7 +15,7 @@ function CommunityReviewsPage() {
     const handleSearch = async (queryParams) => {
         try {
             const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
-            navigate('/results', {state : {results: res.data}} );
+            navigate('/results', {state : {results: res.data.result, totalPages: res.data.totalPages, query: queryParams}} );
         } catch (err) {
             console.error('Search failed', err);
         }
@@ -46,7 +46,7 @@ function CommunityReviewsPage() {
                 <h2>{movie.title} Reviews</h2>
             </div>
 
-            <button className='back-button'>Back</button>
+            <button className='back-button' onClick={() => navigate(-1)}>Back</button>
 
             <div className='movie-info'>
                 <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -56,7 +56,7 @@ function CommunityReviewsPage() {
                 <div className='movie-details'>
                     <h1>{movie.title}</h1>
 
-                    <div className='movie-meta'>
+                    <div className='movie-meta'> 
                         <span>{movie.release_date?.substring(0, 4)}</span>
                         {movie.genres?.length > 0 && (
                             <span>

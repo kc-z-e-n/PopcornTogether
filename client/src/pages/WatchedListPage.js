@@ -17,7 +17,7 @@ const WatchedListPage = () => {
     const handleSearch = async (queryParams) => {
         try {
             const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
-            navigate('/results', {state : {results: res.data}} );
+            navigate('/results', {state : {results: res.data.result, totalPages: res.data.totalPages, query: queryParams}} );
         } catch (err) {
             console.error('Search failed', err);
         }

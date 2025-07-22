@@ -1,13 +1,26 @@
 import React, {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TimelessFavouritesPage.css';
 import Header from '../components/Header';
+import Filter from '../components/Filter';
 import axios from 'axios';
 
 const TimelessFavouritesPage = () => {
     const [results, setResults] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [showFilters, setShowFilters] = useState(false);
+    const navigate = useNavigate()
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
+    const handleSearch = async (queryParams) => {
+        try {
+            const res = await axios.get(`${BACKEND_URL}/api/movie/search`, {params : queryParams});
+            navigate('/results', {state : {results: res.data.result, totalPages: res.data.totalPages, query: queryParams}} );
+        } catch (err) {
+            console.error('Search failed', err);
+        }
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -31,7 +44,8 @@ const TimelessFavouritesPage = () => {
 
     return (
         <div className='results-container'>
-            <Header />
+            <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)} onSearch={handleSearch}/>
+            {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
             <div className='results-banner'>Timeless Favourites</div>
             <div className='movie-grid'>
                 {results.map((movie) => (
