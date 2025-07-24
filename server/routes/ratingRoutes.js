@@ -39,4 +39,30 @@ router.post('/:movieId', isAuthenticated, async (req, res) => {
     }
 });
 
+router.get('/average/:movieId', async (req, res) => {
+    //const {movieId} = req.params;
+
+    try {
+        const movieId = Number(req.params.movieId);
+        const result = await Rating.find({movieId});
+        console.log(`Found ${result.length} ratings for movie ${movieId}`);
+
+        if (result.length === 0) {
+            return res.json({
+                averageRating: 0, count: 0
+            });
+        } 
+
+        const sum = result.reduce((acc, curr) => acc + curr.rating, 0);
+        const average = sum / result.length;
+
+        res.json({
+            averageRating: parseFloat(average.toFixed(1)), count: result.length
+        });
+
+    } catch (err) {
+        res.status(500).json({ message: 'Failed to calculate average rating', error: err.message});
+    }
+});
+
 module.exports = router;
