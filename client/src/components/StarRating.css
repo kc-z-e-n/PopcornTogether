@@ -1,0 +1,16 @@
+.star-rating {
+    text-align: center;
+    color: white;
+}
+
+.star {
+    font-size: 2rem;
+    cursor: pointer;
+    color: grey;
+    transition: color 0.2s;
+}
+
+.filled-star {
+    color: #facc15;
+    font-size: 2rem;
+}

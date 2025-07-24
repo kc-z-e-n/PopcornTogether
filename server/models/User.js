@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
     watchedListMovies: [{type: Number}],
     wishlistMovies: [{type: Number}],
     //friends: [{ type: Schema.Types.ObjectId, ref:"User"}]
-    friends: {type: [Schema.Types.ObjectId], ref: 'User', default: []}
+    friends: {type: [Schema.Types.ObjectId], ref: 'User', default: []},
+    ratings: [{ movieId: {type: Number, required: true}, rating: {type: Number, required: true}}],
 });
 
 module.exports = mongoose.model('User', userSchema);

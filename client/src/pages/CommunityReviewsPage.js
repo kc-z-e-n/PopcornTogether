@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
+import StarRating from '../components/StarRating';
 import './CommunityReviewsPage.css';
 import axios from 'axios';
 
@@ -9,6 +10,7 @@ function CommunityReviewsPage() {
     const {movieId} = useParams();
     const [movie, setMovie] = useState(null);
     const [showFilters, setShowFilters] = useState(false);
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -33,6 +35,18 @@ function CommunityReviewsPage() {
         fetchMovie();
     }, [movieId]);
 
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await axios.get(`${BACKEND_URL}/api/retrieve`, {withCredentials: true});
+                setUser(res.data.user);
+            } catch (err) {
+                console.error('Failed to fetch user', err);
+            }
+        };
+        fetchUser();
+    }, []);
+
     if (!movie) {
         return <div className='community-reviews-container'>Loading...</div>;
     }
@@ -43,7 +57,7 @@ function CommunityReviewsPage() {
             {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
 
             <div className='review-banner'>
-                <h2>{movie.title} Reviews</h2>
+                <h2>{movie.title}'s Reviews</h2>
             </div>
 
             <button className='back-button' onClick={() => navigate(-1)}>Back</button>
@@ -60,16 +74,16 @@ function CommunityReviewsPage() {
                         <span>{movie.release_date?.substring(0, 4)}</span>
                         {movie.genres?.length > 0 && (
                             <span>
+                                &nbsp;&nbsp;•&nbsp;&nbsp;
                                 {movie.genres.map((genre) => genre.name).join(', ')}
                             </span>
                         )}
                     </div>
 
                     <p className='movie-synopsis'>{movie.overview}</p>
+                    {user && <StarRating movieId={movie.id} userId={user._id} />}
                 </div>
             </div>
-
-
         </div>
     );
 }
