@@ -186,30 +186,6 @@ router.get('/community/:movieId', async (req, res) => {
 });
 
 router.get('/match', async (req, res) => {
-    const { type = 'random' } = req.query;
-    const pages = [1, 2, 3, 4, 5];
-    const apiKey = process.env.TMDB_API_KEY;
-  
-    let movieResults = [];
-  
-    for (let page of pages) {
-      const { data } = await axios.get('https://api.themoviedb.org/3/discover/movie', {
-        params: {
-          api_key: apiKey,
-          sort_by: type === 'gems' ? 'vote_average.desc' : 'popularity.desc',
-          'vote_count.gte': type === 'gems' ? 100 : 0,
-          page
-        }
-      });
-      movieResults.push(...data.results);
-    }
-  
-    // Optionally shuffle or select subset
-    const shuffled = movieResults.sort(() => 0.5 - Math.random()).slice(0, 20);
-    res.json({ result: shuffled });
-  });
-
-router.get('/match', async (req, res) => {
     const {type = 'Random'} = req.query;
     const tmdbParams ={
         api_key: process.env.TMDB_API_KEY,
