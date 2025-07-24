@@ -101,7 +101,7 @@ const HomePage = () => {
                             Movies are better <span className='highlight'>together</span>, with <span className='highlight'>popcorn</span>.
                         </p>
                         <h2 className='movie-title'>Kingdom of the Planet of the Apes</h2>
-                        <p className='movie-meta'>Movie - Action, Drama - 2024</p>
+                        <p className='movie-meta'>2024 • Action, Drama</p>
                         <div className='button-group'>
                             <button className='play-button'
                             onClick={() => addToList('addWatched', 'kingdom-of-apes')} >+ Watchedlist</button>

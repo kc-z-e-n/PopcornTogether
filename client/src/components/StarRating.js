@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './StarRating.css';
 import axios from 'axios';
 
@@ -17,6 +17,24 @@ const StarRating = ({ movieId, userId }) => {
             console.error('Failed to save rating:', err);
         }
     };
+
+    useEffect(() => {
+        const fetchRating = async () => {
+            try {
+                const res = await axios.get(`${BACKEND_URL}/api/rating/${movieId}`, {
+                    withCredentials: true,
+                });
+                console.log('GET /api/rating/:movieId/:userId response:', res.data);
+                if (res.data.rating !== null) {
+                    console.log('Fetched rating:', res.data.rating)
+                    setSelected(res.data.rating);
+                }
+            } catch (err) {
+                console.error('Failed to fetch ratings', err);
+            }
+        };
+        fetchRating();
+    }, [movieId, userId]);
 
     return (
         <div className="star-rating">

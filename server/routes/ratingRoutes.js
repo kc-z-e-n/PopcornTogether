@@ -3,7 +3,20 @@ const router = express.Router();
 const Rating = require('../models/Rating');
 const { isAuthenticated } = require('../middleware/auth');
 
+router.get('/:movieId', isAuthenticated, async (req, res) => {
+    const {movieId} = req.params;
+    const userId = req.user.id;
+
+    try {
+        const rating = await Rating.findOne({ movieId, userId });
+        res.json({ rating: rating ? rating.rating : null});
+    } catch (err) {
+        res.status(500).json({ message: 'Failed to fetch rating', error: err.message });
+    }
+});
+
 router.post('/:movieId', isAuthenticated, async (req, res) => {
+    console.log('POST /api/rating/:movieId called');
     const { movieId } = req.params;
     const { rating } = req.body;
     const userId = req.user.id;
