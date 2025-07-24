@@ -80,6 +80,7 @@ const Header = ({onSearchBarFocus, onSearch}) => {
                     }
                 </div>
                 <span className='nav-link' onClick={() => handleProtectedRoute('/friends')}>MY FRIENDS</span>
+                <span className='nav-link' onClick={() => handleProtectedRoute('/movieMatch')}>MOVIE MATCH</span>
             </nav>
             <div className='header-search'>
                 <input type="text" placeholder="Search..." className='search-input' onFocus={onSearchBarFocus} 

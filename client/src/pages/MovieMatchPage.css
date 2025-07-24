@@ -1,0 +1,62 @@
+.movie-match-container {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    padding-top: 100px;
+}
+
+.match-banner {
+    background-color: #facc15;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+.match-selector {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.match-selector button {
+    background-color: #facc15;
+    color: black;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.match-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1 rem;
+    padding: 1rem;
+}
+
+.match-arrow {
+    font-size: 2rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    padding: 3%;
+}
+
+.match-poster {
+    min-width: 200px;
+    background: #222;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+}
+
+hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid transparent;
+}
