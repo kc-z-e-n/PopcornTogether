@@ -3,9 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import StarRating from '../components/StarRating';
+import ReviewButton from '../components/ReviewButton';
 import './CommunityReviewsPage.css';
 import axios from 'axios';
 import AverageRating from '../components/AverageRating';
+import ViewReviewsButton from '../components/ViewReviewsButton';
 
 function CommunityReviewsPage() {
     const {movieId} = useParams();
@@ -85,7 +87,6 @@ function CommunityReviewsPage() {
                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                         alt={movie.title}
                         className='movie-poster' />
-
                     <AverageRating average={averageRating.average} count={averageRating.count} className="movie-rating"/>
                 </div>
 
@@ -103,8 +104,21 @@ function CommunityReviewsPage() {
                     </div>
 
                     <p className='movie-synopsis'>{movie.overview}</p>
-                    {user && <StarRating movieId={movie.id} userId={user._id} />}
                 
+                    <div className="rating-review-container">
+                        {user && (
+                            <>
+                                <div className="star-rating-wrapper">
+                                    <StarRating movieId={movie.id} userId={user._id} />
+                                </div>
+                                <div className="review-buttons-group">    
+                                    <ReviewButton movieId={movie.id} />
+                                    <ViewReviewsButton movieId={movie.id} />
+                                </div>
+                            </>
+                        )}
+                    </div>
+
                 </div>
             </div>
         </div>

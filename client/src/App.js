@@ -17,6 +17,7 @@ import DCPage from './pages/DCPage';
 import StarWarsPage from './pages/StarWarsPage';
 import CommunityReviewsPage from './pages/CommunityReviewsPage';
 import MovieMatchPage from './pages/MovieMatchPage';
+import ReviewsPage from './pages/ReviewsPage';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/franchise/starwars" element={<StarWarsPage />} />
             <Route path="/community/:movieId" element={<CommunityReviewsPage />} />
             <Route path="/movieMatch" element={<MovieMatchPage />} />
+            <Route path="/movie/:movieId/reviews" element={<ReviewsPage />} />
 
             {/*friend paths*/}
             <Route path="/user/:id/watched" element={<WatchedListPage />} />

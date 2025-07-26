@@ -1,0 +1,31 @@
+.reviews-page-wrapper {
+    background-color: black;
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+.reviews-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: gold;
+  }
+  
+  .review-card {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 3px solid #f5c518;
+  }
+  
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .review-text {
+    line-height: 1.6;
+  }

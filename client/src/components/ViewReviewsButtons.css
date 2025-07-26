@@ -1,0 +1,17 @@
+.view-reviews-btn {
+    background-color: gold;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 20px;
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.view-reviews-btn:hover {
+    background-color: rgba(245, 197, 24, 0.5);
+}

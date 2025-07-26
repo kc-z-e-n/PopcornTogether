@@ -47,6 +47,7 @@ const friendsRoutes = require('./routes/friendsRoutes');
 const userRoutes = require('./routes/userRoutes');
 const watchStatsRoutes = require('./routes/watchStatsRoutes');
 const ratingRoutes = require('./routes/ratingRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 app.use('/api/friends', friendsRoutes);
 app.use('/api/movie', movieRoutes);
@@ -54,6 +55,7 @@ app.use('/api', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/stats', watchStatsRoutes);
 app.use('/api/rating', ratingRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 app.get('/', (req, res) => {
     res.send('Backend running');

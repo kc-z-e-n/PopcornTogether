@@ -1,6 +1,20 @@
+.star-rating-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
 .star-rating {
     text-align: center;
-    color: white;
+    color: gold;
+    font-size: 1.25rem;
+    margin-top: 20px;
+    padding: 0;
+    line-height: 1;
+    font-weight: bold;
 }
 
 .star {
@@ -8,9 +22,11 @@
     cursor: pointer;
     color: grey;
     transition: color 0.2s;
+    margin: 0;
 }
 
 .filled-star {
     color: gold;
     font-size: 2rem;
+    margin: 0;
 }

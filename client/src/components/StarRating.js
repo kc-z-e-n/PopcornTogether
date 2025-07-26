@@ -37,19 +37,21 @@ const StarRating = ({ movieId, userId }) => {
     }, [movieId, userId]);
 
     return (
-        <div className="star-rating">
-            <p>Rate The Show</p>
-            {[1, 2, 3, 4, 5].map((star) => (
-                <span 
-                    key={star} className={star <= (hovered || selected) ? 'filled-star' : 'star'}
-                    onClick={() => handleClick(star)}
-                    onMouseEnter={() => setHovered(star)}
-                    onMouseLeave={() => setHovered(0)}
-                >
-                    ★
-                </span>
-            ))}
-        </div>
+        <div className="star-rating-container">
+            <div className="star-rating">
+                <p>Rate The Movie!</p>
+                {[1, 2, 3, 4, 5].map((star) => (
+                    <span 
+                        key={star} className={star <= (hovered || selected) ? 'filled-star' : 'star'}
+                        onClick={() => handleClick(star)}
+                        onMouseEnter={() => setHovered(star)}
+                        onMouseLeave={() => setHovered(0)}
+                    >
+                        ★
+                    </span>
+                ))}
+            </div>
+        </div>    
     );
 };
 
