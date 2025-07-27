@@ -12,6 +12,7 @@ const WatchStatsPage = () => {
     const [runtime, setRuntime] = useState(0);
     const [showFilters, setShowFilters] = useState(false);
     const [topGenre, setTopGenre] = useState([]);
+    const [reviewCount, setReviewCount] = useState(0);
     const navigate = useNavigate();
     const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -87,6 +88,21 @@ const WatchStatsPage = () => {
         }
     }, [watched]);
 
+    useEffect(() => {
+        const fetchReviewCount = async () => {
+            try {
+                const res = await axios.get(`${BACKEND_URL}/api/retrieve`, {withCredentials: true});
+                const userId = res.data.user._id;
+                const countRes = await axios.get(`${BACKEND_URL}/api/stats/review-count/${userId}`);
+                setReviewCount(countRes.data.count);
+            } catch (err) {
+                console.error('Failed to fetch review count:', err)
+            }
+        };
+
+        fetchReviewCount();
+    }, []);
+
     return (
         <div>
             <Header onSearchBarFocus={() => !showFilters && setShowFilters(true)} onSearch={handleSearch}/>
@@ -122,7 +138,7 @@ const WatchStatsPage = () => {
                         </div>
                         <div className='watch-stats-item'>
                             <i className='fas fa-pen'></i>
-                            <h1>0</h1>
+                            <h1>{reviewCount}</h1>
                             <p>Reviews Given</p>
                         </div>
                     </div>

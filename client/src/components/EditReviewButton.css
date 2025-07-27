@@ -1,0 +1,29 @@
+.edit-review-btn {
+    background: none;
+    border: none;
+    color: #f5c518;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 2rem;
+  }
+  
+  .edit-review-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+  }

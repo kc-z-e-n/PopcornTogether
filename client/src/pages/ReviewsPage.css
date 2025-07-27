@@ -9,6 +9,7 @@
     margin: 0 auto;
     padding: 20px;
     color: gold;
+    line-height: 2rem;
   }
   
   .review-card {
@@ -28,4 +29,5 @@
   
   .review-text {
     line-height: 1.6;
+    color: white;
   }

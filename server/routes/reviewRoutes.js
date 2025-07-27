@@ -1,14 +1,7 @@
-console.log('🧭 reviewRoutes.js loaded');
-
 const express = require('express');
 const router = express.Router();
 const Review = require('../models/Review');
 const { isAuthenticated } = require('../middleware/Auth');
-
-router.post('/test-route', async (req, res) => {
-    console.log('🎯 TEST ROUTE HIT');
-    res.send('OK');
-  });
 
 router.post('/', isAuthenticated, async(req, res) => {
     try {
@@ -48,7 +41,7 @@ router.get('/user/:movieId', isAuthenticated, async (req, res) => {
     }
 });
 
-/* PUT - Update review
+//update review
 router.put('/:id', isAuthenticated, async (req, res) => {
     try {
       const review = await Review.findOneAndUpdate(
@@ -61,20 +54,30 @@ router.put('/:id', isAuthenticated, async (req, res) => {
       res.status(400).json({ error: err.message });
     }
   });
-  */
 
- /* // DELETE - Remove review
-router.delete('/:id', isAuthenticated, async (req, res) => {
+
+ // delete review
+router.post('/remove-review', isAuthenticated, async (req, res) => {
   try {
-    await Review.deleteOne({ 
-      _id: req.params.id, 
-      userId: req.user.id 
-    });
-    res.json({ message: 'Review deleted' });
+    const {reviewId} = req.body;
+    const userId = req.user.id;
+    console.log('STARTING DELETE');
+
+    const review = await Review.deleteOne({ _id: reviewId, userId});
+    console.log('DELETE OPERATION COMPLETE', review);
+
+    if (!review) {
+      console.log('NO REVIEW FOUND');
+      return res.status(404).json({ error: "Review not found or not authorized" });
+    }
+
+    const stillExists = await Review.findById(req.params.id);
+    console.log('Post-deletion verification:', stillExists); // Should be null
+
+    res.json({ message: 'Review deleted successfully' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
-*/
 
 module.exports = router;

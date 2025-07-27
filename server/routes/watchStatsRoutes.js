@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require('../models/User');
 const { isAuthenticated } = require('../middleware/Auth');
 const axios = require('axios');
+const Review = require('../models/Review');
+const {ObjectId} = require('mongodb');
 
 router.get('/watchedStats', async (req, res) => {
     try {
@@ -19,6 +21,17 @@ router.get('/watchedStats', async (req, res) => {
     } catch (err) {
         console.error('Error fetching watched list:', err);
         res.status(500).json({ message: 'Server error'});
+    }
+});
+
+router.get('/review-count/:userId', async (req, res) => {
+    try {
+        console.log('Received userId:', req.params.userId);
+        const userId = req.params.userId;
+        const count = await Review.countDocuments({userId});
+        res.json({ count });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 });
 
