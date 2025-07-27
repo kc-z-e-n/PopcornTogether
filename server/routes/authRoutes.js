@@ -51,15 +51,10 @@ router.post('/register', async (req, res) => {
     }
 });
 
-<<<<<<< Updated upstream
-router.post('/login', async (req, res, next) => {
-    const { email, password } = req.body;
-=======
 router.post('/login', async (req, res) => {
     let { email, password } = req.body;
 
     email = email.trim().toLowerCase();
->>>>>>> Stashed changes
 
     try {
         const user = await User.findOne({ email });
