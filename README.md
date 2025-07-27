@@ -185,8 +185,17 @@ At this stage, PopcornTogether has been deployed at [https://popcorntogether-tes
 - Implemented Movie Discovery function
 - Implemented Watchedlist and Wishlist function
 - Implemented Profile and Watch Statistics function
-- Implemented Friends List and functionality for viewing friends' Watchedlists and Wishlists.
-- Deployment of PopcornTogether using Render.
+- Implemented Friends List and functionality for viewing friends' Watchedlists and Wishlists
+- Deployment of PopcornTogether using Render
+
+<ins>Milestone 3</ins>
+- Implemented Movie Match function
+- Implemented Star Ratings function
+- Implemented Reviews function
+- Accounted for lack of case sensitivity in login/signup feature
+- Updated Reviews Given feature in Watch Statistics
+- User Testing
+- Deployment of PopcornTogether using Render
 
 <div style="page-break-after: always;"></div>
 
@@ -194,15 +203,15 @@ At this stage, PopcornTogether has been deployed at [https://popcorntogether-tes
 
 | Feature | Description                   | Purpose                                   |
 |----|-----------------------------------------------|---------------------------------------------|
-| User Account/Profile | Allows user to maintain their data. |Serves as a way to track their movie journey |
-| Movie Search | Basic search function, allows users to search based on film title, genre, language or release date | Provides a way for users to search for a specific movie, or discover movies by specifying certain paramenters|
+| User Account/Profile | Allows user to maintain their data. |Serves as a way to track their movie journey.|
+| Movie Search | Basic search function, allows users to search based on film title, genre, language or release date | Provides a way for users to search for a specific movie, or discover movies by specifying certain paramenters.|
 |Movie Discover| With catergories displayed in the Homepage, users can click into 4 separate sections, namely Latest Movies, Timeless Favourites, Friend Activity, and Popular Franchises to discover movies under these 4 categories. Upon entering those sections, buttons are available for users to add the movies into either their Wishlist or Watchedlist.| Allows users to uncover new movies they have not watched before, and gain timely recommendations from their friends' activity.|
-|Watchedlist| Stores all the movies the user has watched before |Allows the user to track their films, it serves as their record so they do not double watch movies. It can also give them inspiration for films they could watch based on what they have enjoyed in the past.|
-|Wishlist|User can add movies they want to watch in the future here |Track movies that the user is interested in but hasnt gotten around to watching. With limited time to pursue leisure activities, users may nnot be able to watch every film immediately, the wishlist serves as a reminder for films they want to watch in the future|
-|Friends list|Allows users to connect with one another, friends can view each others watched lists and wishlists|For friends who want inspiration, they can browse through their friends' lists. For friends looking for a movie to watch together, they can find common movies in their wishlists.|
-|Watch Statistics|Tracks data based on movies they add to their watchedlist, for example, top genre|Gives the user some basic insights into what kind of movies they have enjoyed before, as well as their most watched genre. The watch statistics seek to provide users information on their watch habits for their movie hunt|
-|Community reviews|Allow users to pool reviews on movies they have watched|Gives users a better idea of what they can expect from movies they are interested in|
-|Movie Match|For users who are unsure of what movie they want to watch, they would be able to specify a set of filters and random films will be generated and suggested to the user. We aim to mimic a social media for-you page layout for this|With a general idea of what kind of film they want to watch, users can begin to browse for movies that interest them. This feature targets users who do not know the exact movie they want to watch or are just looking for more|
+|Watchedlist| Stores all the movies the user has watched before.|Allows the user to track their films, it serves as their record so they do not double watch movies. It can also give them inspiration for films they could watch based on what they have enjoyed in the past.|
+|Wishlist|User can add movies they want to watch in the future here.|Track movies that the user is interested in but hasnt gotten around to watching. With limited time to pursue leisure activities, users may nnot be able to watch every film immediately, the wishlist serves as a reminder for films they want to watch in the future.|
+|Friends list|Allows users to connect with one another, friends can view each others watched lists and wishlists.|For friends who want inspiration, they can browse through their friends' lists. For friends looking for a movie to watch together, they can find common movies in their wishlists.|
+|Watch Statistics|Tracks data based on movies they add to their watchedlist, for example, top genre.|Gives the user some basic insights into what kind of movies they have enjoyed before, as well as their most watched genre. The watch statistics seek to provide users information on their watch habits for their movie hunt.|
+|Community reviews|Allow users to pool reviews on movies they have watched, as well as rate the movie out of 5 stars. Average star ratings will also be calculated.|Gives users a better idea of what they can expect from movies they are interested in, and curate their selection to their tastes better.|
+|Movie Match|For users who are unsure of what movie they want to watch, they would be able to specify a set of filters and random films will be generated and suggested to the user. We aim to mimic a social media for-you page layout for this.|With a general idea of what kind of film they want to watch, users can begin to browse for movies that interest them. This feature targets users who do not know the exact movie they want to watch or are just looking for more.|
 
 <ins>User diagram</ins>
 ![Diagram](Images/PT_diagram.jpg)
@@ -485,13 +494,13 @@ Watch statistics track your movie-watching habits with real-time statistics. Get
 This is an example of the profile page. Currently we have 4 intended statistics set up for the watch statistics. These are:
 
 1. Films watched
-    - Tracks the total number of films in the user's Watched List
+    - This tracks the total number of films in the user's Watched List
 2. Total time watched
     - This tracks the total runtime of all the films that the user has watched thus far
 3. Top genres
     - This finds the top genres of films that users have watched thus far
 4. Reviews given
-    - Currently we have not implemented the community reviews extension feature. When this is set up, the reviews given statistic will then track the total number of reviews the user has given
+    - This tracks the total number of reviews a user has given. More than one review can be given per movie.
 
 The purpose of this feature is to present the user's viewing habits and preferences in a more objective data-oriented manner in the hopes of helping user's filter films based on what they have enjoyed in the past. 
 
@@ -511,12 +520,22 @@ Note : This feature can have more depth, currently we are planning to include th
 ## Community Reviews
 Extension feature
 
-By collating the community opinions of a movie based on a 5 star scale, our community reviews feature enables users to view movie ratings and short reviews from fellow users within the platform. This provides a more personalized and relatable perspective compared to generic critic reviews. Furthermore, critics tend to have a more skewed and distinct perspective towards movies and are not liekly to give accurate, representative, or actionable information when it comes to subjective fields such as movie enjoyment.
+Community reviews can be categorised into 2 types, namely a Star Rating based on a 5 star scale, followed by Written Reviews for the movie. These features are accessed through the Header's search bar, where the search results have an 'Information' button that directs users to the Community Reviews Information page.
 
-We have created a preliminary render using [Figma](https://www.figma.com) to help us visualise what the review page would look like. This is displayed below: 
+ <ins>Community Reviews Information Page</ins>
+![Community Reviews](Images/CommunityReviewsPage.png)
 
- <ins>Review page render</ins>
-![Community Reviews](Images/ratings.jpg)
+For Star Rating, by collating the community opinions of a movie based with stars, users can quickly gauge the overall reception and quality of a film at a glance. This helps viewers discover highly-rated titles, avoid poorly received ones, and contribute their own opinions to shape the collective impression of each movie.
+
+Meanwhile, the Written Reviews feature enables users to view comments from fellow users within the platform. This provides a more personalized and relatable perspective from many individuals, compared to generic critic reviews. Furthermore, critics tend to have a more skewed and distinct perspective towards movies and are not likely to give accurate, representative, or actionable information when it comes to subjective fields such as movie enjoyment.
+
+Users can click the "Leave a Review" button to leave an unlimited amount of reviews.
+ <ins>Leave a Review Popup</ins>
+![Leave a Review Popup](Images/LeaveAReview.png)
+
+To view a user's past reviews, as well as all existing reviews for a particular movie, users can click the "View All Reviews" button. Users can either update or delete their own reviews in that page as well.
+ <ins>View All Reviews Page</ins>
+![View All Reviews Page](Images/ViewAllReviews.png)
 
 By seeing what their friends or the broader community think, users can:
 1. Make more informed choices about what to watch based on real, crowd-sourced experiences.
@@ -536,7 +555,7 @@ The Movie Match feature allows users to compare their wish list with their frien
 
 The user can access the Movie Match page via the header component. This will render the basic Movie Match page below:
 
- <ins>Movie Match page render</ins>
+ <ins>Movie Match Page Render</ins>
 ![Movie Match](Images/movie-match.jpg)
 
 Currently, we have developed two 'genres' for users' random discovery. The first will be <ins>random</ins>, completely random films selected from TMDB without specifying any filters. Secondly will be <ins>gems</ins>, this will set filters to select only from a pool of most popular films from TMDB.
