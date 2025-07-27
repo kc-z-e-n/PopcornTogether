@@ -41,11 +41,20 @@
 - [Version control](#version-control)
 - [Software Development Life Cycle (SDLC)](#software-development-life-cycle-(sdlc))
 
-## **Testing: Errors encountered**
+## **Testing Milestone 2: Errors encountered**
 - [Frontend](#frontend)
 - [Backend](#backend)
 - [Databse](#database)
 - [Deployment](#deployment)
+
+## Testing Milestone 3
+- [Unit Testing](#unit-testing)
+- [Integration testing](#integration-testing)
+- [User Testing](#user-testing)
+- [Known Bugs](#known-bugs)
+
+## Conclusion
+- [Next Steps](#next-steps)
 
 <div style="page-break-after: always;"></div>
 
@@ -545,7 +554,6 @@ By seeing what their friends or the broader community think, users can:
 This addresses the user concerns we have identified
 > As a user who wants to see if a movie is worth watching or not.
 
-
 <div style="page-break-after: always;"></div>
 
 ## Movie Match
@@ -556,7 +564,7 @@ The Movie Match feature allows users to compare their wish list with their frien
 The user can access the Movie Match page via the header component. This will render the basic Movie Match page below:
 
  <ins>Movie Match Page Render</ins>
-![Movie Match](Images/movie-match.jpg)
+![Movie Match](Images/movie-match.png)
 
 Currently, we have developed two 'genres' for users' random discovery. The first will be <ins>random</ins>, completely random films selected from TMDB without specifying any filters. Secondly will be <ins>gems</ins>, this will set filters to select only from a pool of most popular films from TMDB.
 
@@ -565,7 +573,7 @@ Upon selection, the below section will be rendered, we set this up to mimic dati
 This generates a collection of films below the selector. Users can add to their user lists, or view reviews directly from the movie card. They can also click left or right to view the next movies in the collection:
 
  <ins>Movie Match page: random</ins>
-![Movie Match: random](Images/movie-match-random.jpg)
+![Movie Match: random](Images/movie-match-random.png)
 
 Note: As an addition to this extension feature, we hope to provide Smart Recommendations in the future with further developments – if no match is found, our platform suggests similar titles based on genre, themes, or popularity among the users’ networks.
 
@@ -728,8 +736,8 @@ The development of PopcornTogether followed a depth first implementation. Featur
 
 <div style="page-break-after: always;"></div>
 
-## Testing: Errors encountered
-This serves as a documentation of errors we have encountered so far during Milestone 2:
+## Testing Milestone 2: Errors encountered
+This serves as a documentation of errors we have encountered during Milestone 2:
 
 ### Frontend
 
@@ -743,8 +751,8 @@ We have also faced CSS selector conflicts while designing the frontend layout of
 
 Another general issue we encountered was the integration of frontend and backend. We made many mistakes regarding the use of axios, and the backend routes. We found that incorporating logs via the use of <ins>alert</ins>, <ins>console.log</ins>, and <ins>console.error</ins> helped us to debug these issues easier.
 
-#### Frontend Testing:
-- Landing page: placeholders to be replaced
+#### Frontend Testing: update
+- Landing page: placeholders to be replaced (**DONE**)
 - Authentication page: completed
 - Register page: completed (possible user schema issue from backend)
 - Login page: completed
@@ -763,17 +771,19 @@ We also had to ensure that our isAuthenticated middleware properly checked wheth
 
 Another issue was the ordering of functions in our server.js. There were many moving parts, such as the route imports, the database connection, the express session configruation. Initially, there was no clear order to each component in our server.js, resulting in several connection issues (Error 500). This was eventually resolved when we correctly ordered our express session before the route imports.
 
-#### Backend Testing:
+#### Backend Testing: update
 
 - authRoutes: completed
 - friendsRoutes: completed
 - userRoutes: completed
 - movieRotues: completed
 - watchStatsRotues: completed
-- user.js: possible unresolved friends field error, require more testing
-- server.js: fallback route unresolved
+- user.js: possible unresolved friends field error, require more testing (**DONE**)
+- server.js: fallback route unresolved (**DONE**)
 
-#### Unresolved error 
+#### Unresolved error : Completed
+
+Below is the description of a bug we have fixed from Milestone 2:
 
 Currently, we still have an unresolved error for a feature that we are intending to rectify. That is to include a fall back route '*' such that refreshing of pages will succesfully load the page. At present, the inclusion of our fallback route leads to 'path-to-regexp' errors.
 
@@ -807,13 +817,13 @@ The deployed code required slight tweaks to our frontend backend communication a
 
 Overall, the summary of our deployment errors encountered and fixes, centers around small code adjustments when moving from local testing to Render, and figuring out how Render deployments worked.
 
-<div style="page-break-after: always;"></div>
-
 ## Conclusion
 
 Despite challenges faced during the setup and deployment for Milestone 2, we have managed to successfully develop our core features for PopcornTogether, barring some fringe functionalisties that can be completed as extension work to complement the existing web app. 
 
 Our next steps will be to debug the unresolved errors, including the fringe functionalities to complete our core app, and add in our two extension features.
+
+<div style="page-break-after: always;"></div>
 
 ## Testing
 
@@ -854,6 +864,7 @@ We set up our test cases for each component below:
 - ‘Handles LOGOUT successfully’
 
 <ins>Result:</ins>
+![Result](Images/headerresult.jpg)
 
 ### Filter:
 - ‘Renders filter component’
@@ -862,6 +873,7 @@ We set up our test cases for each component below:
 - ‘Handles empty filters’ [TB][NC]
 
 <ins>Result:</ins>
+![Result](Images/filterresult.jpg)
 
 We set up our test cases for each Page below:
 
@@ -873,6 +885,8 @@ We set up our test cases for each Page below:
 - ‘Log In Button Redirects to login page successfully’
 
 <ins>Result:</ins>
+![Result](Images/authresult.jpg)
+
 ### RegisterPage:
 
 - ‘Renders page successfully’
@@ -882,6 +896,7 @@ We set up our test cases for each Page below:
 - ‘Rejects submission if username/email already exists (mocked backend)’ [NC]
 
 <ins>Result:</ins>
+![Result](Images/registerresult.jpg)
 
 ### LoginPage:
 
@@ -890,6 +905,7 @@ We set up our test cases for each Page below:
 - ‘Login successfully with uppercase letters and extra spaces in email’ [PE]
 
 <ins>Result:</ins>
+![Result](Images/loginresult.jpg)
 
 ### HomePage (Landing page):
 
@@ -900,6 +916,9 @@ We set up our test cases for each Page below:
 - ‘Renders default image for Friend Activity when Logged out’ [PE]
 - ‘Renders friend activity when Logged in’ [PE]
 
+<ins>Result:</ins>
+![Result](Images/homeresult.jpg)
+
 ### ResultsPage (Movie Search Results):
 
 - ‘Renders results correctly’
@@ -908,6 +927,7 @@ We set up our test cases for each Page below:
 - ‘Adds to wishlist button successful’ [PE]
 
 <ins>Result:</ins>
+![Result](Images/resultresult.jpg)
 
 ### WatchedListPage and WishListPage:
 
@@ -918,6 +938,7 @@ We set up our test cases for each Page below:
 - ‘Remove button removes movie from list’
 
 <ins>Result:</ins>
+![Result](Images/watchedresult.jpg)
 
 Note: The functionality of Watched List and Wish List is similar with a few key distinctions. 
 
@@ -926,6 +947,7 @@ Note: The functionality of Watched List and Wish List is similar with a few key 
 - ‘Correctly renders all stats’ [PE]
 
 <ins>Result:</ins>
+![Result](Images/statsresult.jpg)
 
 ### MovieMatchPage:
 
@@ -935,6 +957,19 @@ Note: The functionality of Watched List and Wish List is similar with a few key 
 - ’Navigates between movies’ 
 
 <ins>Result:</ins>
+![Result](Images/matchresult.jpg)
+
+### Summary:
+
+The components are able to pass our test suites, although not comprehensive, we have tried to include edge cases to account for unexpected behaviour.
+
+In particular, we made a few changes to our functionality as we had intially failed a few test cases:
+
+|Location|Test case|Addition|
+|-|-|-|
+|RegisterPage|- ‘Rejects invalid email format’ [NC]|Add email [regex](https://www.geeksforgeeks.org/javascript/how-to-validate-email-address-using-regexp-in-javascript/) for registration|
+|LoginPage|- ‘Login successfully with uppercase letters and extra spaces in email’ [PE]|add email normalisation for case insensitivity (backend)
+|
 
 <div style="page-break-after: always;"></div>
 
@@ -949,24 +984,24 @@ We used Integration testing to complement the user testing and unit tesitng and 
 5. Using watchedlist
 6. Using friend's list
 
-|Integration tests|Objective|Result|
-|-|-|-|
-|1. Registration <br> - 'should successfully register a new user'<br> - 'should show error for existing username/email'||
-|2. Logging in <br> - ‘should successfully log in with valid credentials’<br>- ‘should show error for invalid credentials’||
-|3. Searching for movie<br>- 'should search and navigate to community reviews'<br>- 'should search and add to watched list'||
-|4. Viewing review for a movie<br>- 'should display movie details'<br>- 'should navigate back to previous page'||
-|5. Adding movie to watched list<br>- 'should display watched movies'<br>- 'should remove movie from watched list'||
-|6. Adding friend<br>- 'should search and add a friend'<br>- 'should view a friend\'s watched list'<br>- 'should remove a friend'||
+|Integration tests|Result|
+|-|-|
+|1. Registration <br> - 'should successfully register a new user'<br> - 'should show error for existing username/email'|![Result](Images/iregisterresult.jpg)|
+|2. Logging in <br> - ‘should successfully log in with valid credentials’<br>- ‘should show error for invalid credentials’|![Result](Images/iloginresult.jpg)|
+|3. Searching for movie<br>- 'should search and navigate to community reviews'<br>- 'should search and add to watched list'|![Result](Images/iresultresult.jpg)|
+|4. Viewing review for a movie<br>- 'should display movie details'<br>- 'should navigate back to previous page'|![Result](Images/ireviewresult.jpg)|
+|5. Adding movie to watched list<br>- 'should display watched movies'<br>- 'should remove movie from watched list'|![Result](Images/iwatchedresult.jpg)|
+|6. Adding friend<br>- 'should search and add a friend'<br>- 'should view a friend\'s watched list'<br>- 'should remove a friend'|![Result](Images/ifriendsresult.jpg)|
 
 We also coducted test on two other areas for overall app robustness:
 
 1. Session Management
 2. Responsive Behaviour
 
-|Integration tests|Objective|Results|
-|-|-|-|
-|1.Session Management<br>- ‘should maintain session after page refresh’<br>- ‘should redirect authenticated users away from auth pages’||
-|2. Responsive Behaviour<br>- ‘should render correctly on mobile’<br>- ‘should render correctly on tablet’<br>- ‘should render correctly on desktop’||
+|Integration tests|Results|
+|-|-|
+|1.Session Management<br>- ‘should maintain session after page refresh’<br>- ‘should redirect authenticated users away from auth pages’|![Result](Images/isessionresult.jpg)|
+|2. Responsive Behaviour<br>- ‘should render correctly on mobile’<br>- ‘should render correctly on tablet’<br>- ‘should render correctly on desktop’|![Result](Images/iresponsiveresult.jpg)|
 
 ### Significant findings
 
@@ -997,6 +1032,7 @@ User testing was conducted to emulate the behaviour of our users when ineracting
 
 Below is a list of outstanding bugs discovered during our final tests after deployment:
 
-|Feature|Bug|
--|-
-|1. Results Page|Unabe to run a new search when on results page|
+|Feature|Bug|Next steps|
+-|-|-
+|1. Results Page|Unable to run a new search when on results page|Will have to debug|
+|2. Filter component|The title field in the filter component is redundant and does not run the search correctly|Remove title field and retest filter component|
