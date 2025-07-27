@@ -84,7 +84,12 @@ const Header = ({onSearchBarFocus, onSearch}) => {
             </nav>
             <div className='header-search'>
                 <input type="text" placeholder="Search..." className='search-input' onFocus={onSearchBarFocus} 
-                value={query} onChange={(e) => setQuery(e.target.value)}/>
+                value={query} onChange={(e) => setQuery(e.target.value)}   
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      onSearch({ q: query });
+                    }
+                  }}/>
                 <button className="search-button" onClick={() => onSearch({q: query})}>🔍</button>
             </div>
         </header>

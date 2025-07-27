@@ -511,8 +511,6 @@ Note : This feature can have more depth, currently we are planning to include th
 ## Community Reviews
 Extension feature
 
-The following feature will not be developed at milestone 2, but will be extended upon to further complement the full suite of movie finding and tracking options the user has with PopcornTogether.
-
 By collating the community opinions of a movie based on a 5 star scale, our community reviews feature enables users to view movie ratings and short reviews from fellow users within the platform. This provides a more personalized and relatable perspective compared to generic critic reviews. Furthermore, critics tend to have a more skewed and distinct perspective towards movies and are not liekly to give accurate, representative, or actionable information when it comes to subjective fields such as movie enjoyment.
 
 We have created a preliminary render using [Figma](https://www.figma.com) to help us visualise what the review page would look like. This is displayed below: 
@@ -528,14 +526,27 @@ By seeing what their friends or the broader community think, users can:
 This addresses the user concerns we have identified
 > As a user who wants to see if a movie is worth watching or not.
 
+
 <div style="page-break-after: always;"></div>
 
 ## Movie Match
 Extension feature
 
-The following feature will not be developed at milestone 2, but will be further extended upon to provide yet another alternative way to discover new movies to watch.
-
 The Movie Match feature allows users to compare their wish list with their friends’ wish lists to quickly find movies both parties are interested in watching. This simplifies the often time-consuming process of deciding what to watch together. This enables for streamlined coordination, eliminating the back-and-forth of suggesting and rejecting movie options. It also allows our website to be an all-in-one site for users, where they can finalise their group's movie decision in the same place as their own personal movie records.
+
+The user can access the Movie Match page via the header component. This will render the basic Movie Match page below:
+
+ <ins>Movie Match page render</ins>
+![Movie Match](Images/movie-match.jpg)
+
+Currently, we have developed two 'genres' for users' random discovery. The first will be <ins>random</ins>, completely random films selected from TMDB without specifying any filters. Secondly will be <ins>gems</ins>, this will set filters to select only from a pool of most popular films from TMDB.
+
+Upon selection, the below section will be rendered, we set this up to mimic dating apps where users can find 'the one' movie that appeals to them should they be unable to find inspiration for movies to watch.
+
+This generates a collection of films below the selector. Users can add to their user lists, or view reviews directly from the movie card. They can also click left or right to view the next movies in the collection:
+
+ <ins>Movie Match page: random</ins>
+![Movie Match: random](Images/movie-match-random.jpg)
 
 Note: As an addition to this extension feature, we hope to provide Smart Recommendations in the future with further developments – if no match is found, our platform suggests similar titles based on genre, themes, or popularity among the users’ networks.
 
@@ -784,3 +795,189 @@ Overall, the summary of our deployment errors encountered and fixes, centers aro
 Despite challenges faced during the setup and deployment for Milestone 2, we have managed to successfully develop our core features for PopcornTogether, barring some fringe functionalisties that can be completed as extension work to complement the existing web app. 
 
 Our next steps will be to debug the unresolved errors, including the fringe functionalities to complete our core app, and add in our two extension features.
+
+## Testing
+
+In Milestone 3, we conducted multiple types of tests together. This allows our test suites to complement each other. These include:
+
+1. Unit Testing
+2. Integration Testing
+3. User Testing
+
+## Unit testing
+
+In order to conduct unit testing, we focused on complementing the user testing by introducing edge cases rather then simply relying on the user experience and 'Happy Path' testing. This involved the below steps:
+1. Creating test cases according to:
+    - [Partition Equivalence](https://www.geeksforgeeks.org/software-engineering/equivalence-partitioning-method/) [PE]: divides inputs into distinct equivalence classes where each class is expected to behave similarly. For each class, a representative value is tested instead of every possible value
+    - Test Boundaries [TB]: focus on values at the edges of valid input ranges, which are more prone to bugs. For example, empty string on maximum length strings
+    - Negative Cases [NC]: verify that the application gracefully handles invalid or unexpected inputs and doesn’t break or behave unpredictably.
+2. Used Jest to arrange and run test cases. The test cases were arranged using the AAA testing pattern. 
+    - AAA (Arrange-Act-Assert)
+    - Arrange: Setting up test environment and mock objects
+    - Act: Invokes the functionality to be tested
+    - Assert: Compares the results of the function to the expected outcome
+3. Ran frontend unit testing using the <ins>npm test</ins> command
+
+<div style="page-break-after: always;"></div>
+
+The labels for the relevant testing heuristics are:
+- Partition Equivalence (PE)
+- Test Boundary (TB)
+- Negative Case (NC)
+
+We set up our test cases for each component below:
+
+### Header:
+- ‘Renders LOGOUT button when Logged in’ [PE]
+- ‘Renders LOGIN button and redirects to authentication page when Logged out’ [PE]
+- ‘Empty string search input updates and triggers search’ [TB]
+- ‘Long string (255 characters) search input updates and triggers search’ [TB]
+- ‘Handles LOGOUT successfully’
+
+<ins>Result:</ins>
+
+### Filter:
+- ‘Renders filter component’
+- ‘Updates filter correctly’ [PE]
+- ‘Calls onSearch with the correct filters on form submit’
+- ‘Handles empty filters’ [TB][NC]
+
+<ins>Result:</ins>
+
+We set up our test cases for each Page below:
+
+### AuthPage:
+
+- ‘Renders page correctly’
+- ‘Passes valid email field to register page successfully’ [PE]
+- ‘Passing empty string for email redirects to register page successfully’ [TB][NC]
+- ‘Log In Button Redirects to login page successfully’
+
+<ins>Result:</ins>
+### RegisterPage:
+
+- ‘Renders page successfully’
+- ‘Registers with valid entries’ [PE]
+- ‘Does not register if required field is empty’ [NC]
+- ‘Rejects invalid email format’ [NC]
+- ‘Rejects submission if username/email already exists (mocked backend)’ [NC]
+
+<ins>Result:</ins>
+
+### LoginPage:
+
+- ‘Renders page successfully’
+- ‘Login successfully with correct parameters and redirects to homepage’ [PE]
+- ‘Login successfully with uppercase letters and extra spaces in email’ [PE]
+
+<ins>Result:</ins>
+
+### HomePage (Landing page):
+
+- ‘Renders page correctly’
+- ‘Renders movie banner, latest movies, timeless favourites, friend activity and popular franchises correctly’ [PE]
+- ‘Redirects to timeless favourites page correctly’
+- ‘Redirects to franchise page correctly’
+- ‘Renders default image for Friend Activity when Logged out’ [PE]
+- ‘Renders friend activity when Logged in’ [PE]
+
+### ResultsPage (Movie Search Results):
+
+- ‘Renders results correctly’
+- ‘Handles empty searches’ [TB][NC]
+- ‘Adds to watched list button successful’ [PE]
+- ‘Adds to wishlist button successful’ [PE]
+
+<ins>Result:</ins>
+
+### WatchedListPage and WishListPage:
+
+- ‘Correctly renders movies in watched list’ [PE]
+- ‘Renders page if list is empty’ [TB]
+- ‘Case when user is Logged out but somehow lands on watched list page’ [NC]
+- ‘Renders friends list when id param exists’
+- ‘Remove button removes movie from list’
+
+<ins>Result:</ins>
+
+Note: The functionality of Watched List and Wish List is similar with a few key distinctions. 
+
+### WatchStatsPage (Profile):
+
+- ‘Correctly renders all stats’ [PE]
+
+<ins>Result:</ins>
+
+### MovieMatchPage:
+
+- ‘Renders page successfully’ 
+- ‘Renders Random selection’ [PE]
+- ‘Renders Gem selection’
+- ’Navigates between movies’ 
+
+<ins>Result:</ins>
+
+<div style="page-break-after: always;"></div>
+
+## Integration Testing
+
+We used Integration testing to complement the user testing and unit tesitng and it is used to simulate and mimic user interactions with the app. We made use of [Cypress](https://www.cypress.io/app#browser_testing) to conduct out integration testing as it allows us to build, test and run our test cases directly in the browser. We set up the test cases as:
+
+1. Registration
+2. Logging in
+3. Searching for movie
+4. Viewing review for a movie
+5. Using watchedlist
+6. Using friend's list
+
+|Integration tests|Objective|Result|
+|-|-|-|
+|1. Registration <br> - 'should successfully register a new user'<br> - 'should show error for existing username/email'||
+|2. Logging in <br> - ‘should successfully log in with valid credentials’<br>- ‘should show error for invalid credentials’||
+|3. Searching for movie<br>- 'should search and navigate to community reviews'<br>- 'should search and add to watched list'||
+|4. Viewing review for a movie<br>- 'should display movie details'<br>- 'should navigate back to previous page'||
+|5. Adding movie to watched list<br>- 'should display watched movies'<br>- 'should remove movie from watched list'||
+|6. Adding friend<br>- 'should search and add a friend'<br>- 'should view a friend\'s watched list'<br>- 'should remove a friend'||
+
+We also coducted test on two other areas for overall app robustness:
+
+1. Session Management
+2. Responsive Behaviour
+
+|Integration tests|Objective|Results|
+|-|-|-|
+|1.Session Management<br>- ‘should maintain session after page refresh’<br>- ‘should redirect authenticated users away from auth pages’||
+|2. Responsive Behaviour<br>- ‘should render correctly on mobile’<br>- ‘should render correctly on tablet’<br>- ‘should render correctly on desktop’||
+
+### Significant findings
+
+From our integration tests, we had two test case failures.
+
+|Failure|Next Steps|
+|-|-|
+|‘should redirect authenticated users away from auth pages’|Frontend functionality will have to be added to check for user authentication in the relevant Authentication pages (Auth Page, Register Page, Login Page). This functionality can be the same as the ones already set up in the landing page.|
+|‘should render correctly on mobile’|Our app is actually set up and intended for desktop use, in future we can add better responsiveness for mobile integration.|
+
+## User Testing
+
+User testing was conducted to emulate the behaviour of our users when ineracting with the app. Below is the summary of the test cases:
+
+|Test|Steps|Feedback|
+|-|-|-|
+|1. Registration and login|1. Click on login button on header<br>2. Enter a email in valid format<br> 3. Click continue<br>4. Register with valid details<br>5. Click Login with existing account<br>6. Login with the same credentials|Able to register and subsequently verify successful registration by logging in with the same credentials|
+|2. Accessing Timeless Favourites page and popular franchises pages|1. Click on the Timeless Favourites banner<br>2. Return to homepage by clicking PopcornTogether in Header<br>3. Click on each of the respective franchise icons|Able to view each page and reroute to homepage via the header|
+|3. Adding movies to watched list and wishlist from the home page|1. Attempt to add a movie each from latest movies section, and friends activity section to watched list and wish list<br>2. Click on My Lists and check each list to verify successful addition|Addition to watched list and wishlist succssful, navigation to each list successful|
+|4. Search for a specific film, check the reviews and add to watched list from results page|1. Using the search bar, search for 'star wars' by title<br>2. Click on reviews<br>3. Click back on the community reviews page<br>4. Add the first movie to watched list<br>5. Verify on Watched list page|Search for star wars movies successful, able to view the reviews.<br><br> Clicking back on the community reviews page preserves the search results and add the respective movie to watched list from the results page|
+|5. Specify filters to search for movie, add to wishlist from the results page|1. Click on the search bar to render filter bar<br>2. Specify genre, year and language<br>3. Click search<br>4. Add a movie to the wishlist|Able to search for movies related to the filters specified. Able to add movie to wish list.<br><br>Additionally, running searches for less popular filters will yield results and render results page successfully.|
+|6. Check a movie in your wishlist as watched|1. Navigate to Wishlist page<br>2. Click on + Watched button for a recently watched movie|Movie marked as watched appears in watched list page. Movie is no longer in wish list.|
+|7. View stats in my profile|1. Log out and then Log in to a fresh account<br>2. View My Profile to check for empty statistics.<br>3. Control the films watched, runtime and top genres by iteratively adding new movies to watched list and checking|Able to logout of account and be redirected to the authentication page. Able to view the My Profile page. My Profile renders the correct statistics for 0 films watched. My Profile page renders the correct statistics when new movies are added to the watched list.|
+|8. Add a friend and view their lists, then remove the friend|1. Navgiate to My Friends Page<br>2. Search for test1 user and add them twice.<br>3. View friend's watched list and wishlist<br>4. Remove friend|Able to navigate to My Friends page.<br> Able to add friend.<br> Trying to add friend twice fails as intended.<br> Able to view friends' lists.<br> Able to remove friend.|
+|9. Check the Movie Match function|1. Navigate to Movie Match page<br>2. Click on Random<br>3. Swipe left and right to see different movies<br>4. Add to lists and view reviews<br>5. Repeat for Gems|Able to access Movie Match Page. Random and Gems are able to produce distinct collections of movies. Able to view reviews and add movies to list from this page.|
+
+## Known bugs
+
+Below is a list of outstanding bugs discovered during our final tests after deployment:
+
+|Feature|Bug|
+-|-
+|1. Results Page|Unabe to run a new search when on results page|

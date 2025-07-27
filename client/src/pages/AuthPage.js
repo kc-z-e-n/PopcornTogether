@@ -32,7 +32,7 @@ function AuthPage() {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder='email@domain.com'
                             className='input'
-                            required />
+                            />
                     <button type='submit' className='primary-btn'>Continue</button>
                     </form>
 

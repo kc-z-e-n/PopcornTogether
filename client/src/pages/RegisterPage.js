@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './RegisterPage.css';
-import axios from 'axios'; // for backend
+import axios from 'axios';
 
 function RegisterPage() {
     const location = useLocation(); 
@@ -19,10 +19,16 @@ function RegisterPage() {
             lastName: formData.get('lastName'),
             username: formData.get('username'),
             dob: formData.get('dob'),
-            email: formData.get('email'),
+            email: formData.get('email').trim(),
             password: formData.get('password'),
             confirmPassword: formData.get('confirmPassword'),
             agreedToTerms: agreed,
+        };
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(data.email)) {
+            alert('Please enter a valid email (eg. user@example.com)');
+            return;
         };
 
         try {
@@ -60,7 +66,7 @@ function RegisterPage() {
                         I agree to all the <a href='#'>Terms</a> and <a href='#'>Privacy policy</a>
                         <input type='checkbox' id='terms' required checked={agreed} 
                     onChange={(e) => setAgreed(e.target.checked)}/>
-                    <span class="checkmark"></span>
+                    <span className="checkmark"></span>
                     </label>
                     
                     <button type='submit' className='register-btn'>Create account</button>

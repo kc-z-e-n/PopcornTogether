@@ -197,7 +197,7 @@ router.get('/match', async (req, res) => {
                 ...tmdbParams, 
                 sort_by: type === 'Gems' ? 'vote_average.desc' : 'popularity.desc',
                 'vote_count.gte': type === 'Gems' ? 100 : 0,
-                page: Math.floor(Math.random() * 10000) + 1,
+                page: Math.floor(Math.random() * 500) + 1,
                 include_adult: false,
             }
         });
