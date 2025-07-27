@@ -27,6 +27,8 @@ const ReviewButton = ({ movieId }) => {
         console.log('Review submitted:', reviewText);
 
         try {
+            console.log('POSTing to:', `${BACKEND_URL}/api/reviews`);
+            
             await axios.post(`${BACKEND_URL}/api/reviews`, { movieId, text: reviewText },
                 { withCredentials: true }
             );

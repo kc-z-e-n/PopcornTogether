@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Rating = require('../models/Rating');
-const { isAuthenticated } = require('../middleware/auth');
+const { isAuthenticated } = require('../middleware/Auth');
 
 router.get('/:movieId', isAuthenticated, async (req, res) => {
     const {movieId} = req.params;

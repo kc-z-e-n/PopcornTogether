@@ -80,7 +80,7 @@ const ResultsPage = () => {
                         className="movie-poster"
                     />
                     <p className="movie-title">{movie.title}</p>
-                    <button className='add-button' onClick={() => navigate(`/community/${movie.id}`)}>Reviews</button>
+                    <button className='add-button' onClick={() => navigate(`/community/${movie.id}`)}>Information</button>
                     <hr/>
                     <div className='button-group'>
                         <button className='add-button' onClick={() => addToList('addWatched', movie.id)}>+ Watchedlist</button>

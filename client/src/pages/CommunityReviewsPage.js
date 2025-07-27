@@ -77,7 +77,7 @@ function CommunityReviewsPage() {
             {showFilters && <Filter onSearch={handleSearch} onClose={()=> setShowFilters(false)}/>}
 
             <div className='review-banner'>
-                <h2>{movie.title}'s Reviews</h2>
+                <h2>{movie.title}'s Information</h2>
             </div>
 
             <button className='back-button' onClick={() => navigate(-1)}>Back</button>

@@ -1,17 +1,25 @@
+console.log('🧭 reviewRoutes.js loaded');
+
 const express = require('express');
 const router = express.Router();
 const Review = require('../models/Review');
-const { isAuthenticated } = require('../middleware/auth');
+const { isAuthenticated } = require('../middleware/Auth');
+
+router.post('/test-route', async (req, res) => {
+    console.log('🎯 TEST ROUTE HIT');
+    res.send('OK');
+  });
 
 router.post('/', isAuthenticated, async(req, res) => {
     try {
         const { movieId, text } = req.body;
+        const userId = req.user.id;
 
         if (!text || text.trim().length < 10) {
             return res.status(400).json({ error: "Review must be at least 10 characters"});
         }
 
-        const review = new Review({ movieId, userId: req.user._id, text: text.trim()});
+        const review = new Review({ movieId, userId, text: text.trim()});
         await review.save();
         res.status(201).json(review);
     } catch (err) {
