@@ -1,4 +1,4 @@
-<img width="105" height="71" alt="image" src="https://github.com/user-attachments/assets/decfec4a-acba-4adb-9bfd-f353d64a1b2a" /><h1 style="text-align:center;">Orbital 25 Milestone 2</h1>
+<img width="105" height="71" alt="image" src="https://github.com/user-attachments/assets/decfec4a-acba-4adb-9bfd-f353d64a1b2a" /><h1 style="text-align:center;">Orbital 25 Milestone 3</h1>
 <h2 style="text-align:center;">Popcorn Together</h2>
 
 ![title](Images/PT_logo_copy.jpg)
