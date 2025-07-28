@@ -18,19 +18,19 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(express.json());
 
 app.use(cors({
-    origin: /*true,*/'http://localhost:3000',
+    origin: true,/*'http://localhost:3000',*/
     credentials: true
 }));
 
-//app.set('trust proxy', 1);
+app.set('trust proxy', 1);
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
         httpOnly:true,
-        secure:/*true*/false,
-        sameSite:/*'none'*/'lax',
+        secure:true/*false*/,
+        sameSite:'none'/*'lax'*/,
         maxAge:1000*60*60*24
     },
     store: MongoStore.create({
