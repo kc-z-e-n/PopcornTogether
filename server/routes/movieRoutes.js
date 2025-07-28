@@ -42,7 +42,6 @@ router.get('/search', async (req, res) => {
         }
 
         res.json({result, totalPages: Math.ceil(result.length / 8)});
-        console.log('Returned TMDB titles:', tmdb.data.results.map(m => m.title));
     } catch (err) {
         console.error('TMDB search error:', err.message);
         res.status(500).json({error: 'TMDB Request failed'});
