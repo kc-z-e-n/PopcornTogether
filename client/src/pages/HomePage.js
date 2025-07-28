@@ -104,9 +104,9 @@ const HomePage = () => {
                         <p className='movie-meta'>2024 • Action, Drama</p>
                         <div className='button-group'>
                             <button className='play-button'
-                            onClick={() => addToList('addWatched', 'kingdom-of-apes')} >+ Watchedlist</button>
+                            onClick={() => addToList('addWatched', 653346)} >+ Watchedlist</button>
                             <button className='play-button'
-                            onClick={() => addToList('addWish', 'kingdom-of-apes')} >+ Wishlist</button>
+                            onClick={() => addToList('addWish', 653346)} >+ Wishlist</button>
                         </div>
                     </div>
                     <div>
