@@ -1,4 +1,4 @@
-<img width="105" height="71" alt="image" src="https://github.com/user-attachments/assets/decfec4a-acba-4adb-9bfd-f353d64a1b2a" /><h1 style="text-align:center;">Orbital 25 Milestone 3</h1>
+<h1 style="text-align:center;">Orbital 25 Milestone 3</h1>
 <h2 style="text-align:center;">Popcorn Together</h2>
 
 ![title](Images/PT_logo_copy.jpg)
@@ -39,7 +39,7 @@
 - [Community Reviews](#community-reviews)
 - [Movie Match](#movie-match)
 
-## Software design
+## **Software design**
 - [Software Engineering Principles](#Software-engineering-principles)
 - [Version control](#version-control)
 - [Software Development Life Cycle (SDLC)](#software-development-life-cycle-(sdlc))
@@ -50,18 +50,18 @@
 - [Databse](#database)
 - [Deployment](#deployment)
 
-## Testing Milestone 3
+## **Testing Milestone 3**
 - [Unit Testing](#unit-testing)
 - [Integration testing](#integration-testing)
 - [User Testing](#user-testing)
 - [Known Bugs](#known-bugs)
 
-## Conclusion
+## **Conclusion**
 - [Next Steps](#next-steps)
 
 <div style="page-break-after: always;"></div>
 
-## Project Overview 
+## **Project Overview**
 With the proliferation of movies in cinemas and streaming platforms, it may be overwhelming for users to identify what movies they would like to watch. This is especially so when they are searching with friends and family, trying to find a film they can watch together.
 
 Ever wondered what movies you have already watched, or which of the hundreds of thousands should be next on your wishlist? PopcornTogether seeks to provide a solution to the Movie Weekend conundrum. 
@@ -86,6 +86,7 @@ The proposed web application PopcornTogether seeks to create a platform where mo
 ---
 Through this project, we aim to pick up industry relevant software engineering skills and practices. We also hope to learn how to better cater to user interests and preferences, by designing a UI/UX that is intuitive, engaging, and responsive to user needs. Additionally, the project is one that we believe can add value to one's leisure time by reducing the effort spent on collating one's watch history and finding movies. Through the user interaction feature with their friends, we also hope to deepen the bond between friends by enabling them to share and discover movies based on common interests, fostering a more connected and meaningful viewing experience.
 
+<div style="page-break-after: always;"></div>
 
 ## Objectives
 This project aims to create a platform for users to maintain an account with information on movies they have and watched and want to watch. It also provides discovery functions where users can find movies through active searching, recommendations, or through friends they have connected with.
@@ -200,6 +201,8 @@ At this stage, PopcornTogether has been deployed at [https://popcorntogether-tes
 - Implemented Friends List and functionality for viewing friends' Watchedlists and Wishlists
 - Deployment of PopcornTogether using Render
 
+<div style="page-break-after: always;"></div>
+
 ## Milestone 3 summary
 
 The objective in milestone 3 for PopcornTogether is to develop further extension in order to complete our suite of functions. This version will incorporate the full functionality completed in Milestone 2. We aim to conduct more comprehensive testing in addition to the user testing conducted for milestone 2. After completion, we aim to finalise deployment on Render and conduct one last round of user testing on the deployed app.
@@ -245,6 +248,8 @@ Testing to be conducted:
 |Community reviews|Allow users to pool reviews on movies they have watched, as well as rate the movie out of 5 stars. Average star ratings will also be calculated.|Gives users a better idea of what they can expect from movies they are interested in, and curate their selection to their tastes better.|
 |Movie Match|For users who are unsure of what movie they want to watch, they would be able to specify a set of filters and random films will be generated and suggested to the user. We aim to mimic a social media for-you page layout for this.|With a general idea of what kind of film they want to watch, users can begin to browse for movies that interest them. This feature targets users who do not know the exact movie they want to watch or are just looking for more.|
 
+<div style="page-break-after: always;"></div>
+
 <ins>User diagram</ins>
 ![Diagram](Images/PT_diagram.jpg)
 
@@ -265,6 +270,8 @@ Other features such as Friends List and Account Profile will also prompt the use
 ![landing page](Images/landing.png)
 
 After logging in, the user will be redirected to the landing page once again, they will now be able to access the various features. They will also be able to logout of their account.
+
+<div style="page-break-after: always;"></div>
 
 ### User Account/Profile
 Core feature 
@@ -410,6 +417,8 @@ The image below is a sample of what the discover pages look like, in this case f
 
 This addresses the concern we have identified :
 > As a user who wants to easily and purposefully discover new movies to watch, based on specific categories provided.
+
+<div style="page-break-after: always;"></div>
 
 ## Watchedlist
 Core feature
@@ -1067,6 +1076,8 @@ From our integration tests, we had two test case failures.
 |‘should redirect authenticated users away from auth pages’|Frontend functionality will have to be added to check for user authentication in the relevant Authentication pages (Auth Page, Register Page, Login Page). This functionality can be the same as the ones already set up in the landing page.|
 |‘should render correctly on mobile’|Our app is actually set up and intended for desktop use, in future we can add better responsiveness for mobile integration.|
 
+<div style="page-break-after: always;"></div>
+
 ## User Testing
 
 User testing was conducted to emulate the behaviour of our users when ineracting with the app. Below is the summary of the test cases:
@@ -1082,6 +1093,19 @@ User testing was conducted to emulate the behaviour of our users when ineracting
 |7. View stats in my profile|1. Log out and then Log in to a fresh account<br>2. View My Profile to check for empty statistics.<br>3. Control the films watched, runtime and top genres by iteratively adding new movies to watched list and checking|Able to logout of account and be redirected to the authentication page. Able to view the My Profile page. My Profile renders the correct statistics for 0 films watched. My Profile page renders the correct statistics when new movies are added to the watched list.|
 |8. Add a friend and view their lists, then remove the friend|1. Navgiate to My Friends Page<br>2. Search for test1 user and add them twice.<br>3. View friend's watched list and wishlist<br>4. Remove friend|Able to navigate to My Friends page.<br> Able to add friend.<br> Trying to add friend twice fails as intended.<br> Able to view friends' lists.<br> Able to remove friend.|
 |9. Check the Movie Match function|1. Navigate to Movie Match page<br>2. Click on Random<br>3. Swipe left and right to see different movies<br>4. Add to lists and view reviews<br>5. Repeat for Gems|Able to access Movie Match Page. Random and Gems are able to produce distinct collections of movies. Able to view reviews and add movies to list from this page.|
+
+### Final Deployment testing
+
+By repeating our user testing for the final deployment, we were able to test the build online. In addition to the above tests, we also included a few more:
+
+1. Adding the homepage featured movie banner to watched list
+    - missed out during first round of local user testing
+    - discovered error in the functionality (**FIXED**)
+2. Refreshing the browser on pages other than homepage
+    - testing fix to fallback route
+    - works as intended 
+
+Apart from the new additions, every other test case managed to pass, the deployed app serves our intended functionality.
 
 ## Known bugs
 
