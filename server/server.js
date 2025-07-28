@@ -79,7 +79,7 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: 'Server error' });
 });
 
-app.get('*', (req,res) => {
+app.use((req,res) => {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 }); 
 
