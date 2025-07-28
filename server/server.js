@@ -5,18 +5,9 @@ const cors = require('cors');
 require('dotenv').config({path: './config.env'});
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-
-//port
-const PORT = process.env.PORT || 5050;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
 const path = require('path');
-app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use(express.json());
-
 app.use(cors({
     origin: true,/*'http://localhost:3000',*/
     credentials: true
@@ -40,6 +31,8 @@ app.use(session({
     })
 }));
 
+app.use(express.static(path.join(__dirname, '../client/build')));
+
 //routes
 const authRoutes = require('./routes/authRoutes');
 const movieRoutes = require('./routes/movieRoutes');
@@ -57,9 +50,28 @@ app.use('/api/stats', watchStatsRoutes);
 app.use('/api/rating', ratingRoutes);
 app.use('/api/reviews', reviewRoutes);
 
+/*
 app.get('/', (req, res) => {
     res.send('Backend running');
-});
+});*/
+
+app.get('/api/retrieve', async (req, res) => {
+    try {
+      const user = await User.findById(req.session.user.id);
+      res.json({ user });
+    } catch (err) {
+      res.status(500).json({ message: 'User retrieval failed'});
+    }
+  });
+
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+}); 
+
+app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err);
+    res.status(500).json({ message: 'Server error' });
+  });
 
 //connect to mongodb
 mongoose.connect(process.env.ATLAS_URI, {
@@ -70,21 +82,8 @@ mongoose.connect(process.env.ATLAS_URI, {
     console.error('MongoDB connection error:', err);
 });
 
-app.use((err, req, res, next) => {
-    console.error('Unhandled error:', err);
-    res.status(500).json({ message: 'Server error' });
-  });
-
-app.get('/api/retrieve', async (req, res) => {
-  try {
-    const user = await User.findById(req.session.user.id);
-    res.json({ user });
-  } catch (err) {
-    res.status(500).json({ message: 'User retrieval failed'});
-  }
+//port
+const PORT = process.env.PORT || 5050;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
-
-
-app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-}); 
