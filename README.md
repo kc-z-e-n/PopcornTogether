@@ -25,6 +25,9 @@
 ## [Milestone 2 summary](milestone-2-summary)
 - [Work completed](#work-completed)
 
+## [Milestone 3 summary](milestone-3-summary)
+- [Work completed](#work-completed)
+
 ## **Features**
 - [Landing page](#landing-page)
 - [Account](#account)
@@ -197,12 +200,32 @@ At this stage, PopcornTogether has been deployed at [https://popcorntogether-tes
 - Implemented Friends List and functionality for viewing friends' Watchedlists and Wishlists
 - Deployment of PopcornTogether using Render
 
+## Milestone 3 summary
+
+The objective in milestone 3 for PopcornTogether is to develop further extension in order to complete our suite of functions. This version will incorporate the full functionality completed in Milestone 2. We aim to conduct more comprehensive testing in addition to the user testing conducted for milestone 2. After completion, we aim to finalise deployment on Render and conduct one last round of user testing on the deployed app.
+
+Extension Features to add for milestone 3:
+
+1. Community Reviews
+2. Movie Match
+
+Testing to be conducted:
+
+1. Unit testing
+2. Integration testing
+3. User testing (local)
+4. User testing (deployed)
+
+## Work completed
+
 <ins>Milestone 3</ins>
 - Implemented Movie Match function
 - Implemented Star Ratings function
 - Implemented Reviews function
 - Accounted for lack of case sensitivity in login/signup feature
 - Updated Reviews Given feature in Watch Statistics
+- Unit Testing
+- Integration Testing
 - User Testing
 - Deployment of PopcornTogether using Render
 
@@ -817,7 +840,7 @@ The deployed code required slight tweaks to our frontend backend communication a
 
 Overall, the summary of our deployment errors encountered and fixes, centers around small code adjustments when moving from local testing to Render, and figuring out how Render deployments worked.
 
-## Conclusion
+###  Conclusion
 
 Despite challenges faced during the setup and deployment for Milestone 2, we have managed to successfully develop our core features for PopcornTogether, barring some fringe functionalisties that can be completed as extension work to complement the existing web app. 
 
@@ -1036,3 +1059,33 @@ Below is a list of outstanding bugs discovered during our final tests after depl
 -|-|-
 |1. Results Page|Unable to run a new search when on results page|Will have to debug|
 |2. Filter component|The title field in the filter component is redundant and does not run the search correctly|Remove title field and retest filter component|
+
+<div style="page-break-after: always;"></div>
+
+## Conclusion
+
+PopcornTogether is an app created for movie lovers. It features a wide range of movie discovery tools and serves as your trusty movie log. Discover new movies to watch with friends, or simply hijack their lists for inspiration!
+
+Below are the completed list of features that PopcornTogether provides:
+
+- Movie Search
+- Movie Discovery
+- Personal Profile & Watch Statistics
+- Watchedlist
+- Wishlist
+- Friends List
+- Community Reviews
+- Movie Match
+
+## Next Steps
+
+As we reach the end of the Orbital program, we still have further steps we can take to improve upon the app.
+
+1. Debugging known issues
+2. Cleaning up the UI
+
+Other improvements we can make to the app are listed below:
+
+1. Making the app more responsive to different screen sizes
+2. Add more movie match selectors
+3. Conduct further testing
