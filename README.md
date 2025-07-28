@@ -566,11 +566,15 @@ Community reviews can be categorised into 2 types, namely a Star Rating based on
  <ins>Community Reviews Information Page</ins>
 ![Community Reviews](Images/CommunityReviewsPage.png)
 
+
 ### Star Rating
 For Star Rating on a 5 star scale, by collating the community opinions of a movie based with stars, users can quickly gauge the overall reception and quality of a film at a glance. This helps viewers discover highly-rated titles, avoid poorly received ones, and contribute their own opinions to shape the collective impression of each movie.
 
  <ins>Star Rating</ins>
 ![Star Rating](Images/StarRating.png)
+<ins>Average Star Rating</ins>
+![AverageStar](Images/AverageStar.png)
+
 
 ### Review Writing
 Meanwhile, the Review Writing feature enables users to view comments from fellow users within the platform. This provides a more personalized and relatable perspective from many individuals, compared to generic critic reviews. Furthermore, critics tend to have a more skewed and distinct perspective towards movies and are not likely to give accurate, representative, or actionable information when it comes to subjective fields such as movie enjoyment.
@@ -579,8 +583,6 @@ Users can click the "Leave a Review" button to leave an unlimited amount of revi
 
  <ins>Leave a Review Popup</ins>
 ![Leave a Review Popup](Images/LeaveAReview.png)
-<ins>Average Star Rating</ins>
-![AverageStar](Images/AverageStar.png)
 
 To view a user's past reviews, as well as all existing reviews for a particular movie, users can click the "View All Reviews" button. Users will be directed to the ReviewsPage where they can either update or delete their own reviews in that page as well.
 
