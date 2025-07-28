@@ -1,4 +1,4 @@
-<h1 style="text-align:center;">Orbital 25 Milestone 2</h1>
+<img width="105" height="71" alt="image" src="https://github.com/user-attachments/assets/decfec4a-acba-4adb-9bfd-f353d64a1b2a" /><h1 style="text-align:center;">Orbital 25 Milestone 3</h1>
 <h2 style="text-align:center;">Popcorn Together</h2>
 
 ![title](Images/PT_logo_copy.jpg)
@@ -552,20 +552,29 @@ Note : This feature can have more depth, currently we are planning to include th
 ## Community Reviews
 Extension feature
 
-Community reviews can be categorised into 2 types, namely a Star Rating based on a 5 star scale, followed by Written Reviews for the movie. These features are accessed through the Header's search bar, where the search results have an 'Information' button that directs users to the Community Reviews Information page.
+Community reviews can be categorised into 2 types, namely a Star Rating based on a 5 star scale, followed by Review Writing for the movie. These features are accessed through the Header's search bar, where the search results have an 'Information' button that directs users to the Community Reviews Information page.
 
  <ins>Community Reviews Information Page</ins>
 ![Community Reviews](Images/CommunityReviewsPage.png)
 
-For Star Rating, by collating the community opinions of a movie based with stars, users can quickly gauge the overall reception and quality of a film at a glance. This helps viewers discover highly-rated titles, avoid poorly received ones, and contribute their own opinions to shape the collective impression of each movie.
+### Star Rating
+For Star Rating on a 5 star scale, by collating the community opinions of a movie based with stars, users can quickly gauge the overall reception and quality of a film at a glance. This helps viewers discover highly-rated titles, avoid poorly received ones, and contribute their own opinions to shape the collective impression of each movie.
 
-Meanwhile, the Written Reviews feature enables users to view comments from fellow users within the platform. This provides a more personalized and relatable perspective from many individuals, compared to generic critic reviews. Furthermore, critics tend to have a more skewed and distinct perspective towards movies and are not likely to give accurate, representative, or actionable information when it comes to subjective fields such as movie enjoyment.
+ <ins>Star Rating</ins>
+![Star Rating](Images/StarRating.png)
+
+### Review Writing
+Meanwhile, the Review Writing feature enables users to view comments from fellow users within the platform. This provides a more personalized and relatable perspective from many individuals, compared to generic critic reviews. Furthermore, critics tend to have a more skewed and distinct perspective towards movies and are not likely to give accurate, representative, or actionable information when it comes to subjective fields such as movie enjoyment.
 
 Users can click the "Leave a Review" button to leave an unlimited amount of reviews.
+
  <ins>Leave a Review Popup</ins>
 ![Leave a Review Popup](Images/LeaveAReview.png)
+<ins>Average Star Rating</ins>
+![AverageStar](Images/AverageStar.png)
 
-To view a user's past reviews, as well as all existing reviews for a particular movie, users can click the "View All Reviews" button. Users can either update or delete their own reviews in that page as well.
+To view a user's past reviews, as well as all existing reviews for a particular movie, users can click the "View All Reviews" button. Users will be directed to the ReviewsPage where they can either update or delete their own reviews in that page as well.
+
  <ins>View All Reviews Page</ins>
 ![View All Reviews Page](Images/ViewAllReviews.png)
 
@@ -754,7 +763,7 @@ The development of PopcornTogether followed a depth first implementation. Featur
 |-|-|
 |5. Deployment|- Use of Render to deploy the webapp|
 |6. Extension| - Implementation of extension features|
-|7. Refinement|- Add additional functionality for a robust Movie companion app|
+|7. Refinement|- Add additional extension functionality for a robust Movie companion app|
 |8. Final testing|- Ensure everything runs seamlessly<br>- Optimisation|
 
 <div style="page-break-after: always;"></div>
@@ -937,7 +946,7 @@ We set up our test cases for each Page below:
 - ‘Redirects to timeless favourites page correctly’
 - ‘Redirects to franchise page correctly’
 - ‘Renders default image for Friend Activity when Logged out’ [PE]
-- ‘Renders friend activity when Logged in’ [PE]
+- ‘Renders Friend Activity when Logged in’ [PE]
 
 <ins>Result:</ins>
 ![Result](Images/homeresult.jpg)
@@ -947,23 +956,46 @@ We set up our test cases for each Page below:
 - ‘Renders results correctly’
 - ‘Handles empty searches’ [TB][NC]
 - ‘Adds to watched list button successful’ [PE]
-- ‘Adds to wishlist button successful’ [PE]
+- ‘Adds to Wishlist button successful’ [PE]
+- ‘View Community Reviews Information Page successful‘ [PE]
 
 <ins>Result:</ins>
 ![Result](Images/resultresult.jpg)
 
-### WatchedListPage and WishListPage:
+### WatchedlistPage and WishlistPage:
 
-- ‘Correctly renders movies in watched list’ [PE]
+- ‘Correctly renders movies in Watchedlist’ [PE]
 - ‘Renders page if list is empty’ [TB]
-- ‘Case when user is Logged out but somehow lands on watched list page’ [NC]
+- ‘Case when user is Logged out but somehow lands on Watchedlist page’ [NC]
 - ‘Renders friends list when id param exists’
 - ‘Remove button removes movie from list’
 
 <ins>Result:</ins>
 ![Result](Images/watchedresult.jpg)
 
-Note: The functionality of Watched List and Wish List is similar with a few key distinctions. 
+Note: The functionality of Watchedlist and Wishlist is similar with a few key distinctions.
+
+### CommunityReviewsPage (Movie Information):
+
+- ‘Correctly renders movie information, Star Rating button and Review button‘ [PE]
+- ‘Correctly renders average Star Rating value‘ [PE]
+- ‘Add Star Rating button successful‘ [PE]
+- ‘Add Valid Review successful‘ [PE]
+- ‘Add Very Long Review‘ [TB]
+- ‘Add Empty Review unsuccessful‘ [NC]
+- ‘Visit ReviewsPage successful‘ [PE]
+
+<ins>Result:</ins>
+![Result](Images/CommunityReviewsPage.png)
+
+### ReviewsPage:
+
+- ‘Correctly renders all reviews' information‘ [PE]
+- ‘Edit/Delete user's own review‘ [PE]
+- ‘Edit/Delete another user's review‘ [NC]
+
+<ins>Result:</ins>
+![Result](Images/ViewAllReviews.png)
 
 ### WatchStatsPage (Profile):
 
