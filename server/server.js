@@ -31,6 +31,16 @@ app.use(session({
     })
 }));
 
+//connect to mongodb
+mongoose.connect(process.env.ATLAS_URI, {
+    dbName: 'PopcornTogether_users'
+}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch((err) => {
+    console.error('MongoDB connection error:', err);
+});
+
+//static files
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 //routes
@@ -64,23 +74,14 @@ app.get('/api/retrieve', async (req, res) => {
     }
   });
 
-app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-}); 
-
 app.use((err, req, res, next) => {
     console.error('Unhandled error:', err);
     res.status(500).json({ message: 'Server error' });
-  });
-
-//connect to mongodb
-mongoose.connect(process.env.ATLAS_URI, {
-    dbName: 'PopcornTogether_users'
-}).then(() => {
-    console.log('Connected to MongoDB');
-}).catch((err) => {
-    console.error('MongoDB connection error:', err);
 });
+
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+}); 
 
 //port
 const PORT = process.env.PORT || 5050;
