@@ -83,7 +83,7 @@ const HomePage = () => {
                     /*params: {page: page},
                     withCredentials: true
             }); */
-            setTimelessMovies(res.data.result);
+            setTimelessMovies(res.data.result.slice(0, 4));
 
             } catch (err) {
                 console.error('Failed to fetch timeless favourites', err);
