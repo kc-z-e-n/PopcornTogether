@@ -9,6 +9,7 @@ const HomePage = () => {
     const [showFilters, setShowFilters] = useState(false);
     const navigate = useNavigate();
     const [latestMovies, setLatestMovies] = useState([]);
+    const [timelessMovies, setTimelessMovies] = useState([]);
     const location = useLocation();
     const initialQuery = location.state?.query || {};
     const [friendsActivity, setFriendsActivity] = useState([]);
@@ -76,6 +77,19 @@ const HomePage = () => {
             }
         };
 
+        const fetchTimelessFavourites = async () => {
+            try {
+                const res = await axios.get(`${BACKEND_URL}/api/movie/timeless?page=${page}`);
+                    /*params: {page: page},
+                    withCredentials: true
+            }); */
+            setTimelessMovies(res.data.result);
+
+            } catch (err) {
+                console.error('Failed to fetch timeless favourites', err);
+            }
+        };
+
         const checkLogin = async () => {
             const loggedIn = await checkSessionLogin();
             setIsLoggedIn(loggedIn);
@@ -84,6 +98,7 @@ const HomePage = () => {
         checkLogin();
         fetchLatestMovies();
         fetchFriendsActivity();
+        fetchTimelessFavourites();
     }, [])
 
     return (
@@ -132,12 +147,31 @@ const HomePage = () => {
             </section>
 
             <section className='movie-section'>
+                <h2 className='section-heading' 
+                onClick={() => navigate('/timeless')} style={{ custor: 'pointer'}}>Timeless Favourites</h2>
+                {timelessMovies.map((movie) => (
+                    <div key={movie.id} className='movie-card'>
+                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className='movie-poster'/>
+                    <p className='movie-label'>{movie.title}</p>
+                    <div className='button-group'>
+                        <button className='play-button'
+                        onClick={() => addToList('addWatched', movie.id)} >+ Watchedlist</button>
+                        <button className='play-button'
+                        onClick={() => addToList('addWish', movie.id)} >+ Wishlist</button>
+                    </div>
+                    </div>
+                ))}
+            </section>
+
+            {/*
+            <section className='movie-section'>
                 <h2 className='section-heading'>Timeless Favourites</h2>
                 <img
                     src='./TimelessFavourites.png' alt='Timeless Favourites' className='poster'
                     onClick={() => navigate('/timeless')} style={{ custor: 'pointer'}}
                 />
             </section>
+            */}
 
             <section className='movie-section'>
                 <h2 className='section-heading'>Friend Activity</h2>
