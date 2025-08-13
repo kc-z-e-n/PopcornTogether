@@ -22,6 +22,22 @@ const MarvelPage = () => {
         }
     }
 
+    const addToList = async (listType, movieId) => {
+        const isLoggedIn = await checkSessionLogin();
+        if (!isLoggedIn) {
+            alert('Please log in first');
+            navigate('/auth');
+            return;
+        }
+
+        try {
+            await axios.post(`${BACKEND_URL}/api/user/${listType}`, {movieId}, {withCredentials:true});
+            alert('Add Successful!')
+        } catch (err) {
+            console.error('Add failed', err);
+        }
+    };
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -52,8 +68,8 @@ const MarvelPage = () => {
                         className='movie-poster'/>
                         <p className='movie-title'>{movie.title}</p>
                         <div className='button-group'>
-                            <button className='add-button'>+ Watchedlist</button>
-                            <button className='add-button'>+ Wishlist</button>
+                            <button className='add-button' onClick={() => addToList('addWatched', movie.id)}>+ Watchedlist</button>
+                            <button className='add-button' onClick={() => addToList('addWish', movie.id)}>+ Wishlist</button>
                         </div>
                     </div>
                 ))}
