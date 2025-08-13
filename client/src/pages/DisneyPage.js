@@ -22,6 +22,19 @@ const DisneyPage = () => {
         }
     }
 
+    const checkSessionLogin = async () => {
+        try {
+            const res = await axios.get(`${BACKEND_URL}/api/me`, {
+                withCredentials:true
+            });
+            if (res.status === 200) {
+                return true;
+            }
+        } catch (err) {
+            return false;
+        }
+    };
+    
     const addToList = async (listType, movieId) => {
         const isLoggedIn = await checkSessionLogin();
         if (!isLoggedIn) {
