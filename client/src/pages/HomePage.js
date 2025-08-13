@@ -79,7 +79,7 @@ const HomePage = () => {
 
         const fetchTimelessFavourites = async () => {
             try {
-                const res = await axios.get(`${BACKEND_URL}/api/movie/timeless?page=${page}`);
+                const res = await axios.get(`${BACKEND_URL}/api/movie/timeless?page=1`);
                     /*params: {page: page},
                     withCredentials: true
             }); */
