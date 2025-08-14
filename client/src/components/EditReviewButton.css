@@ -5,9 +5,9 @@
     cursor: pointer;
     margin-left: 10px;
     font-size: 2rem;
-  }
+}
   
-  .edit-review-modal {
+.edit-review-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -18,12 +18,12 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-  }
+}
   
-  .modal-content {
+.modal-content {
     background: #2a2a2a;
     padding: 20px;
     border-radius: 8px;
     width: 90%;
     max-width: 500px;
-  }
+}

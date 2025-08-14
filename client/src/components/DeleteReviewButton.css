@@ -10,25 +10,25 @@
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.2s;
-  }
+}
   
-  .delete-review-btn:hover {
+.delete-review-btn:hover {
     background: #cc0000;
     transform: scale(1.05);
-  }
+}
 
-  .review-card {
+.review-card {
     position: relative;
     padding-bottom: 20px;
-  }
+}
   
-  .delete-button-container {
+.delete-button-container {
     position: absolute;
     bottom: 10px;
     right: 10px;
-  }
+}
   
-  .delete-review-button {
+.delete-review-button {
     background-color: transparent;
     border: none;
     border-radius: 4px;
@@ -36,9 +36,9 @@
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.2s;
-  }
+}
   
-  .delete-review-button:hover {
+.delete-review-button:hover {
     background: #cc0000;
     transform: scale(1.05);
-  }
+}
